@@ -11,7 +11,7 @@ https://opendata-strathconacounty.hub.arcgis.com/datasets/e3c5b04fccdc4ddd88059a
 
 ## Introduction:
 
-The team will be using `Ridge` which is a linear model to predict the value of houses. Ridge is a regularization model that is used for predictive modeling and mitigates over fitting, improves model stability especially when features are highly correlated. Ridge helps create robust model that generalize well to new data.
+The team will be using `Ridge` which is a linear model to predict the value of houses. Ridge is a regularization model that is used for predictive modeling and mitigates over fitting and improves model stability especially when features are highly correlated. Ridge helps create robust model that generalize well to new data.
 The question we aim to answer: Can we predict house prices using publicly available housing data , and which features most influence the predictions?
 Data description: For this project we are going to use the  2023 Property Tax Assessment from Strathcona County Open Data portal. The data set contains the following attributes related to the different houses. The variables we selected for the model are: <br>
                 `meters` - numeric variable that show the size of the house <br>
