@@ -48,6 +48,3 @@ The data set was chosen for its rich feature set, adequate sample size, and publ
     - mglearn
     - spacymoji
     - altair_ally>=0.1.1
-https://scikit-learn.org/stable/model_selection.html
-4. FastExpert, How Much Value Does a Garage Add to a House?. - Retrieved 2024.
-https://www.fastexpert.com/blog/how-much-value-does-a-garage-add-to-a-house/
