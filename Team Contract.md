@@ -1,5 +1,5 @@
 ﻿# Mode of work:
-1. During the Thursday lab we discuss this week’s milestones and how we will tackle them. We organize our responsibilities and work from 2PM to 8 PM.
+1. During the Thursday lab we discuss the upcoming milestones and how we will tackle them. We organize our responsibilities and work from 2PM to 8 PM.
 2. If we do not manage to finish our work on Thursday, we will meet online through a Slack huddle on Friday from 2PM to 6PM.
 3. Before submission, we must perform a review of our deliverables and provide feedback and make fixes and improvements wherever necessary.
 4. We will accompany each pull request with a detailed explanation of what it includes.
