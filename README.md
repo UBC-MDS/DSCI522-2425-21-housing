@@ -1,4 +1,5 @@
-# DSCI522-2425-21-housing
+# Strathcona House Value Predictor
+## DSCI522-2425-21-housing
 
 List of contributors : Yajing Liu , Gilbert Akuja, Tianjiao Jiang, Thamer Aldawood 
 
@@ -20,6 +21,24 @@ Data description: For this project we are going to use the  2023 Property Tax As
                 `bdevl` - categorical variable where Y meas the building was evaluated and N means it was not evaluated<br>
 The data set was chosen for its rich feature set, adequate sample size, and public availability making it suitable for building a predictive model.
 
+## Setup and Run Analysis
+To set up the necessary packages for running the project, download the environment file from the repo. Then create a virtual environment by using `conda` with environment file you downloaded:
+```bash
+conda env create --file environment.yaml
+```
+This will setup all required packages.
+Then activate the environment using:
+```bash
+conda activate 522-group21-housing
+```
+To run the analysis, run the following in your activated environment:
+```bash
+jupyter lab
+```
+Open `notebook/Milestone1.ipynb` in Jupyter Lab and under Switch/Select Kernel choose "Python [conda env:22-group21-housing]".
+
+Next, under the "Kernel" menu click "Restart Kernel and Run All Cells...".
+
 ## Dependencies:
   - python>=3.11,<3.13
   - pip
@@ -27,7 +46,7 @@ The data set was chosen for its rich feature set, adequate sample size, and publ
   - nb_conda_kernels
   - otter-grader=6.*
   - altair-all=5.4.*
-  - vegafusion<2
+  - vegafusion=1.6.9
   - vega_datasets
   - scipy
   - matplotlib>=3.2.2
@@ -48,3 +67,7 @@ The data set was chosen for its rich feature set, adequate sample size, and publ
     - mglearn
     - spacymoji
     - altair_ally>=0.1.1
+
+## License
+This project is under the Creative Commons Attribution 4.0 International Public License. See the [License file](https://github.com/UBC-MDS/DSCI522-2425-21-housing/blob/main/LICENSE.md) for more details.
+ 
