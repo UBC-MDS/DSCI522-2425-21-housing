@@ -46,7 +46,7 @@ Next, under the "Kernel" menu click "Restart Kernel and Run All Cells...".
   - nb_conda_kernels
   - otter-grader=6.*
   - altair-all=5.4.*
-  - vegafusion<2
+  - vegafusion=1.6.9
   - vega_datasets
   - scipy
   - matplotlib>=3.2.2
