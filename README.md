@@ -69,5 +69,5 @@ Next, under the "Kernel" menu click "Restart Kernel and Run All Cells...".
     - altair_ally>=0.1.1
 
 ## License
-This project is under the Creative Commons Attribution 4.0 International Public License. See the [https://github.com/UBC-MDS/DSCI522-2425-21-housing/blob/main/LICENSE.md](License file) for more details.
+This project is under the Creative Commons Attribution 4.0 International Public License. See the [License file](https://github.com/UBC-MDS/DSCI522-2425-21-housing/blob/main/LICENSE.md) for more details.
  
