@@ -3,12 +3,12 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - python=3.11
+  - python>=3.11,<3.13
+  - pandas
+  - ipykernel
+  - nb_conda_kernels
+  - altair-all=5.4.*
   - vegafusion=1.6.9
   - vega_datasets
-  - scipy
   - scikit-learn
   - conda-lock
-  - altair-all=5.4.*
-  - pandas
-  - os
