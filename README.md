@@ -22,7 +22,12 @@ Data description: For this project we are going to use the  2023 Property Tax As
 The data set was chosen for its rich feature set, adequate sample size, and public availability making it suitable for building a predictive model.
 
 ## Setup and Run Analysis
-To set up the necessary packages for running the project, download the environment file from the repo. Then create a virtual environment by using `conda` with environment file you downloaded:
+To run our analysis, you must first clone our repo to your local machine. To do this, open your machine's terminal and navigate to a desired directory to clone the repo into, then run the following command:
+```bash
+git clone https://github.com/UBC-MDS/DSCI522-2425-21-housing.git
+```
+
+To set up the necessary packages for running the project, create a virtual environment by using `conda` with the environment file that was downloaded when you cloned our repo from the previous step. Navigate to where you cloned our repo and run the following command:
 ```bash
 conda env create --file environment.yaml
 ```
@@ -44,7 +49,14 @@ Open `notebook/Milestone1.ipynb` in Jupyter Lab and under Switch/Select Kernel c
 
 Next, under the "Kernel" menu click "Restart Kernel and Run All Cells...".
 
-
+## Using Docker (Optional)
+Docker is used to create reproducible, sharable and shippable computing environments for our analysis. This may be useful for you if you are having issues installing the required packages or if you simply don't wish to have them on your local computer.
+To use Docker, visit their website [here](https://www.docker.com/), create an account, and download and install a version that is compatible with your computer. 
+Once Docker is installed, ensure it is running and navigate to where you cloned our repo and run the following command in your terminal:
+```bash
+docker-compose up
+```
+While your Docker container is running, you may follow the instructions within it to run the analysis through it. Specifically, you want to copy the link that starts with "http://127.0.0.1:8888/lab?token=..." into your browser to access a Jupyter Lab instance on the Docker container through which you can run our analysis.
 
 ## Dependencies:
   - python=3.11
