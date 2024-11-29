@@ -1,3 +1,5 @@
+FROM quay.io/jupyter/minimal-notebook:afe30f0c9ad8
+
 # copy the conda.lock file into the Docker image a build time # manually added
 COPY conda-linux-64.lock /tmp/conda-linux-64.lock
 
