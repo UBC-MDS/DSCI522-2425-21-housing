@@ -1,0 +1,12 @@
+services:
+  DSCI522-2425-21-housing:
+    image:  thamermsd/dsci522-2425-21-housing
+    ports:
+      - "8888:8888"
+    volumes:
+      - .:/home/jovyan
+    deploy:
+      resources:
+        limits:
+          memory: 5G
+    platform: linux/amd64
