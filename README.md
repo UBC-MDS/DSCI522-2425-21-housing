@@ -40,33 +40,13 @@ Open `notebook/Milestone1.ipynb` in Jupyter Lab and under Switch/Select Kernel c
 Next, under the "Kernel" menu click "Restart Kernel and Run All Cells...".
 
 ## Dependencies:
-  - python>=3.11,<3.13
-  - pip
-  - ipykernel
-  - nb_conda_kernels
-  - otter-grader=6.*
-  - altair-all=5.4.*
+  - python=3.11
   - vegafusion=1.6.9
   - vega_datasets
   - scipy
-  - matplotlib>=3.2.2
   - scikit-learn
-  - requests>=2.24.0
-  - graphviz
-  - python-graphviz
-  - eli5
-  - shap
-  - jinja2
-  - lightgbm
-  - spacy
-  - xgboost
-  - catboost
-  - nltk
-  - imbalanced-learn
-  - pip:
-    - mglearn
-    - spacymoji
-    - altair_ally>=0.1.1
+  - conda-lock
+  - altair_all=5.4.*
 
 ## License
 This project is under the Creative Commons Attribution 4.0 International Public License. See the [License file](https://github.com/UBC-MDS/DSCI522-2425-21-housing/blob/main/LICENSE.md) for more details.
