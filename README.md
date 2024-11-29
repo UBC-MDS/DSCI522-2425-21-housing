@@ -31,6 +31,11 @@ Then activate the environment using:
 ```bash
 conda activate 522-group21-housing
 ```
+(Optional) If you cannot use the `Python [conda env:522-group21-housing]` kernel, please run the following code:
+```bash
+conda install nb_conda_kernels
+```
+
 To run the analysis, run the following in your activated environment:
 ```bash
 jupyter lab
@@ -38,6 +43,8 @@ jupyter lab
 Open `notebook/Milestone1.ipynb` in Jupyter Lab and under Switch/Select Kernel choose "Python [conda env:22-group21-housing]".
 
 Next, under the "Kernel" menu click "Restart Kernel and Run All Cells...".
+
+
 
 ## Dependencies:
   - python=3.11
