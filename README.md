@@ -49,6 +49,11 @@ Open `notebook/Milestone1.ipynb` in Jupyter Lab and under Switch/Select Kernel c
 
 Next, under the "Kernel" menu click "Restart Kernel and Run All Cells...".
 
+(Optional) If you can't render the plots, please run the code below, then reopen the jupyter lab:
+```bash
+conda install vegafusion=1.6.9
+```
+
 ## Using Docker (Optional)
 Docker is used to create reproducible, sharable and shippable computing environments for our analysis. This may be useful for you if you are having issues installing the required packages or if you simply don't wish to have them on your local computer.
 To use Docker, visit their website [here](https://www.docker.com/), create an account, and download and install a version that is compatible with your computer. 
