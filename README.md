@@ -70,7 +70,10 @@ While your Docker container is running, you may follow the instructions within i
   - scipy
   - scikit-learn
   - conda-lock
-  - altair_all=5.4.*
+  - altair-all=5.4.*
+  - pandas
+  - ipykernel
+  - nb_conda_kernels
 
 ## License
 This project is under the Creative Commons Attribution 4.0 International Public License. See the [License file](https://github.com/UBC-MDS/DSCI522-2425-21-housing/blob/main/LICENSE.md) for more details.
