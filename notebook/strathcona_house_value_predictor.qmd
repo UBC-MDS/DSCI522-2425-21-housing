@@ -1,0 +1,343 @@
+---
+title: 'Title: Strathcona House Value Predictor'
+jupyter:
+  kernelspec:
+    display_name: 'Python [conda env:522-group21-housing] *'
+    language: python
+    name: conda-env-522-group21-housing-py
+---
+
+by Gilbert Akuja, Tianjiao Jiang, Thamer Aldawood & Yajing Liu 2024/11/22
+## Summary:
+Our team will be working on predicting house prices using the 2023 Property Tax Assessment dataset from Strathcona County Open Data portal. The dataset provides a wealth of information about houses, including attributes like size, location, and other features. By leveraging this data, we aim to build a robust predictive model that accurately estimates house values.
+## Introduction:
+The team will be using `Ridge` which is a linear model to predict the value of houses. Ridge is a regularization model that is used for predictive modeling and mitigates over fitting, improves model stability especially when features are highly correlated. Ridge helps create robust model that generalize well to new data.
+The question we aim to answer: Can we predict house prices using publicly available housing data , and which features most influence the predictions?
+Data description: For this project we are going to use the  2023 Property Tax Assessment from Strathcona County Open Data portal. The data set contains the following attributes related to the different houses. The variables we selected for the model are: <br>
+                `meters` - numeric variable that show the size of the house <br>
+                `garage` - categorical variable where Y means there is a garage and N means no garage. <br>
+                `firepl` - categorical variable where Y means there is a fireplace and N means no fireplace<br>
+                `bdevl` - categorical variable where Y meas the building was evaluated and N means it was not evaluated<br>
+The data set was chosen for its rich feature set, adequate sample size, and public availability making it suitable for building a predictive model. 
+
+
+## Methods & Results:
+
+### 1. Import all the necessary libraries for data analysis
+
+```{python}
+import pandas as pd
+from sklearn.model_selection import train_test_split
+import altair_ally as aly
+import altair as alt
+import os
+```
+
+### 2. Read in dataset
+The code reads a CSV file "named 2023 Property Tax Assessment" into a pandas DataFrame and filters it to include only the features we are going to evaluate. The resulting DataFrame contains these specific features for further analysis.
+
+```{python}
+url = "https://hub.arcgis.com/api/v3/datasets/e3c5b04fccdc4ddd88059a8c0b6d8160_0/downloads/data?format=csv&spatialRefId=3776&where=1%3D1"
+housing_df = pd.read_csv(url)
+
+# Saves the dataframe to .csv in the data/ directory
+housing_df.to_csv("../data/2023_Property_Tax_Assessment.csv")
+
+# Takes only the columns we need
+housing_df = housing_df[['meters','garage','firepl','bsmt','bdevl','assess_2022']]
+
+housing_df
+```
+
+```{python}
+# Validation for correct data file format
+file_path = "data/2023_Property_Tax_Assessment.csv"
+
+if not file_path.endswith(".csv"):
+    raise ValueError("File format not supported.")
+else: 
+    print("✅ File format validation passed: File is a CSV.")
+
+# Validation for correct column names
+expected_cols = {"meters", "garage", "firepl", "bsmt", "bdevl", "assess_2022"}
+actual_cols = set(housing_df.columns)
+
+if actual_cols == expected_cols:
+    print("✅ Column name validation passed: All expected columns are present.")
+else:
+    missing = expected_cols - actual_cols
+    extra = actual_cols - expected_cols
+    print("Column names validation failed:")
+    if missing:
+        print(f" Missing columns: {missing}")
+    if extra:
+        print(f" Extra columns: {extra}")
+
+# Validation for No Empty Observations
+empty = housing_df.isna().all(axis = 1).sum()
+
+if empty == 0:
+    print("✅ Empty observations validation passed: No empty rows.")
+else:
+    print(f" Empty observations validation failed: Found {empty} empty rows.")
+
+#Validation for missingness not beyond expected threshold
+expected_threshold = 0
+missing = housing_df.isna().mean()
+
+all_cols_passed = True
+
+for col, percentage in missing.items():
+    if percentage > expected_threshold:
+        all_cols_passed = False
+        print(f"Column '{col}' exceeds the missingness expected threshold ({percentage:.2%} missing).")
+if all_cols_passed:
+    print(f"✅ Missingness validation passed for all columns.")
+```
+
+### 3. Visualization for categorical features
+
+The code enables VegaFusion to optimize Altair data transformations for visualizations. It then creates a distribution plot of categorical features in the `housing_df` DataFrame.
+
+```{python}
+alt.data_transformers.enable("vegafusion")
+
+grg0 = alt.Chart(housing_df).mark_bar().encode(
+    x = alt.X('garage', title='Garage'),
+    y = alt.Y('count()', scale = alt.Scale(domain=[0,35000]), title='House value'),
+)
+
+
+frp0 = alt.Chart(housing_df).mark_bar().encode(
+    x = alt.X('firepl', title='Fireplace'),
+    y = alt.Y('count()', scale = alt.Scale(domain=[0,35000]), title='House value'),
+)
+
+bst0 = alt.Chart(housing_df).mark_bar().encode(
+    x = alt.X('bsmt', title='Basement'),
+    y = alt.Y('count()', scale = alt.Scale(domain=[0,35000]), title='House value'),
+)
+
+bdl0 = alt.Chart(housing_df).mark_bar().encode(
+    x = alt.X('bdevl', title='Building evaluation'),
+    y = alt.Y('count()', scale = alt.Scale(domain=[0,35000]), title='House value'),
+)
+
+(grg0 | frp0 | bst0 | bdl0).properties(
+    title="Counts of categorical features"
+)
+```
+
+The code generates scatter plots to visualize the relationship between house assessment values (`assess_2022`) and four categorical features: `garage`, `firepl`, `bsmt`, and `bdevl`.
+
+```{python}
+grg = alt.Chart(housing_df).mark_point().encode(
+    x = alt.X('garage', title='Garage'),
+    y = alt.Y('assess_2022', title='House value'),
+)
+
+frp = alt.Chart(housing_df).mark_point().encode(
+    x = alt.X('firepl', title='Fireplace'),
+    y = alt.Y('assess_2022', title='House value'),
+)
+
+bst = alt.Chart(housing_df).mark_point().encode(
+    x = alt.X('bsmt', title='Basement'),
+    y = alt.Y('assess_2022', title='House value'),
+)
+
+bdl = alt.Chart(housing_df).mark_point().encode(
+    x = alt.X('bdevl', title='Building evaluation'),
+    y = alt.Y('assess_2022', title='House value'),
+)
+
+(grg | frp | bst | bdl).properties(
+    title="House value assessment per categorical feature")
+```
+
+### 4. Prepare data for training and create column transformer for feature transformation
+
+The code assigns the housing_df DataFrame into training and test datasets using an 70-30 split.
+The code then categorizes features into categorical features (e.g., `garage`, `firepl`, `bsmt`, `bdevl`) and numeric features (e.g., `meters`), applies one-hot encoding transforamtion for categorical features and standardScalar transformation for numeric features. The code created a column transformer `preprocessor` through combining these transforamtions to apply to the dataset and visualizes the `preprocessor`.
+
+```{python}
+train_df, test_df = train_test_split(housing_df, test_size=0.3, random_state=123)
+```
+
+```{python}
+from sklearn.compose import make_column_transformer
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
+
+# Lists of feature names
+categorical_features = ['garage', 'firepl', 'bsmt', 'bdevl']
+numeric_features = ['meters']
+# Create the column transformer
+preprocessor = make_column_transformer(
+    (OneHotEncoder(), categorical_features),  # One-hot encode categorical columns
+    (StandardScaler(), numeric_features),  # Standardize numeric columns
+)
+
+# Show the preprocessor
+preprocessor
+```
+
+### 5. Train, cross validate and evaluate a Ridge regression model
+
+The code splits the features and target variable (`assess_2022`) into training and testing datasets.
+
+```{python}
+X_train = train_df.drop(columns=["assess_2022"])
+X_test = test_df.drop(columns=["assess_2022"])
+y_train = train_df["assess_2022"]
+y_test = test_df["assess_2022"]
+```
+
+The code creates a pipeline combining the column transformer (`preprocessor`) and the Ridge Regression model. Using 5-fold cross-validation on the training data, the code evaluates the pipeline on multiple metrics and computes train and validation scores. Finally, it outputs the aggregated train and validation scores to assess the model's performance.
+
+```{python}
+from sklearn.linear_model import Ridge
+from sklearn.model_selection import (
+    cross_val_score,
+    cross_validate
+)
+from sklearn.pipeline import make_pipeline
+
+# The Ridge model pipeline
+pipeline = make_pipeline(preprocessor, Ridge())
+
+# The mean and std of the cross validated scores for all metrics as a dataframe
+cross_val_results = pd.DataFrame(cross_validate(pipeline, X_train, y_train, cv=5, return_train_score=True)).agg(['mean', 'std']).round(3).T
+
+# Show the train and validation scores
+cross_val_results
+```
+
+The code fits the pipeline on the training dataset (`X_train` and `y_train`) to train the Ridge Regression model. Then evaluates the trained pipeline on the test dataset (`X_test` and `y_test`) which calculates the R² (coefficient of determination) to measure how well the model explains the variance in the test data.
+
+```{python}
+pipeline.fit(X_train, y_train)
+pipeline.score(X_test, y_test)
+```
+
+### 6. Predict housing prices with new data
+
+This code creates a Pandas DataFrame containing information about 10 houses that we wish to predict the value of.
+
+```{python}
+ten_houses = {
+    'meters' : [174.23, 132.76, 90.82, 68.54, 221.30, 145.03, 102.96, 164.28, 142.79, 115.94],
+    'garage' : ['Y', 'Y', 'Y', 'N', 'Y', 'N', 'N', 'Y', 'N', 'Y'],
+    'firepl' : ['Y', 'N', 'N', 'N', 'Y', 'N', 'N', 'Y', 'Y', 'N'],
+    'bsmt' : ['Y', 'Y', 'N', 'N', 'Y', 'N', 'Y', 'N', 'Y', 'Y', ],
+    'bdevl' : ['N', 'Y', 'Y', 'N', 'Y', 'Y', 'Y', 'N', 'N', 'Y', ]
+    }
+
+X_predict = pd.DataFrame(ten_houses)
+X_predict
+```
+
+This code applies the trained pipeline to predict housing prices values based on the features in the dataFrame containing new data. The predictions are stored in a new pandas DataFrame.
+
+```{python}
+y_predict = pipeline.predict(X_predict)
+y_predict = pd.DataFrame(y_predict)
+y_predict.columns = ['Predicted_Values']
+y_predict = round(y_predict, 2)
+```
+
+The code combines the original features from the new data and the predicted values into a new pandas DataFrame. The new pandas DataFrame provides an overview of the predictions.
+
+```{python}
+predictions_df = pd.concat([X_predict,y_predict], axis = 1)
+
+# Saves prediction to a csv file
+predictions_df.to_csv("../data/ten_houses_predictions.csv")
+
+predictions_df
+```
+
+### 7. Visualization for predictions
+
+This code creates line charts to visualize the relationship between property size (`meters`) and predicted housing prices (`Predicted_Values`), colored by different categorical features. This visualization highlights how categorical features interact with property size to influence predicted house values.
+
+```{python}
+mtrs = alt.Chart(predictions_df).mark_line().encode(
+    x = alt.X('meters', title="Property size"),
+    y = alt.Y('Predicted_Values', title='Predicted Values'),
+).properties(
+    height = 200,
+    width = 200,
+    title = "Property size (m^2) vs value"
+)
+
+grg2 = alt.Chart(predictions_df).mark_line().encode(
+    x = alt.X('meters', title="Property size"),
+    y = alt.Y('Predicted_Values', title='Predicted Values'),
+    color = alt.Color('garage', title="Garage")
+).properties(
+    height = 200,
+    width = 200,
+    title = "Garage"
+)
+
+frp2 = alt.Chart(predictions_df).mark_line().encode(
+    x = alt.X('meters', title="Property size"),
+    y = alt.Y('Predicted_Values', title='Predicted Values'),
+    color = alt.Color('firepl', title="Fireplace")
+).properties(
+    height = 200,
+    width = 200,
+    title = "Fireplace"
+)
+
+bst2 = alt.Chart(predictions_df).mark_line().encode(
+    x = alt.X('meters', title="Property size"),
+    y = alt.Y('Predicted_Values', title='Predicted Values'),
+    color = alt.Color('bsmt', title="Basement")
+).properties(
+    height = 200,
+    width = 200,
+    title = "Basement"
+)
+
+bdl2 = alt.Chart(predictions_df).mark_line().encode(
+    x = alt.X('meters', title="Property size"),
+    y = alt.Y('Predicted_Values', title='Predicted Values'),
+    color = alt.Color('bdevl', title="Building evaluation")
+).properties(
+    height = 200,
+    width = 200,
+    title = "Building evaluation"
+)
+
+(mtrs & (grg2 | frp2) & (bst2 | bdl2)).properties(
+    title = "Correlations between property size and house value, colored by different characteristics"
+)
+```
+
+# Discussion
+Our findings suggest that the aforementioned 10 houses are expected to be valued at:
+1. $527,136  
+2. $451,522  
+3. $349,775  
+4. $183,840  
+5. $695,251  
+6. $419,325  
+7. $328,693  
+8. $498,645  
+9. $400,551  
+10. $413,005  
+
+We have also noticed that there is a correlation between a house's price and its property's size, whether or not it has a garage, fireplace, basement, and whether or not the building has been evaluated.
+This is consistent with our expectations as the larger a property is, and the more features it has (basement, garage, etc.) the higher its value becomes.
+This also raises further questions such as what other features of a house or property affect its value? characteristics for future consideration include: Number of bedrooms, number of bathrooms, indoor space, outdoor space, and number of floors.
+# References
+1. Strathcona Country Open Data, 2023 Property Tax Assessment. - Retrieved 2024.
+https://opendata-strathconacounty.hub.arcgis.com/datasets/e3c5b04fccdc4ddd88059a8c0b6d8160_0/explore
+2. Altair Tutorial, Exploratory Data Visualization with Altair. - Retrieved 2024.
+https://altair-viz.github.io/altair-tutorial/README.html
+3. Scikit Learn, Model selection and evaluation. - Retrieved 2024.
+https://scikit-learn.org/stable/model_selection.html
+4. FastExpert, How Much Value Does a Garage Add to a House?. - Retrieved 2024.
+https://www.fastexpert.com/blog/how-much-value-does-a-garage-add-to-a-house/
+
