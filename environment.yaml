@@ -13,4 +13,6 @@ dependencies:
   - pandas
   - ipykernel
   - nb_conda_kernels
+  - pickle
+  - click
 #  - os
