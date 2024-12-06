@@ -1,5 +1,27 @@
 ---
 title: 'Title: Strathcona House Value Predictor'
+<<<<<<< HEAD
+author: 'Gilbert Akuja, Tianjiao Jiang, Thamer Aldawood & Yajing Liu'
+jupyter:
+  kernelspec:
+    display_name: 'Python [conda env:522-group21-housing] *'
+    language: python
+    name: 522-group21-housing
+format:
+  html:
+    toc: true
+    toc-depth: 3
+bibliography: references.bib
+---
+## Summary
+Our team will be working on predicting house prices using the 2023 Property Tax Assessment dataset from Strathcona County Open Data portal<cite>@strathcona2023</cite>. The dataset provides a wealth of information about houses, including attributes like size, location, and other features. By leveraging this data, we aim to build a robust predictive model that accurately estimates house values.
+
+## Introduction
+
+The team will be using `Ridge` which is a linear model to predict the value of houses. Ridge is a regularization model that is used for predictive modeling and mitigates over fitting, improves model stability especially when features are highly correlated<cite>@ridge1992</cite>. Ridge helps create robust model that generalize well to new data.
+The question we aim to answer: Can we predict house prices using publicly available housing data , and which features most influence the predictions?
+Data description: For this project we are going to use the  2023 Property Tax Assessment from Strathcona County Open Data portal<cite>@strathcona2023</cite>. The data set contains the following attributes related to the different houses. The variables we selected for the model are: <br>
+=======
 jupyter: python3
 ---
 
@@ -10,6 +32,7 @@ Our team will be working on predicting house prices using the 2023 Property Tax 
 The team will be using `Ridge` which is a linear model to predict the value of houses. Ridge is a regularization model that is used for predictive modeling and mitigates over fitting, improves model stability especially when features are highly correlated. Ridge helps create robust model that generalize well to new data.
 The question we aim to answer: Can we predict house prices using publicly available housing data , and which features most influence the predictions?
 Data description: For this project we are going to use the  2023 Property Tax Assessment from Strathcona County Open Data portal. The data set contains the following attributes related to the different houses. The variables we selected for the model are: <br>
+>>>>>>> 07c0cfa6ff36e56d2ae157667ae8eced446fc3e9
                 `meters` - numeric variable that show the size of the house <br>
                 `garage` - categorical variable where Y means there is a garage and N means no garage. <br>
                 `firepl` - categorical variable where Y means there is a fireplace and N means no fireplace<br>
@@ -17,23 +40,41 @@ Data description: For this project we are going to use the  2023 Property Tax As
 The data set was chosen for its rich feature set, adequate sample size, and public availability making it suitable for building a predictive model. 
 
 
+<<<<<<< HEAD
+## Methods & Results
+=======
 ## Methods & Results:
+>>>>>>> 07c0cfa6ff36e56d2ae157667ae8eced446fc3e9
 
 ### 1. Import all the necessary libraries for data analysis
 
 ```{python}
 import pandas as pd
+<<<<<<< HEAD
+from sklearn.model_selection import train_test_split
+import altair_ally as aly
+=======
 import numpy as np
 from sklearn.model_selection import train_test_split
 #import altair_ally as aly
+>>>>>>> 07c0cfa6ff36e56d2ae157667ae8eced446fc3e9
 import altair as alt
 import os
 ```
 
 ### 2. Read in dataset
+<<<<<<< HEAD
+The code reads a CSV file "named 2023 Property Tax Assessment" into a pandas DataFrame and filters it to include only the features we are going to evaluate<cite>@strathcona2023</cite>. The resulting DataFrame contains these specific features for further analysis.
+@tbl-housing-data displays the first few rows of the dataset after filtering for relevant columns.
+
+```{python}
+#| label: tbl-housing-data
+#| tbl-cap: "Preview of the 2023 Property Tax Assessment dataset after selecting relevant columns."
+=======
 The code reads a CSV file "named 2023 Property Tax Assessment" into a pandas DataFrame and filters it to include only the features we are going to evaluate. The resulting DataFrame contains these specific features for further analysis.
 
 ```{python}
+>>>>>>> 07c0cfa6ff36e56d2ae157667ae8eced446fc3e9
 url = "https://hub.arcgis.com/api/v3/datasets/e3c5b04fccdc4ddd88059a8c0b6d8160_0/downloads/data?format=csv&spatialRefId=3776&where=1%3D1"
 housing_df = pd.read_csv(url)
 
@@ -90,6 +131,8 @@ for col, percentage in missing.items():
         print(f"Column '{col}' exceeds the missingness expected threshold ({percentage:.2%} missing).")
 if all_cols_passed:
     print(f"✅ Missingness validation passed for all columns.")
+<<<<<<< HEAD
+=======
 
 #Validation for correct data types in each column 
 
@@ -143,13 +186,26 @@ if not outliers_detected:
     print("✅ Outlier validation passed: No columns exceed the outlier threshold.")
 else:
     print("✅ Outliers exceeding the threshold have been removed.")
+>>>>>>> 07c0cfa6ff36e56d2ae157667ae8eced446fc3e9
 ```
 
 ### 3. Visualization for categorical features
 
+<<<<<<< HEAD
+The code enables VegaFusion to optimize Altair data transformations for visualizations<cite>@altair2024</cite>. It then creates a distribution plot of categorical features in the `housing_df` DataFrame.
+As shown in @fig-categorical-features, the distribution of categorical features provides insights into their overall counts.
+
+```{python}
+#| label: fig-categorical-features
+#| fig-cap: "Distribution of categorical features (Garage, Fireplace, Basement, and Building Evaluation)."
+#| fig-width: 10
+#| fig-height: 6
+
+=======
 The code enables VegaFusion to optimize Altair data transformations for visualizations. It then creates a distribution plot of categorical features in the `housing_df` DataFrame.
 
 ```{python}
+>>>>>>> 07c0cfa6ff36e56d2ae157667ae8eced446fc3e9
 alt.data_transformers.enable("vegafusion")
 
 grg0 = alt.Chart(housing_df).mark_bar().encode(
@@ -179,8 +235,18 @@ bdl0 = alt.Chart(housing_df).mark_bar().encode(
 ```
 
 The code generates scatter plots to visualize the relationship between house assessment values (`assess_2022`) and four categorical features: `garage`, `firepl`, `bsmt`, and `bdevl`.
+<<<<<<< HEAD
+As depicted in @fig-assessment-categorical, the scatter plots illustrate the relationship between house value assessments and categorical features.
 
 ```{python}
+#| label: fig-assessment-categorical
+#| fig-cap: "Scatter plots showing house value assessments for categorical features: Garage, Fireplace, Basement, and Building Evaluation."
+#| fig-width: 10
+#| fig-height: 6
+=======
+
+```{python}
+>>>>>>> 07c0cfa6ff36e56d2ae157667ae8eced446fc3e9
 grg = alt.Chart(housing_df).mark_point().encode(
     x = alt.X('garage', title='Garage'),
     y = alt.Y('assess_2022', title='House value'),
@@ -205,6 +271,12 @@ bdl = alt.Chart(housing_df).mark_point().encode(
     title="House value assessment per categorical feature")
 ```
 
+<<<<<<< HEAD
+### 4. Prepare data for training and create column transformer for feature transformation
+
+The code assigns the housing_df DataFrame into training and test datasets using an 70-30 split.
+The code then categorizes features into categorical features (e.g., `garage`, `firepl`, `bsmt`, `bdevl`) and numeric features (e.g., `meters`), applies one-hot encoding transforamtion for categorical features and standardScalar transformation for numeric features by using Scikit-learn<cite>@scikit2024</cite>. The code created a column transformer `preprocessor` through combining these transforamtions to apply to the dataset and visualizes the `preprocessor`.
+=======
 Visualizing the distribution of the target variable, assess_2022, using a histogram and Kernel Density Estimate (KDE) plot is a crucial step in data exploration. It helps us understand the overall distribution, identify patterns such as skewness, kurtosis, or multiple peaks, and detect outliers. By comparing the histogram and KDE, we can assess if the distribution meets the assumptions of our chosen modeling techniques. This visualization also guides decisions about preprocessing, such as applying transformations to address skewness or choosing the right algorithm for modeling. Additionally, it can uncover data quality issues, like sparse regions or missing values, prompting necessary corrections. 
 
 ```{python}
@@ -251,6 +323,7 @@ The code assigns the housing_df DataFrame into training and test datasets using 
 The code then categorizes features into categorical features (e.g., `garage`, `firepl`, `bsmt`, `bdevl`) and numeric features (e.g., `meters`), applies one-hot encoding transforamtion for categorical features and standardScalar transformation for numeric features. The code created a column transformer `preprocessor` through combining these transforamtions to apply to the dataset and visualizes the `preprocessor`.
 
 We performed analysis to identify any potential issues with the relationships between features and the target, as well as between the features themselves. By detecting anomalous correlations, we can uncover redundant or highly correlated features that might lead to multicollinearity, which can negatively affect the performance of machine learning models. In particular, removing or adjusting features that are too strongly correlated ensures that the model can learn meaningful, independent relationships, improving its generalization ability and interpretability. Additionally, examining correlations helps us assess if certain features are disproportionately influencing the target variable, which could indicate bias or overfitting.
+>>>>>>> 07c0cfa6ff36e56d2ae157667ae8eced446fc3e9
 
 ```{python}
 train_df, test_df = train_test_split(housing_df, test_size=0.3, random_state=123)
@@ -273,6 +346,8 @@ preprocessor = make_column_transformer(
 preprocessor
 ```
 
+<<<<<<< HEAD
+=======
 ### Validation step
 
 ```{python}
@@ -366,6 +441,7 @@ if not anomalous_correlations_found:
 
 **Note:** When performing correlation analysis on the dataset, it is important to exclude pairs of binary features that are inherently correlated due to their inverse relationship. For example, in the case of features like Garage_Y and Garage_N, one feature will always be 1 when the other is 0, and vice versa. These binary features are designed to represent the same information in different forms, and their high correlation is expected. Thus, it is not an anomaly and should not be flagged as such. To address this, we exclude these pairs from the correlation analysis, ensuring that only truly anomalous correlations—those that do not follow expected patterns—are identified. By doing so, we can avoid mistakenly flagging normal relationships between inverse binary features while still identifying potential issues in the remaining feature correlations.
 
+>>>>>>> 07c0cfa6ff36e56d2ae157667ae8eced446fc3e9
 ### 5. Train, cross validate and evaluate a Ridge regression model
 
 The code splits the features and target variable (`assess_2022`) into training and testing datasets.
@@ -377,9 +453,18 @@ y_train = train_df["assess_2022"]
 y_test = test_df["assess_2022"]
 ```
 
+<<<<<<< HEAD
+The code creates a pipeline combining the column transformer (`preprocessor`) and the Ridge Regression model<cite>@ridge1992</cite>. Using 5-fold cross-validation on the training data, the code evaluates the pipeline on multiple metrics and computes train and validation scores. Finally, it outputs the aggregated train and validation scores to assess the model's performance<cite>@scikit2024</cite>.
+@tbl-cross-validation-results summarizes the cross-validation results, including the mean and standard deviation of train and validation scores across 5 folds.
+
+```{python}
+#| label: tbl-cross-validation-results
+#| tbl-cap: "Cross-validation results showing the mean and standard deviation for train and validation scores across 5 folds."
+=======
 The code creates a pipeline combining the column transformer (`preprocessor`) and the Ridge Regression model. Using 5-fold cross-validation on the training data, the code evaluates the pipeline on multiple metrics and computes train and validation scores. Finally, it outputs the aggregated train and validation scores to assess the model's performance.
 
 ```{python}
+>>>>>>> 07c0cfa6ff36e56d2ae157667ae8eced446fc3e9
 from sklearn.linear_model import Ridge
 from sklearn.model_selection import (
     cross_val_score,
@@ -397,7 +482,11 @@ cross_val_results = pd.DataFrame(cross_validate(pipeline, X_train, y_train, cv=5
 cross_val_results
 ```
 
+<<<<<<< HEAD
+The code fits the pipeline on the training dataset (`X_train` and `y_train`) to train the Ridge Regression model<cite>@ridge1992</cite>. Then evaluates the trained pipeline on the test dataset (`X_test` and `y_test`) which calculates the R² (coefficient of determination) to measure how well the model explains the variance in the test data.
+=======
 The code fits the pipeline on the training dataset (`X_train` and `y_train`) to train the Ridge Regression model. Then evaluates the trained pipeline on the test dataset (`X_test` and `y_test`) which calculates the R² (coefficient of determination) to measure how well the model explains the variance in the test data.
+>>>>>>> 07c0cfa6ff36e56d2ae157667ae8eced446fc3e9
 
 ```{python}
 pipeline.fit(X_train, y_train)
@@ -407,8 +496,16 @@ pipeline.score(X_test, y_test)
 ### 6. Predict housing prices with new data
 
 This code creates a Pandas DataFrame containing information about 10 houses that we wish to predict the value of.
+<<<<<<< HEAD
+@tbl-ten-houses summarizes the attributes of ten houses, including property size and various categorical features, used for predictions.
 
 ```{python}
+#| label: tbl-ten-houses
+#| tbl-cap: "Attributes of ten houses used for prediction."
+=======
+
+```{python}
+>>>>>>> 07c0cfa6ff36e56d2ae157667ae8eced446fc3e9
 ten_houses = {
     'meters' : [174.23, 132.76, 90.82, 68.54, 221.30, 145.03, 102.96, 164.28, 142.79, 115.94],
     'garage' : ['Y', 'Y', 'Y', 'N', 'Y', 'N', 'N', 'Y', 'N', 'Y'],
@@ -431,8 +528,16 @@ y_predict = round(y_predict, 2)
 ```
 
 The code combines the original features from the new data and the predicted values into a new pandas DataFrame. The new pandas DataFrame provides an overview of the predictions.
+<<<<<<< HEAD
+@tbl-predicted-values displays the predicted house values for the ten houses based on their attributes, including property size and categorical features.
 
 ```{python}
+#| label: tbl-predicted-values
+#| tbl-cap: "Predicted house values for the ten houses based on their attributes."
+=======
+
+```{python}
+>>>>>>> 07c0cfa6ff36e56d2ae157667ae8eced446fc3e9
 predictions_df = pd.concat([X_predict,y_predict], axis = 1)
 
 # Saves prediction to a csv file
@@ -443,9 +548,20 @@ predictions_df
 
 ### 7. Visualization for predictions
 
+<<<<<<< HEAD
+This code creates line charts to visualize the relationship between property size (`meters`) and predicted housing prices (`Predicted_Values`), colored by different categorical features. This visualization highlights how categorical features interact with property size to influence predicted house values<cite>@altair2024</cite>.
+As shown in @fig-property-size-correlation, property size has a significant impact on house value predictions, with notable variations across categorical features.
+
+```{python}
+#| label: fig-property-size-correlation
+#| fig-cap: "Line charts showing correlations between property size and house value predictions, colored by various categorical features."
+#| fig-width: 10
+#| fig-height: 6
+=======
 This code creates line charts to visualize the relationship between property size (`meters`) and predicted housing prices (`Predicted_Values`), colored by different categorical features. This visualization highlights how categorical features interact with property size to influence predicted house values.
 
 ```{python}
+>>>>>>> 07c0cfa6ff36e56d2ae157667ae8eced446fc3e9
 mtrs = alt.Chart(predictions_df).mark_line().encode(
     x = alt.X('meters', title="Property size"),
     y = alt.Y('Predicted_Values', title='Predicted Values'),
@@ -500,6 +616,28 @@ bdl2 = alt.Chart(predictions_df).mark_line().encode(
 )
 ```
 
+<<<<<<< HEAD
+## Discussion
+Our findings suggest that the aforementioned 10 houses are expected to be valued at:
+
+1. $527,136  
+2. $451,522  
+3. $349,775  
+4. $183,840  
+5. $695,251  
+6. $419,325  
+7. $328,693  
+8. $498,645  
+9. $400,551  
+10. $413,005  
+
+We have also noticed that there is a correlation between a house's price and its property's size, whether or not it has a garage, fireplace, basement, and whether or not the building has been evaluated.
+This is consistent with our expectations as the larger a property is, and the more features it has (basement, garage, etc.) the higher its value becomes<cite>@garage2024</cite>.
+This also raises further questions such as what other features of a house or property affect its value? characteristics for future consideration include: Number of bedrooms, number of bathrooms, indoor space, outdoor space, and number of floors.
+
+## References
+
+=======
 # Discussion
 Our findings suggest that the aforementioned 10 houses are expected to be valued at:  
 1. $536,986.06
@@ -527,4 +665,5 @@ https://altair-viz.github.io/altair-tutorial/README.html
 https://scikit-learn.org/stable/model_selection.html
 4. FastExpert, How Much Value Does a Garage Add to a House?. - Retrieved 2024.
 https://www.fastexpert.com/blog/how-much-value-does-a-garage-add-to-a-house/
+>>>>>>> 07c0cfa6ff36e56d2ae157667ae8eced446fc3e9
 
