@@ -45,7 +45,7 @@ To run the analysis, run the following in your activated environment:
 ```bash
 jupyter lab
 ```
-Open `notebook/strathcona_house_value_predictor.ipynb` in Jupyter Lab and under Switch/Select Kernel choose "Python [conda env:22-group21-housing]".
+Open `notebook/strathcona_house_value_predictor.ipynb` in Jupyter Lab and under Switch/Select Kernel choose "Python [conda env:522-group21-housing]".
 
 Next, under the "Kernel" menu click "Restart Kernel and Run All Cells...".
 
