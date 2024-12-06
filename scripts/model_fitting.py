@@ -22,6 +22,9 @@ def main(train_data, test_data, preprocessor, results_to, seed):
     # Set random seed
     import numpy as np
     np.random.seed(seed)
+    
+    # Ensure results directory exists
+    os.makedirs(results_to, exist_ok=True)
 
     # Load training and testing data
     train_df = pd.read_csv(train_data)
