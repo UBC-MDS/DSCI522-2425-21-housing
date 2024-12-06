@@ -546,16 +546,9 @@ bdl2 = alt.Chart(predictions_df).mark_line().encode(
 ## Discussion
 Our findings suggest that the aforementioned 10 houses are expected to be valued at: 
 
-1. $536,986.06
-2. $457,896.92
-3. $361,058.34
-4. $212,406.79
-5. $700,449.74
-6. $445,227.44
-7. $344,014.38
-8. $515,563.17
-9. $419,237.26
-10. $418,244.1
+```{python, echo=FALSE}
+y_predict
+```
 
 
 We have also noticed that there is a correlation between a house's price and its property's size, whether or not it has a garage, fireplace, basement, and whether or not the building has been evaluated.
