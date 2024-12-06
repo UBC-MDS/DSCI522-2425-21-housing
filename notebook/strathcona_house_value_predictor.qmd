@@ -1,6 +1,7 @@
 ---
 title: 'Title: Strathcona House Value Predictor'
 author: 'Gilbert Akuja, Tianjiao Jiang, Thamer Aldawood & Yajing Liu'
+date: 7 Dec 2024
 jupyter:
   kernelspec:
     display_name: 'Python [conda env:522-group21-housing] *'
@@ -20,7 +21,7 @@ Our team will be working on predicting house prices using the `2023 Property Tax
 
 ## Introduction
 
-The team will be using `Ridge` which is a linear model to predict the value of houses. Ridge is a regularization model that is used for predictive modeling and mitigates over fitting, improves model stability especially when features are highly correlated<cite>@ridge1992</cite>. Ridge helps create robust model that generalize well to new data.
+The team will be using `Ridge` which is a linear model to predict the value of houses. `Ridge` is a regularization model that is used for predictive modeling and mitigates over fitting, improves model stability especially when features are highly correlated<cite>@ridge1992</cite>. Ridge helps create robust model that generalize well to new data.
 The question we aim to answer: Can we predict house prices using publicly available housing data , and which features most influence the predictions?
 Data description: For this project we are going to use the  `2023 Property Tax Assessment` from Strathcona County Open Data portal<cite>@strathcona2023</cite>. The data set contains the following attributes related to the different houses. The variables we selected for the model are: <br>
                 `meters` - numeric variable that show the size of the house <br>
