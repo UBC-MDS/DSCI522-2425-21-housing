@@ -21,13 +21,17 @@ Data description: For this project we are going to use the  2023 Property Tax As
                 `bdevl` - categorical variable where Y meas the building was evaluated and N means it was not evaluated<br>
 The data set was chosen for its rich feature set, adequate sample size, and public availability making it suitable for building a predictive model.
 
+## Report
+The final report can be found
+[here]([https://github.com/UBC-MDS/DSCI522-2425-21-housing/blob/main/notebook/strathcona_house_value_predictor.html]).
+
 ## Setup and Run Analysis
-To run our analysis, you must first clone our repo to your local machine. To do this, open your machine's terminal and navigate to a desired directory to clone the repo into, then run the following command:
+1. To run our analysis, you must first clone our repo to your local machine. To do this, open your machine's terminal and navigate to a desired directory to clone the repo into, then run the following command:
 ```bash
 git clone https://github.com/UBC-MDS/DSCI522-2425-21-housing.git
 ```
 
-To set up the necessary packages for running the project, create a virtual environment by using `conda` with the environment file that was downloaded when you cloned our repo from the previous step. Navigate to where you cloned our repo and run the following command:
+2. To set up the necessary packages for running the project, create a virtual environment by using `conda` with the environment file that was downloaded when you cloned our repo from the previous step. Navigate to where you cloned our repo and run the following command:
 ```bash
 conda env create --file environment.yaml
 ```
@@ -41,20 +45,7 @@ conda activate 522-group21-housing
 conda install nb_conda_kernels
 ```
 
-To run the analysis, run the following in your activated environment:
-```bash
-jupyter lab
-```
-Open `notebook/strathcona_house_value_predictor.ipynb` in Jupyter Lab and under Switch/Select Kernel choose "Python [conda env:522-group21-housing]".
-
-Next, under the "Kernel" menu click "Restart Kernel and Run All Cells...".
-
-(Optional) If you can't render the plots, please run the code below, then reopen the jupyter lab:
-```bash
-conda install vegafusion=1.6.9
-```
-
-## Using Docker (Optional)
+3. Using Docker:
 Docker is used to create reproducible, sharable and shippable computing environments for our analysis. This may be useful for you if you are having issues installing the required packages or if you simply don't wish to have them on your local computer.
 To use Docker, visit their website [here](https://www.docker.com/), create an account, and download and install a version that is compatible with your computer. 
 Once Docker is installed, ensure it is running and navigate to where you cloned our repo and run the following command in your terminal:
@@ -62,6 +53,42 @@ Once Docker is installed, ensure it is running and navigate to where you cloned 
 docker-compose up
 ```
 While your Docker container is running, you may follow the instructions within it to run the analysis through it. Specifically, you want to copy the link that starts with "http://127.0.0.1:8888/lab?token=..." into your browser to access a Jupyter Lab instance on the Docker container through which you can run our analysis.
+
+4. To run the analysis,open a terminal and run the following commands:
+
+```
+python scripts/load_data.py \
+    --url="https://hub.arcgis.com/api/v3/datasets/e3c5b04fccdc4ddd88059a8c0b6d8160_0/downloads/data?format=csv&spatialRefId=3776&where=1%3D1" \
+    --write-to="data/"
+
+python scripts/clean_data.py \
+    --raw-data=data/Raw_2023_Property_Tax_Assessment.csv \
+    --seed=522 \
+    --write-to="data/"     ****not able to run with this seed!!!!!
+
+python scripts/eda.py \
+    --processed-training-data=data/processed/scaled_cancer_train.csv \
+    --plot-to=results/figures
+
+python scripts/fit_breast_cancer_classifier.py \
+    --training-data=data/processed/cancer_train.csv \
+    --preprocessor=results/models/cancer_preprocessor.pickle \
+    --columns-to-drop=data/processed/columns_to_drop.csv \
+    --pipeline-to=results/models \
+    --plot-to=results/figures \
+    --seed=523
+
+
+python scripts/evaluate_breast_cancer_predictor.py \
+	--scaled-test-data=data/processed/cancer_test.csv \
+	--pipeline-from=results/models/cancer_pipeline.pickle \
+	--results-to=results/tables \
+	--seed=524
+
+quarto render report/strathcona_house_value_predictor.qmd --to html
+quarto render report/strathcona_house_value_predictor.qmd --to pdf
+```
+
 
 ## Dependencies:
   - python=3.11
@@ -74,6 +101,10 @@ While your Docker container is running, you may follow the instructions within i
   - pandas
   - ipykernel
   - nb_conda_kernels
+  - [Docker](https://www.docker.com/) 
+  - [VS Code](https://code.visualstudio.com/download)
+  - [VS Code Jupyter Extension](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter)
+
 
 ## License
 This project is under the Creative Commons Attribution 4.0 International Public License. See the [License file](https://github.com/UBC-MDS/DSCI522-2425-21-housing/blob/main/LICENSE.md) for more details.
