@@ -15,4 +15,5 @@ dependencies:
   - nb_conda_kernels
   - pickle
   - click
+  - quarto=1.6
 #  - os
