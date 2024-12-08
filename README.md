@@ -31,7 +31,17 @@ The final report can be found
 git clone https://github.com/UBC-MDS/DSCI522-2425-21-housing.git
 ```
 
-2. To set up the necessary packages for running the project, create a virtual environment by using `conda` with the environment file that was downloaded when you cloned our repo from the previous step. Navigate to where you cloned our repo and run the following command:
+2. Using Docker:
+Docker is used to create reproducible, sharable and shippable computing environments for our analysis. This may be useful for you if you are having issues installing the required packages or if you simply don't wish to have them on your local computer.
+To use Docker, visit their website [here](https://www.docker.com/), create an account, and download and install a version that is compatible with your computer. 
+Once Docker is installed, ensure it is running and navigate to where you cloned our repo and run the following command in your terminal:
+```bash
+docker-compose up
+```
+While your Docker container is running, you may follow the instructions within it to open a Jupyter Lab. Specifically, you want to copy the link that starts with "http://127.0.0.1:8888/lab?token=..." into your browser to access a Jupyter Lab instance on the Docker container through which you can run our analysis.
+
+3. (Optional) If you prefer to use a local environment instead of Docker: 
+set up the necessary packages for running the project, create a virtual environment by using `conda` with the environment file that was downloaded when you cloned our repo from the previous step. Navigate to where you cloned our repo and run the following command:
 ```bash
 conda env create --file environment.yaml
 ```
@@ -45,16 +55,7 @@ conda activate 522-group21-housing
 conda install nb_conda_kernels
 ```
 
-3. Using Docker:
-Docker is used to create reproducible, sharable and shippable computing environments for our analysis. This may be useful for you if you are having issues installing the required packages or if you simply don't wish to have them on your local computer.
-To use Docker, visit their website [here](https://www.docker.com/), create an account, and download and install a version that is compatible with your computer. 
-Once Docker is installed, ensure it is running and navigate to where you cloned our repo and run the following command in your terminal:
-```bash
-docker-compose up
-```
-While your Docker container is running, you may follow the instructions within it to run the analysis through it. Specifically, you want to copy the link that starts with "http://127.0.0.1:8888/lab?token=..." into your browser to access a Jupyter Lab instance on the Docker container through which you can run our analysis.
-
-4. To run the analysis,open a terminal and run the following commands:
+4. To run the analysis inside the Jupyter Lab within the Docker container, select the Python 3 kernel, go to File > New > Terminal to open a terminal and run the following commands:
 
 ```
 python scripts/load_data.py \
@@ -86,12 +87,14 @@ python scripts/predictions.py \
     --output-file=results/tables/ten_houses_predictions.csv \
     --plot-to=results/figures/predictions_visualization.png
 
-
-
 quarto render notebook/strathcona_house_value_predictor.qmd --to html
 quarto render notebook/strathcona_house_value_predictor.qmd --to pdf
 ```
 
+5. When you are finished, stop and clean up the container by typing Ctrl + C in the terminal where you launched the container, and then type
+```bash
+docker-compose rm
+```
 
 ## Dependencies:
   - python=3.11
