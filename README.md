@@ -70,20 +70,21 @@ python scripts/eda.py \
     --processed-data=data/processed/Clean_2023_Property_Tax_Assessment.csv \
     --plot-to=results/figures
 
-python scripts/fit_breast_cancer_classifier.py \
-    --training-data=data/processed/cancer_train.csv \
-    --preprocessor=results/models/cancer_preprocessor.pickle \
-    --columns-to-drop=data/processed/columns_to_drop.csv \
-    --pipeline-to=results/models \
-    --plot-to=results/figures \
-    --seed=523
+python scripts/preprocess_data.py \
+    --train-data=data/processed/train.csv \
+    --write-to=results/models
 
+python scripts/model_fitting.py \
+    --train-data=data/processed/train.csv \
+    --test-data=data/processed/test.csv \
+    --preprocessor=results/models/preprocessor.pickle \
+    --results-to=results/models \
+    --seed=123
 
-python scripts/evaluate_breast_cancer_predictor.py \
-	--scaled-test-data=data/processed/cancer_test.csv \
-	--pipeline-from=results/models/cancer_pipeline.pickle \
-	--results-to=results/tables \
-	--seed=524
+python scripts/predictions.py \
+    --model-file=results/models/ridge_pipeline.pickle \
+    --output-file=results/tables/ten_houses_predictions.csv
+
 
 quarto render notebook/strathcona_house_value_predictor.qmd --to html
 quarto render notebook/strathcona_house_value_predictor.qmd --to pdf
