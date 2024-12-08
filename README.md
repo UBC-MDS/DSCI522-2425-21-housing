@@ -104,9 +104,9 @@ quarto render notebook/strathcona_house_value_predictor.qmd --to pdf
   - pandas
   - ipykernel
   - nb_conda_kernels
+  - click
+  - quarto
   - [Docker](https://www.docker.com/) 
-  - [VS Code](https://code.visualstudio.com/download)
-  - [VS Code Jupyter Extension](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter)
 
 
 ## License
