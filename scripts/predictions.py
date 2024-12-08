@@ -1,14 +1,17 @@
 import pandas as pd
 import pickle
 import os
+import altair as alt
 import click
 
 @click.command()
 @click.option('--model-file', type=str, help="Path to the trained model file (pickle format)", required=True)
 @click.option('--output-file', type=str, help="Path to save the predictions CSV file", required=True)
-def main(model_file, output_file):
+@click.option('--plot-to', type=str, help="Path to save the visualization", required=True)
+def main(model_file, output_file, plot_to):
     """
-    Predicts housing prices for a given dataset using a pre-trained pipeline model.
+    Predicts housing prices for a given dataset using a pre-trained pipeline model
+    and saves visualizations of predictions.
     """
     # Input data
     ten_houses = {
@@ -39,9 +42,69 @@ def main(model_file, output_file):
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
     predictions_df.to_csv(output_file, index=False)
-
     print(f"Predictions saved to {output_file}")
     print(predictions_df)
+
+    # Generate visualizations
+    mtrs = alt.Chart(predictions_df).mark_line().encode(
+        x=alt.X('meters', title="Property size"),
+        y=alt.Y('Predicted_Values', title='Predicted Values'),
+    ).properties(
+        height=200,
+        width=200,
+        title="Property size (m^2) vs value"
+    )
+
+    grg2 = alt.Chart(predictions_df).mark_line().encode(
+        x=alt.X('meters', title="Property size"),
+        y=alt.Y('Predicted_Values', title='Predicted Values'),
+        color=alt.Color('garage', title="Garage")
+    ).properties(
+        height=200,
+        width=200,
+        title="Garage"
+    )
+
+    frp2 = alt.Chart(predictions_df).mark_line().encode(
+        x=alt.X('meters', title="Property size"),
+        y=alt.Y('Predicted_Values', title='Predicted Values'),
+        color=alt.Color('firepl', title="Fireplace")
+    ).properties(
+        height=200,
+        width=200,
+        title="Fireplace"
+    )
+
+    bst2 = alt.Chart(predictions_df).mark_line().encode(
+        x=alt.X('meters', title="Property size"),
+        y=alt.Y('Predicted_Values', title='Predicted Values'),
+        color=alt.Color('bsmt', title="Basement")
+    ).properties(
+        height=200,
+        width=200,
+        title="Basement"
+    )
+
+    bdl2 = alt.Chart(predictions_df).mark_line().encode(
+        x=alt.X('meters', title="Property size"),
+        y=alt.Y('Predicted_Values', title='Predicted Values'),
+        color=alt.Color('bdevl', title="Building evaluation")
+    ).properties(
+        height=200,
+        width=200,
+        title="Building evaluation"
+    )
+
+    combined_chart = (mtrs & (grg2 | frp2) & (bst2 | bdl2)).properties(
+        title="Correlations between property size and house value, colored by different characteristics"
+    )
+
+    # Save the plot
+    plot_dir = os.path.dirname(plot_to)
+    if not os.path.exists(plot_dir):
+        os.makedirs(plot_dir)
+    combined_chart.save(plot_to, scale_factor=2.0)
+    print(f"Visualization saved to {plot_to}")
 
 if __name__ == '__main__':
     main()
