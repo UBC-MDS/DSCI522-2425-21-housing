@@ -105,6 +105,7 @@ quarto render notebook/strathcona_house_value_predictor.qmd --to pdf
   - ipykernel
   - nb_conda_kernels
   - click
+  - quarto
   - [Docker](https://www.docker.com/) 
 
 
