@@ -9,3 +9,9 @@
 .local/share/jupyter/runtime/kernel-408d26a2-0f08-4f02-820a-d91df38404df.json
 .npm/_logs/2024-11-29T02_11_48_713Z-debug-0.log
 .DS_Store
+.ipynb_checkpoints
+.npm/_logs
+.bash_history
+.cache
+.jupyter
+.local
