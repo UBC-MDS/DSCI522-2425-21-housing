@@ -83,7 +83,9 @@ python scripts/model_fitting.py \
 
 python scripts/predictions.py \
     --model-file=results/models/ridge_pipeline.pickle \
-    --output-file=results/tables/ten_houses_predictions.csv
+    --output-file=results/tables/ten_houses_predictions.csv \
+    --plot-to=results/figures/predictions_visualization.png
+
 
 
 quarto render notebook/strathcona_house_value_predictor.qmd --to html

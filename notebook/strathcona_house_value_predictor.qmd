@@ -11,6 +11,9 @@ format:
   html:
     toc: true
     toc-depth: 3
+  pdf:
+    toc: true
+    toc-depth: 3
 execute:
   echo: false
   warning: false
@@ -187,71 +190,14 @@ else:
 We have enabled `VegaFusion` to optimize `Altair` data transformations for visualizations<cite>@altair2024</cite>. We then created a distribution plot of categorical features in the `housing_df` DataFrame.
 As shown in @fig-categorical-features, the distribution of categorical features provides insights into their overall counts.
 
-```{python}
-#| label: fig-categorical-features
-#| fig-cap: "Distribution of categorical features (Garage, Fireplace, Basement, and Building Evaluation)."
-#| fig-width: 10
-#| fig-height: 6
+![Distribution of categorical features (Garage, Fireplace, Basement, and Building Evaluation).](../results/figures/categorical_features_counts.png){#fig-categorical-features width=80%}
 
-alt.data_transformers.enable("vegafusion")
-
-grg0 = alt.Chart(housing_df).mark_bar().encode(
-    x = alt.X('garage', title='Garage'),
-    y = alt.Y('count()', scale = alt.Scale(domain=[0,35000]), title='House value'),
-)
-
-
-frp0 = alt.Chart(housing_df).mark_bar().encode(
-    x = alt.X('firepl', title='Fireplace'),
-    y = alt.Y('count()', scale = alt.Scale(domain=[0,35000]), title='House value'),
-)
-
-bst0 = alt.Chart(housing_df).mark_bar().encode(
-    x = alt.X('bsmt', title='Basement'),
-    y = alt.Y('count()', scale = alt.Scale(domain=[0,35000]), title='House value'),
-)
-
-bdl0 = alt.Chart(housing_df).mark_bar().encode(
-    x = alt.X('bdevl', title='Building evaluation'),
-    y = alt.Y('count()', scale = alt.Scale(domain=[0,35000]), title='House value'),
-)
-
-(grg0 | frp0 | bst0 | bdl0).properties(
-    title="Counts of categorical features"
-)
-```
 
 The scatter plots visualize the relationship between house assessment values (`assess_2022`) and four categorical features: `garage`, `firepl`, `bsmt`, and `bdevl`.
 As depicted in @fig-assessment-categorical, the scatter plots illustrate the relationship between house value assessments and categorical features.
 
-```{python}
-#| label: fig-assessment-categorical
-#| fig-cap: "Scatter plots showing house value assessments for categorical features: Garage, Fireplace, Basement, and Building Evaluation."
-#| fig-width: 10
-#| fig-height: 6
-grg = alt.Chart(housing_df).mark_point().encode(
-    x = alt.X('garage', title='Garage'),
-    y = alt.Y('assess_2022', title='House value'),
-)
+![Scatter plots showing house value assessments for categorical features: Garage, Fireplace, Basement, and Building Evaluation.](../results/figures/categorical_features_scatter.png){#fig-assessment-categorical width=80%}
 
-frp = alt.Chart(housing_df).mark_point().encode(
-    x = alt.X('firepl', title='Fireplace'),
-    y = alt.Y('assess_2022', title='House value'),
-)
-
-bst = alt.Chart(housing_df).mark_point().encode(
-    x = alt.X('bsmt', title='Basement'),
-    y = alt.Y('assess_2022', title='House value'),
-)
-
-bdl = alt.Chart(housing_df).mark_point().encode(
-    x = alt.X('bdevl', title='Building evaluation'),
-    y = alt.Y('assess_2022', title='House value'),
-)
-
-(grg | frp | bst | bdl).properties(
-    title="House value assessment per categorical feature")
-```
 
 ### 4. Prepare data for training and create column transformer for feature transformation
 
@@ -259,42 +205,7 @@ Visualizing the distribution of the target variable, `assess_2022`, using a hist
 
 As depicted in @fig-property-assessment-distribution, the combined visualizations provide valuable insights into the distribution and relationship between property sizes (meters) and house assessment values (`assess_2022`). The scatter plot showcases how larger properties tend to have higher assessment values, while the histogram and KDE plot reveal the overall distribution and density of assessment values in the dataset.
 
-```{python}
-#| label: fig-property-assessment-distribution
-#| fig-cap: "Distribution and relationships of house assessment values (2022), showing scatter plot, histogram, and kernel density estimation."
-#| fig-width: 10
-#| fig-height: 6
-scatter = alt.Chart(housing_df).mark_point().encode(
-    y = alt.Y('meters', title="Property size (meters)"),
-    x = alt.X('assess_2022', title="Assessment Value"),
-    color = alt.Color('meters', title="Property size (meters)").scale(scheme='viridis')
-).properties(
-    title="Scatter plot of Property Size and Assessment Values (2022)"
-)
-
-# Create a histogram and KDE plot for the 'assess_2022' column
-histogram = alt.Chart(housing_df).mark_bar().encode(
-    alt.X("assess_2022:Q", bin=alt.Bin(maxbins=2000), title="Assessment Value").scale(domain=(0, 2000000), clamp=True),
-    alt.Y("count():Q", title="Frequency"),
-).properties(
-    title="Distribution of House Assessment Values (2022)"
-)
-
-kde = alt.Chart(housing_df).transform_density(
-    "assess_2022",
-    as_=["assess_2022", "density"], 
-    counts=True
-).mark_line(color="red").encode(
-    alt.X("assess_2022:Q", title="Assessment Value").scale(domain=(0, 2000000), clamp=True),
-    alt.Y("density:Q", title="Density")
-).properties(
-    title="Line plot of KDE House Assessment Values (2022)"
-)
-
-# Combine the histogram and KDE plot
-combined_chart = histogram | kde | scatter
-combined_chart.show()
-```
+![Distribution and relationships of house assessment values (2022), showing scatter plot, histogram, and kernel density estimation.](../results/figures/distribution_charts.png){#fig-property-assessment-distribution width=80%}
 
 
 According to the scatter plot, the vast majority of our data points are concentrated within the `0 < meters < 2000 range`, with some more within the `2000 < meters < 5000` range, and there are a few outliers in the `meters > 5000` range that make it difficult to get a closer look on the majority of our data. We can see a similar story on the `assess_2022` feature as it has the vast majority of points in the low-mid range and some outlying extreme values.
@@ -509,64 +420,8 @@ predictions_df
 We have created line charts to visualize the relationship between property size (`meters`) and predicted housing prices (`Predicted_Values`), colored by different categorical features. This visualization highlights how categorical features interact with property size to influence predicted house values<cite>@altair2024</cite>.
 As shown in @fig-property-size-correlation, property size has a significant impact on house value predictions, with notable variations across categorical features.
 
-```{python}
-#| label: fig-property-size-correlation
-#| fig-cap: "Line charts showing correlations between property size and house value predictions, colored by various categorical features."
-#| fig-width: 10
-#| fig-height: 6
-mtrs = alt.Chart(predictions_df).mark_line().encode(
-    x = alt.X('meters', title="Property size"),
-    y = alt.Y('Predicted_Values', title='Predicted Values'),
-).properties(
-    height = 200,
-    width = 200,
-    title = "Property size (m^2) vs value"
-)
+![Line charts showing correlations between property size and house value predictions, colored by various categorical features.](../results/figures/predictions_visualization.png){#fig-property-size-correlation width=80%}
 
-grg2 = alt.Chart(predictions_df).mark_line().encode(
-    x = alt.X('meters', title="Property size"),
-    y = alt.Y('Predicted_Values', title='Predicted Values'),
-    color = alt.Color('garage', title="Garage")
-).properties(
-    height = 200,
-    width = 200,
-    title = "Garage"
-)
-
-frp2 = alt.Chart(predictions_df).mark_line().encode(
-    x = alt.X('meters', title="Property size"),
-    y = alt.Y('Predicted_Values', title='Predicted Values'),
-    color = alt.Color('firepl', title="Fireplace")
-).properties(
-    height = 200,
-    width = 200,
-    title = "Fireplace"
-)
-
-bst2 = alt.Chart(predictions_df).mark_line().encode(
-    x = alt.X('meters', title="Property size"),
-    y = alt.Y('Predicted_Values', title='Predicted Values'),
-    color = alt.Color('bsmt', title="Basement")
-).properties(
-    height = 200,
-    width = 200,
-    title = "Basement"
-)
-
-bdl2 = alt.Chart(predictions_df).mark_line().encode(
-    x = alt.X('meters', title="Property size"),
-    y = alt.Y('Predicted_Values', title='Predicted Values'),
-    color = alt.Color('bdevl', title="Building evaluation")
-).properties(
-    height = 200,
-    width = 200,
-    title = "Building evaluation"
-)
-
-(mtrs & (grg2 | frp2) & (bst2 | bdl2)).properties(
-    title = "Correlations between property size and house value, colored by different characteristics"
-)
-```
 
 ## Discussion
 Our findings suggest that the aforementioned 10 houses are expected to be valued at: 
