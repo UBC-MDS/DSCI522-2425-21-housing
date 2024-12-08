@@ -13,7 +13,10 @@ dependencies:
   - pandas
   - ipykernel
   - nb_conda_kernels
-  - pickle
   - click
-  - quarto=1.6
+  - quarto
+
+# The following are included in python and don't need to be installed separately:
 #  - os
+#  - pickle
+
