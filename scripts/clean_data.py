@@ -9,12 +9,13 @@ import os
 import click
 from sklearn.model_selection import train_test_split
 import sys
+import numpy as np
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 @click.command()
 @click.option('--raw-data', type=str, help="Path to raw data")
-@click.option('--seed', type=str, help="Seed to be used to randomly split train and test data")
+@click.option('--seed', type=int, help="Seed to be used to randomly split train and test data")
 @click.option('--write-to', type=str, help="Path to directory where cleaned data will be written to")
 
 def main(raw_data, seed, write_to):
@@ -25,6 +26,7 @@ def main(raw_data, seed, write_to):
     "522",
     "../data/")
     """
+    np.random.seed(seed)
     ## Validation for correct data file format
     file_path = raw_data
 

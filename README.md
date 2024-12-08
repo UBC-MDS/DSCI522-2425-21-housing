@@ -23,7 +23,7 @@ The data set was chosen for its rich feature set, adequate sample size, and publ
 
 ## Report
 The final report can be found
-[here]([https://github.com/UBC-MDS/DSCI522-2425-21-housing/blob/main/notebook/strathcona_house_value_predictor.html]).
+[here](https://github.com/UBC-MDS/DSCI522-2425-21-housing/blob/main/notebook/strathcona_house_value_predictor.html).
 
 ## Setup and Run Analysis
 1. To run our analysis, you must first clone our repo to your local machine. To do this, open your machine's terminal and navigate to a desired directory to clone the repo into, then run the following command:
@@ -59,15 +59,15 @@ While your Docker container is running, you may follow the instructions within i
 ```
 python scripts/load_data.py \
     --url="https://hub.arcgis.com/api/v3/datasets/e3c5b04fccdc4ddd88059a8c0b6d8160_0/downloads/data?format=csv&spatialRefId=3776&where=1%3D1" \
-    --write-to="data/"
+    --write-to=data/raw
 
 python scripts/clean_data.py \
-    --raw-data=data/Raw_2023_Property_Tax_Assessment.csv \
+    --raw-data=data/raw/Raw_2023_Property_Tax_Assessment.csv \
     --seed=522 \
-    --write-to="data/"     ****not able to run with this seed!!!!!
+    --write-to=data/processed
 
 python scripts/eda.py \
-    --processed-training-data=data/processed/scaled_cancer_train.csv \
+    --processed-data=data/processed/Clean_2023_Property_Tax_Assessment.csv \
     --plot-to=results/figures
 
 python scripts/fit_breast_cancer_classifier.py \
@@ -85,8 +85,8 @@ python scripts/evaluate_breast_cancer_predictor.py \
 	--results-to=results/tables \
 	--seed=524
 
-quarto render report/strathcona_house_value_predictor.qmd --to html
-quarto render report/strathcona_house_value_predictor.qmd --to pdf
+quarto render notebook/strathcona_house_value_predictor.qmd --to html
+quarto render notebook/strathcona_house_value_predictor.qmd --to pdf
 ```
 
 
