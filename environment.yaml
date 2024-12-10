@@ -15,6 +15,8 @@ dependencies:
   - nb_conda_kernels=2.5.1
   - click=8.1.7
   - quarto=1.5.57
+  - nbformat=5.10.4
+  - nbclient=0.10.1
 
 # The following are included in python and don't need to be installed separately:
 #  - os

@@ -2,11 +2,11 @@
 title: 'Title: Strathcona House Value Predictor'
 author: 'Gilbert Akuja, Tianjiao Jiang, Thamer Aldawood & Yajing Liu'
 date: 7 Dec 2024
-jupyter:
-  kernelspec:
-    display_name: 'Python [conda env:522-group21-housing] *'
-    language: python
-    name: 522-group21-housing
+# jupyter:
+#   kernelspec:
+#     display_name: 'Python [conda env:522-group21-housing] *'
+#     language: python
+#     name: 522-group21-housing
 format:
   html:
     toc: true
