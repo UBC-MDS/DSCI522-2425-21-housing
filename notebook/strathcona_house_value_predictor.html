@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -85,7 +85,7 @@ div.csl-indent {
   <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="../strathcona_house_value_predictor.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="strathcona_house_value_predictor.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
 </div>
 <main class="content" id="quarto-document-content">
 
@@ -274,7 +274,7 @@ Table&nbsp;1: Preview of the 2023 Property Tax Assessment dataset after selectin
 - No duplicate observations
 - No outlier or anomalous values</code></pre>
 <p>Listed below is the results for our validation check.</p>
-<div id="29ef2965" class="cell" data-execution_count="3">
+<div id="2198bab6" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-stdout">
 <pre><code>✅ File format validation passed: File is a CSV.
 ✅ Column name validation passed: All expected columns are present.
@@ -331,7 +331,7 @@ Figure&nbsp;3: Distribution and relationships of house assessment values (2022),
 <p>According to the scatter plot, the vast majority of our data points are concentrated within the <code>0 &lt; meters &lt; 2000 range</code>, with some more within the <code>2000 &lt; meters &lt; 5000</code> range, and there are a few outliers in the <code>meters &gt; 5000</code> range that make it difficult to get a closer look on the majority of our data. We can see a similar story on the <code>assess_2022</code> feature as it has the vast majority of points in the low-mid range and some outlying extreme values.</p>
 <p>We have splited the housing_df DataFrame into training and test datasets using an <code>70-30 split</code>, categorized features into categorical features (e.g., <code>garage</code>, <code>firepl</code>, <code>bsmt</code>, <code>bdevl</code>) and numeric features (e.g., <code>meters</code>), applied one-hot encoding transforamtion for categorical features and standardScalar transformation for numeric features by using Scikit-learn<cite><span class="citation" data-cites="scikit2024">Learn (<a href="#ref-scikit2024" role="doc-biblioref">2024</a>)</span></cite>. We then created a column transformer <code>preprocessor</code> through combining these transforamtions to apply to the dataset and visualizes the <code>preprocessor</code>.</p>
 <p>We performed analysis to identify any potential issues with the relationships between features and the target, as well as between the features themselves. By detecting anomalous correlations, we can uncover redundant or highly correlated features that might lead to multicollinearity, which can negatively affect the performance of machine learning models. In particular, removing or adjusting features that are too strongly correlated ensures that the model can learn meaningful, independent relationships, improving its generalization ability and interpretability. Additionally, examining correlations helps us assess if certain features are disproportionately influencing the target variable, which could indicate bias or overfitting.</p>
-<div id="3f83c82d" class="cell" data-execution_count="5">
+<div id="b01f689c" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display" data-execution_count="5">
 <style>#sk-container-id-1 {
   /* Definition of color scheme common for light and dark mode */
@@ -751,7 +751,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <ul>
 <li>Check for correct category levels (i.e., no string mismatches or single values)</li>
 </ul>
-<div id="288fde88" class="cell" data-execution_count="6">
+<div id="2eccbd4d" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-stdout">
 <pre><code>✅ Category levels validation passed for column 'garage' in train_df.
 ✅ Category levels validation passed for column 'firepl' in train_df.
@@ -763,7 +763,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </section>
 <section id="check-for-anomalous-correlations-between-target-and-features" class="level4">
 <h4 class="anchored" data-anchor-id="check-for-anomalous-correlations-between-target-and-features">Check for anomalous correlations between target and features</h4>
-<div id="767324ce" class="cell" data-execution_count="7">
+<div id="01437fee" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-stdout">
 <pre><code>✅ No anomalous correlations found between target and features.</code></pre>
 </div>
@@ -771,7 +771,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </section>
 <section id="check-for-anomalous-correlations-between-features" class="level4">
 <h4 class="anchored" data-anchor-id="check-for-anomalous-correlations-between-features">Check for anomalous correlations between features</h4>
-<div id="99c04686" class="cell" data-execution_count="8">
+<div id="832ee28d" class="cell" data-execution_count="8">
 <div class="cell-output cell-output-stdout">
 <pre><code>✅ No anomalous correlations found between target and features.</code></pre>
 </div>
@@ -805,13 +805,13 @@ Table&nbsp;2: Cross-validation results showing the mean and standard deviation f
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">fit_time</td>
-<td>0.010</td>
-<td>0.001</td>
+<td>0.029</td>
+<td>0.008</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">score_time</td>
-<td>0.003</td>
-<td>0.000</td>
+<td>0.007</td>
+<td>0.001</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">test_score</td>
@@ -833,9 +833,9 @@ Table&nbsp;2: Cross-validation results showing the mean and standard deviation f
 </div>
 </div>
 <p>We fit the pipeline on the training dataset (<code>X_train</code> and <code>y_train</code>) to train the Ridge Regression model<cite><span class="citation" data-cites="ridge1992">Hoerl and Kennard (<a href="#ref-ridge1992" role="doc-biblioref">1970</a>)</span></cite>. Then evaluates the trained pipeline on the test dataset (<code>X_test</code> and <code>y_test</code>) which calculates the R² (coefficient of determination) to measure how well the model explains the variance in the test data.</p>
-<div id="839baec7" class="cell" data-execution_count="11">
+<div id="249589ec" class="cell" data-execution_count="11">
 <div class="cell-output cell-output-display" data-execution_count="11">
-<pre><code>0.536298068928245</code></pre>
+<pre><code>0.5362980689282444</code></pre>
 </div>
 </div>
 </section>
@@ -1098,7 +1098,7 @@ Figure&nbsp;4: Line charts showing correlations between property size and house 
 <section id="discussion" class="level2">
 <h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
 <p>Our findings suggest that the aforementioned 10 houses are expected to be valued at:</p>
-<div id="88feb3fc" class="cell" data-execution_count="15">
+<div id="fd4e9f46" class="cell" data-execution_count="15">
 <div class="cell-output cell-output-display" data-execution_count="15">
 <div>
 
