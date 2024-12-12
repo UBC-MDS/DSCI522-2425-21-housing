@@ -95,6 +95,32 @@ quarto render notebook/strathcona_house_value_predictor.qmd --to pdf
 ```bash
 docker-compose rm
 ```
+(Optional)
+When you run this command:
+```bash
+quarto render notebook/strathcona_house_value_predictor.qmd --to html
+```
+or
+```bash
+quarto render notebook/strathcona_house_value_predictor.qmd --to pdf
+```
+In case you get some errors like:
+```bash
+ERROR: 
+No such kernel named 522-group21-housing
+Starting 522-group21-housing kernel...ERROR:
+```
+You can run following commands to address the issue:
+(You don't need to run first command if you already in the environment: 522-group21-housing)
+```bash
+conda activate 522-group21-housing
+
+python -m ipykernel install --user --name=522-group21-housing
+
+quarto render notebook/strathcona_house_value_predictor.qmd --to html
+quarto render notebook/strathcona_house_value_predictor.qmd --to pdf
+```
+
 
 ## Dependencies:
   - python=3.11
