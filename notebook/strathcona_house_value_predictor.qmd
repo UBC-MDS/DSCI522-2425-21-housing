@@ -2,11 +2,6 @@
 title: 'Title: Strathcona House Value Predictor'
 author: 'Gilbert Akuja, Tianjiao Jiang, Thamer Aldawood & Yajing Liu'
 date: 7 Dec 2024
-jupyter:
-  kernelspec:
-    display_name: 'Python [conda env:522-group21-housing] *'
-    language: python
-    name: 522-group21-housing
 format:
   html:
     toc: true
@@ -15,7 +10,19 @@ execute:
   echo: false
   warning: false
 bibliography: references.bib
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .qmd
+      format_name: quarto
+      format_version: '1.0'
+      jupytext_version: 1.16.4
+  kernelspec:
+    display_name: 522-group21-housing
+    language: python
+    name: 522-group21-housing
 ---
+
 ## Summary
 Our team will be working on predicting house prices using the `2023 Property Tax Assessment` dataset from Strathcona County Open Data portal<cite>@strathcona2023</cite>. The dataset provides a wealth of information about houses, including attributes like size, location, and other features. By leveraging this data, we aim to build a robust predictive model that accurately estimates house values.
 
@@ -55,10 +62,9 @@ import os
 We read the CSV file named `2023 Property Tax Assessment` into a pandas DataFrame and filters it to include only the features we are going to evaluate<cite>@strathcona2023</cite>. The resulting DataFrame contains the specific features for further analysis.
 @tbl-housing-data displays the first few rows of the dataset after filtering for the relevant columns.
 
-
 ```{python}
 #| label: tbl-housing-data
-#| tbl-cap: "Preview of the 2023 Property Tax Assessment dataset after selecting relevant columns."
+#| tbl-cap: Preview of the 2023 Property Tax Assessment dataset after selecting relevant columns.
 url = "https://hub.arcgis.com/api/v3/datasets/e3c5b04fccdc4ddd88059a8c0b6d8160_0/downloads/data?format=csv&spatialRefId=3776&where=1%3D1"
 housing_df = pd.read_csv(url)
 
@@ -189,9 +195,9 @@ As shown in @fig-categorical-features, the distribution of categorical features 
 
 ```{python}
 #| label: fig-categorical-features
-#| fig-cap: "Distribution of categorical features (Garage, Fireplace, Basement, and Building Evaluation)."
-#| fig-width: 10
+#| fig-cap: 'Distribution of categorical features (Garage, Fireplace, Basement, and Building Evaluation).'
 #| fig-height: 6
+#| fig-width: 10
 
 alt.data_transformers.enable("vegafusion")
 
@@ -226,9 +232,9 @@ As depicted in @fig-assessment-categorical, the scatter plots illustrate the rel
 
 ```{python}
 #| label: fig-assessment-categorical
-#| fig-cap: "Scatter plots showing house value assessments for categorical features: Garage, Fireplace, Basement, and Building Evaluation."
-#| fig-width: 10
+#| fig-cap: 'Scatter plots showing house value assessments for categorical features: Garage, Fireplace, Basement, and Building Evaluation.'
 #| fig-height: 6
+#| fig-width: 10
 grg = alt.Chart(housing_df).mark_point().encode(
     x = alt.X('garage', title='Garage'),
     y = alt.Y('assess_2022', title='House value'),
@@ -261,9 +267,9 @@ As depicted in @fig-property-assessment-distribution, the combined visualization
 
 ```{python}
 #| label: fig-property-assessment-distribution
-#| fig-cap: "Distribution and relationships of house assessment values (2022), showing scatter plot, histogram, and kernel density estimation."
-#| fig-width: 10
+#| fig-cap: 'Distribution and relationships of house assessment values (2022), showing scatter plot, histogram, and kernel density estimation.'
 #| fig-height: 6
+#| fig-width: 10
 scatter = alt.Chart(housing_df).mark_point().encode(
     y = alt.Y('meters', title="Property size (meters)"),
     x = alt.X('assess_2022', title="Assessment Value"),
@@ -295,7 +301,6 @@ kde = alt.Chart(housing_df).transform_density(
 combined_chart = histogram | kde | scatter
 combined_chart.show()
 ```
-
 
 According to the scatter plot, the vast majority of our data points are concentrated within the `0 < meters < 2000 range`, with some more within the `2000 < meters < 5000` range, and there are a few outliers in the `meters > 5000` range that make it difficult to get a closer look on the majority of our data. We can see a similar story on the `assess_2022` feature as it has the vast majority of points in the low-mid range and some outlying extreme values.
 
@@ -436,7 +441,7 @@ We have created a pipeline combining the column transformer (`preprocessor`) and
 
 ```{python}
 #| label: tbl-cross-validation-results
-#| tbl-cap: "Cross-validation results showing the mean and standard deviation for train and validation scores across 5 folds."
+#| tbl-cap: Cross-validation results showing the mean and standard deviation for train and validation scores across 5 folds.
 from sklearn.linear_model import Ridge
 from sklearn.model_selection import (
     cross_val_score,
@@ -468,7 +473,7 @@ We created a Pandas DataFrame containing information about 10 houses that we wis
 
 ```{python}
 #| label: tbl-ten-houses
-#| tbl-cap: "Attributes of ten houses used for prediction."
+#| tbl-cap: Attributes of ten houses used for prediction.
 ten_houses = {
     'meters' : [174.23, 132.76, 90.82, 68.54, 221.30, 145.03, 102.96, 164.28, 142.79, 115.94],
     'garage' : ['Y', 'Y', 'Y', 'N', 'Y', 'N', 'N', 'Y', 'N', 'Y'],
@@ -495,7 +500,7 @@ We combined the original features from the new data and the predicted values int
 
 ```{python}
 #| label: tbl-predicted-values
-#| tbl-cap: "Predicted house values for the ten houses based on their attributes."
+#| tbl-cap: Predicted house values for the ten houses based on their attributes.
 predictions_df = pd.concat([X_predict,y_predict], axis = 1)
 
 # Saves prediction to a csv file
@@ -511,9 +516,9 @@ As shown in @fig-property-size-correlation, property size has a significant impa
 
 ```{python}
 #| label: fig-property-size-correlation
-#| fig-cap: "Line charts showing correlations between property size and house value predictions, colored by various categorical features."
-#| fig-width: 10
+#| fig-cap: 'Line charts showing correlations between property size and house value predictions, colored by various categorical features.'
 #| fig-height: 6
+#| fig-width: 10
 mtrs = alt.Chart(predictions_df).mark_line().encode(
     x = alt.X('meters', title="Property size"),
     y = alt.Y('Predicted_Values', title='Predicted Values'),
@@ -574,7 +579,6 @@ Our findings suggest that the aforementioned 10 houses are expected to be valued
 ```{python}
 y_predict
 ```
-
 
 We have also noticed that there is a correlation between a house's price and its property's size, whether or not it has a garage, fireplace, basement, and whether or not the building has been evaluated.
 This is consistent with our expectations as the larger a property is, and the more features it has (basement, garage, etc.) the higher its value becomes<cite>@garage2024</cite>.
