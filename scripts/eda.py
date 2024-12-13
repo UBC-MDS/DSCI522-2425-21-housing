@@ -3,6 +3,8 @@ import click
 import os
 import pandas as pd
 import altair as alt
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from src.eda_utils import create_combined_bar_chart
 
 @click.command()
