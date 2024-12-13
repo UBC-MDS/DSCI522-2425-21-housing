@@ -1,12 +1,13 @@
 import unittest
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch, MagicMock
 import pandas as pd
 from src.prediction import make_predictions
 
 class TestMakePredictions(unittest.TestCase):
 
+    @patch('builtins.open', create=True)  # Mock the open function
     @patch('pickle.load')  # Mock pickle.load to return a mock model
-    def test_make_predictions(self, mock_load):
+    def test_make_predictions(self, mock_load, mock_open):
         # Mock the predict method of the model
         mock_model = MagicMock()
         mock_model.predict.return_value = [100000, 200000, 300000, 400000, 500000]
