@@ -1,10 +1,11 @@
 # scripts/predict.py
+import pandas as pd
 import os
 import altair as alt
 import click
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-from src.prediction import make_predictions  # Import function from src folder
+from src.prediction import make_predictions  # Import the function
 
 @click.command()
 @click.option('--model-file', type=str, help="Path to the trained model file (pickle format)", required=True)
@@ -15,7 +16,7 @@ def main(model_file, output_file, plot_to):
     Predicts housing prices for a given dataset using a pre-trained pipeline model
     and saves visualizations of predictions.
     """
-    # Input data
+    # Input data (the 10 house examples)
     ten_houses = {
         'meters': [174.23, 132.76, 90.82, 68.54, 221.30, 145.03, 102.96, 164.28, 142.79, 115.94],
         'garage': ['Y', 'Y', 'Y', 'N', 'Y', 'N', 'N', 'Y', 'N', 'Y'],
@@ -24,19 +25,19 @@ def main(model_file, output_file, plot_to):
         'bdevl': ['N', 'Y', 'Y', 'N', 'Y', 'Y', 'Y', 'N', 'N', 'Y']
     }
 
-    # Get predictions using the new function
-    predictions_df = make_predictions(model_file, ten_houses)
+    # Call the make_predictions function to get predictions
+    result_df = make_predictions(model_file, ten_houses)
 
-    # Save the predictions to a CSV file (in data/processed)
+    # Save the predictions to a CSV file
     output_dir = os.path.dirname(output_file)
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
-    predictions_df.to_csv(output_file, index=False)
+    result_df.to_csv(output_file, index=False)
     print(f"Predictions saved to {output_file}")
-    print(predictions_df)
+    print(result_df)
 
     # Generate visualizations
-    mtrs = alt.Chart(predictions_df).mark_line().encode(
+    mtrs = alt.Chart(result_df).mark_line().encode(
         x=alt.X('meters', title="Property size"),
         y=alt.Y('Predicted_Values', title='Predicted Values'),
     ).properties(
@@ -45,7 +46,7 @@ def main(model_file, output_file, plot_to):
         title="Property size (m^2) vs value"
     )
 
-    grg2 = alt.Chart(predictions_df).mark_line().encode(
+    grg2 = alt.Chart(result_df).mark_line().encode(
         x=alt.X('meters', title="Property size"),
         y=alt.Y('Predicted_Values', title='Predicted Values'),
         color=alt.Color('garage', title="Garage")
@@ -55,7 +56,7 @@ def main(model_file, output_file, plot_to):
         title="Garage"
     )
 
-    frp2 = alt.Chart(predictions_df).mark_line().encode(
+    frp2 = alt.Chart(result_df).mark_line().encode(
         x=alt.X('meters', title="Property size"),
         y=alt.Y('Predicted_Values', title='Predicted Values'),
         color=alt.Color('firepl', title="Fireplace")
@@ -65,7 +66,7 @@ def main(model_file, output_file, plot_to):
         title="Fireplace"
     )
 
-    bst2 = alt.Chart(predictions_df).mark_line().encode(
+    bst2 = alt.Chart(result_df).mark_line().encode(
         x=alt.X('meters', title="Property size"),
         y=alt.Y('Predicted_Values', title='Predicted Values'),
         color=alt.Color('bsmt', title="Basement")
@@ -75,7 +76,7 @@ def main(model_file, output_file, plot_to):
         title="Basement"
     )
 
-    bdl2 = alt.Chart(predictions_df).mark_line().encode(
+    bdl2 = alt.Chart(result_df).mark_line().encode(
         x=alt.X('meters', title="Property size"),
         y=alt.Y('Predicted_Values', title='Predicted Values'),
         color=alt.Color('bdevl', title="Building evaluation")
@@ -89,7 +90,7 @@ def main(model_file, output_file, plot_to):
         title="Correlations between property size and house value, colored by different characteristics"
     )
 
-    # Save the plot (in results/)
+    # Save the plot
     plot_dir = os.path.dirname(plot_to)
     if not os.path.exists(plot_dir):
         os.makedirs(plot_dir)

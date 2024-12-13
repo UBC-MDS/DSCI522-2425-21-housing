@@ -1,4 +1,3 @@
-# src/prediction.py
 import pandas as pd
 import pickle
 
@@ -29,3 +28,4 @@ def make_predictions(model_file, input_data):
     predictions_df = pd.concat([X_predict, y_predict], axis=1)
     
     return predictions_df
+
