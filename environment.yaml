@@ -17,6 +17,7 @@ dependencies:
   - quarto=1.5.57
   - nbformat=5.10.4
   - nbclient=0.10.1
+  - pytest=8.3.4
 
 # The following are included in python and don't need to be installed separately:
 #  - os

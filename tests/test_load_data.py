@@ -6,7 +6,7 @@ import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from src.load_data import load_csv
 
-# Load csv should use pandas to read a CSV from a secure url then save the raw csv to a given path
+# load_csv should use pandas to read a CSV from a url then save the raw csv to a given path with a given filename
 
 def test_load_csv():
     # Example csv url for testing purposes
@@ -19,4 +19,4 @@ def test_load_csv():
     load_csv(url, write_to, filename)
     actual = pd.read_csv(os.path.join(write_to, filename))
 
-    assert actual.equals(expected)
+    assert actual.equals(expected), "CSV file is not being loaded properly"
