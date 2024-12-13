@@ -1,26 +1,9 @@
-# Download and extract data
-
-# download_data.py
+# load_data_util.py
 # author: Thamer Aldawood
 # date: 2024-12-05
 
 import pandas as pd
-import click
 import os
-import sys
-
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-
-@click.command()
-@click.option('--url', type=str, help="URL of dataset to be downloaded")
-@click.option('--write-to', type=str, help="Path to directory where raw data will be written to")
-@click.option('--filename', type=str, help="File name for csv to be created")
-
-def main(url, write_to, filename):
-    load_csv(url, write_to, filename)
-
-if __name__ == '__main__':
-    main()
 
 def load_csv(url, write_to, filename):
     """Downloads csv data from the web to a local filepath

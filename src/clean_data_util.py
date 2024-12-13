@@ -1,22 +1,10 @@
-# Clean and transform the data
-
-# clean_data.py
+# clean_data_util.py
 # author: Thamer Aldawood
-# date: 2024-12-05
+# date: 2024-12-12
 
 import pandas as pd
-import os
-import click
 from sklearn.model_selection import train_test_split
-import sys
 import numpy as np
-
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-
-@click.command()
-@click.option('--raw-data', type=str, help="Path to raw data")
-@click.option('--seed', type=int, help="Seed to be used to randomly split train and test data")
-@click.option('--write-to', type=str, help="Path to directory where cleaned data will be written to")
 
 def main(raw_data, seed, write_to):
     """Cleans raw data and splits it into train and test data based on a given seed
