@@ -1,3 +1,7 @@
+# test_clean_data_util.py
+# author: Thamer Aldawood
+# date: 2024-12-12
+
 import pytest
 import pandas as pd
 import numpy as np
@@ -5,7 +9,7 @@ import numpy as np
 import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-from src.clean_data import drop_outliers
+from src.clean_data_util import drop_outliers
 
 # Load csv should use pandas to read a CSV from a secure url then save the raw csv to a given path
 
@@ -36,7 +40,8 @@ def test_drop_outliers():
     # Create a DataFrame
     df_outliers = pd.DataFrame(data)
 
-    # Running load_csv to let it write the csv from the url
+    # Run drop_outliers and test whether or not it actually drops the outliers we added that exceed the given threshold
     df = drop_outliers(df_outliers, 2)
 
+    assert isinstance(df, pd.DataFrame), "drop_outliers did not return a pandas dataframe"
     assert not df.equals(df_outliers), "Outliers are not being dropped"
