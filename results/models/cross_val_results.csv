@@ -1,5 +1,5 @@
 ,mean,std
-fit_time,0.009,0.001
+fit_time,0.01,0.001
 score_time,0.003,0.0
 test_score,0.564,0.235
 train_score,0.575,0.078
