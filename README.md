@@ -75,14 +75,6 @@ make all
 docker-compose rm
 ```
 (Optional)
-When you run this command:
-```bash
-quarto render notebook/strathcona_house_value_predictor.qmd --to html
-```
-or
-```bash
-quarto render notebook/strathcona_house_value_predictor.qmd --to pdf
-```
 In case you get some errors like:
 ```bash
 ERROR: 
