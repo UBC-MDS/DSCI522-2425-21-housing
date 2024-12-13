@@ -1,8 +1,10 @@
-import pandas as pd
-import pickle
+# scripts/predict.py
 import os
 import altair as alt
 import click
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+from src.prediction import make_predictions  # Import function from src folder
 
 @click.command()
 @click.option('--model-file', type=str, help="Path to the trained model file (pickle format)", required=True)
@@ -22,22 +24,10 @@ def main(model_file, output_file, plot_to):
         'bdevl': ['N', 'Y', 'Y', 'N', 'Y', 'Y', 'Y', 'N', 'N', 'Y']
     }
 
-    # Create a DataFrame from the input data
-    X_predict = pd.DataFrame(ten_houses)
+    # Get predictions using the new function
+    predictions_df = make_predictions(model_file, ten_houses)
 
-    # Load the trained pipeline
-    with open(model_file, 'rb') as f:
-        pipeline = pickle.load(f)
-
-    # Perform predictions
-    y_predict = pipeline.predict(X_predict)
-    y_predict = pd.DataFrame(y_predict, columns=['Predicted_Values'])
-    y_predict = round(y_predict, 2)
-
-    # Combine input data with predictions
-    predictions_df = pd.concat([X_predict, y_predict], axis=1)
-
-    # Save the predictions to a CSV file
+    # Save the predictions to a CSV file (in data/processed)
     output_dir = os.path.dirname(output_file)
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
@@ -99,7 +89,7 @@ def main(model_file, output_file, plot_to):
         title="Correlations between property size and house value, colored by different characteristics"
     )
 
-    # Save the plot
+    # Save the plot (in results/)
     plot_dir = os.path.dirname(plot_to)
     if not os.path.exists(plot_dir):
         os.makedirs(plot_dir)
