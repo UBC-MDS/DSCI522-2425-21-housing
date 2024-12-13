@@ -1,4 +1,3 @@
-# scripts/predict.py
 import pandas as pd
 import os
 import altair as alt
