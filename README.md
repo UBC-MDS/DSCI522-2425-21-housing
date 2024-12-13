@@ -82,7 +82,7 @@ python scripts/model_fitting.py \
     --results-to=results/models \
     --seed=123
 
-python scripts/predictions.py \
+python scripts/predict.py \
     --model-file=results/models/ridge_pipeline.pickle \
     --output-file=results/tables/ten_houses_predictions.csv \
     --plot-to=results/figures/predictions_visualization.png
