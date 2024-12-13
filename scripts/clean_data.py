@@ -2,7 +2,7 @@
 
 # clean_data.py
 # author: Thamer Aldawood
-# date: 2024-12-05
+# date: 2024-12-12
 
 import pandas as pd
 import os
@@ -12,6 +12,9 @@ import sys
 import numpy as np
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+
+from src.clean_data_util import drop_outliers
+
 
 @click.command()
 @click.option('--raw-data', type=str, help="Path to raw data")
@@ -99,33 +102,7 @@ def main(raw_data, seed, write_to):
         print("✅ Duplicates have been removed from the DataFrame.")
 
     ## Validation for no outliers or anomalous values
-    outliers_detected = False
-    outlier_threshold = 5000
-
-    ## Identify and drop outliers if the threshold is exceeded
-    for col in housing_df.select_dtypes(include=["float64", "int64"]).columns:
-        q1 = housing_df[col].quantile(0.25)
-        q3 = housing_df[col].quantile(0.75)
-        iqr = q3 - q1
-        lower_bound = q1 - 1.5 * iqr
-        upper_bound = q3 + 1.5 * iqr
-
-        outliers = housing_df[(housing_df[col] < lower_bound) | (housing_df[col] > upper_bound)]
-        num_outliers = len(outliers)
-        
-        if num_outliers > outlier_threshold:
-            outliers_detected = True
-            print(f"Outlier validation failed: Column '{col}' has {num_outliers} outliers (threshold: {outlier_threshold}).")
-            # Dropping the outliers
-            housing_df = housing_df[~((housing_df[col] < lower_bound) | (housing_df[col] > upper_bound))]
-            print(f"✅ Outliers in column '{col}' have been removed from the DataFrame.")
-        elif num_outliers > 0:
-            print(f"Warning: Column '{col}' has {num_outliers} outliers, within acceptable threshold ({outlier_threshold}).")
-
-    if not outliers_detected:
-        print("✅ Outlier validation passed: No columns exceed the outlier threshold.")
-    else:
-        print("✅ Outliers exceeding the threshold have been removed.")
+    housing_df = drop_outliers(housing_df, 5000)
 
     # Splitting our cleaned and validated data into training and test data
     train_df, test_df = train_test_split(housing_df, test_size=0.3, random_state=seed)

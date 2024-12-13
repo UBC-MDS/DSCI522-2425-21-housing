@@ -4,7 +4,7 @@ import pandas as pd
 import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-from src.load_data import load_csv
+from src.load_data_util import load_csv
 
 # load_csv should use pandas to read a CSV from a url then save the raw csv to a given path with a given filename
 
