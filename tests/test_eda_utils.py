@@ -26,12 +26,12 @@ def test_create_combined_bar_chart():
     assert combined_chart.title == "Counts of categorical features", "Combined chart should have the correct title."
 
     # Check the number of subplots
-    assert len(combined_chart.vconcat) == 4, "Combined chart should contain 4 subplots."
+    assert len(combined_chart.hconcat) == 4, "Combined chart should contain 4 subplots."
 
     # Test the first subplot (e.g., 'garage')
-    first_chart = combined_chart.vconcat[0]
+    first_chart = combined_chart.hconcat[0]
     assert first_chart.encoding.x.shorthand == 'garage', "First chart x-axis should be mapped to 'garage'."
 
     # Test the second subplot (e.g., 'firepl')
-    second_chart = combined_chart.vconcat[1]
+    second_chart = combined_chart.hconcat[1]
     assert second_chart.encoding.x.shorthand == 'firepl', "Second chart x-axis should be mapped to 'firepl'."

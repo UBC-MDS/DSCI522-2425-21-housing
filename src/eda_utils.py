@@ -31,7 +31,7 @@ def create_combined_bar_chart(df, chart_title):
         y=alt.Y('count()', title='House value')
     )
 
-    combined_chart = alt.vconcat(grg0, frp0, bst0, bdl0).properties(
+    combined_chart = alt.hconcat(grg0, frp0, bst0, bdl0).properties(
         title=chart_title
     )
 
