@@ -55,40 +55,19 @@ conda activate 522-group21-housing
 conda install nb_conda_kernels
 ```
 
-4. To run the analysis inside the Jupyter Lab within the Docker container, select the Python 3 kernel, go to File > New > Terminal to open a terminal and run the following commands:
+4. Using Makefile to run the project:
 
+Activate the Conda Environment:
 ```
-python scripts/load_data.py \
-    --url="https://hub.arcgis.com/api/v3/datasets/e3c5b04fccdc4ddd88059a8c0b6d8160_0/downloads/data?format=csv&spatialRefId=3776&where=1%3D1" \
-    --write-to=data/raw
-
-python scripts/clean_data.py \
-    --raw-data=data/raw/Raw_2023_Property_Tax_Assessment.csv \
-    --seed=522 \
-    --write-to=data/processed
-
-python scripts/eda.py \
-    --processed-data=data/processed/Clean_2023_Property_Tax_Assessment.csv \
-    --plot-to=results/figures
-
-python scripts/preprocess_data.py \
-    --train-data=data/processed/train.csv \
-    --write-to=results/models
-
-python scripts/model_fitting.py \
-    --train-data=data/processed/train.csv \
-    --test-data=data/processed/test.csv \
-    --preprocessor=results/models/preprocessor.pickle \
-    --results-to=results/models \
-    --seed=123
-
-python scripts/predictions.py \
-    --model-file=results/models/ridge_pipeline.pickle \
-    --output-file=results/tables/ten_houses_predictions.csv \
-    --plot-to=results/figures/predictions_visualization.png
-
-quarto render notebook/strathcona_house_value_predictor.qmd --to html
-quarto render notebook/strathcona_house_value_predictor.qmd --to pdf
+conda activate 522-group21-housing
+```
+Navigate to the root of this project on your computer using the command line and enter the following command to reset the project to a clean state
+```
+make clean
+```
+To run the analysis in its entirety, enter the following command in the terminal in the project root:
+```
+make all
 ```
 
 5. When you are finished, stop and clean up the container by typing Ctrl + C in the terminal where you launched the container, and then type
