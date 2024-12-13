@@ -1,7 +1,9 @@
+# eda.py
 import click
 import os
-import altair as alt
 import pandas as pd
+import altair as alt
+from src.eda_utils import create_combined_bar_chart
 
 @click.command()
 @click.option('--processed-data', type=str, help="Path to processed data file")
@@ -14,31 +16,14 @@ def main(processed_data, plot_to):
     # Load the processed data
     housing_df = pd.read_csv(processed_data)
     
-    # Create bar charts for categorical features
-    grg0 = alt.Chart(housing_df).mark_bar().encode(
-        x=alt.X('garage', title='Garage'),
-        y=alt.Y('count()', scale=alt.Scale(domain=[0, 35000]), title='House value'),
+    # Create and save the combined bar chart for categorical features
+    bar_chart_combined = create_combined_bar_chart(
+        df=housing_df,
+        chart_title="Counts of Categorical Features"
     )
+    bar_chart_file = os.path.join(plot_to, "categorical_features_counts.png")
+    bar_chart_combined.save(bar_chart_file, scale_factor=2.0)
 
-    frp0 = alt.Chart(housing_df).mark_bar().encode(
-        x=alt.X('firepl', title='Fireplace'),
-        y=alt.Y('count()', scale=alt.Scale(domain=[0, 35000]), title='House value'),
-    )
-
-    bst0 = alt.Chart(housing_df).mark_bar().encode(
-        x=alt.X('bsmt', title='Basement'),
-        y=alt.Y('count()', scale=alt.Scale(domain=[0, 35000]), title='House value'),
-    )
-
-    bdl0 = alt.Chart(housing_df).mark_bar().encode(
-        x=alt.X('bdevl', title='Building evaluation'),
-        y=alt.Y('count()', scale=alt.Scale(domain=[0, 35000]), title='House value'),
-    )
-
-    bar_chart_combined = (grg0 | frp0 | bst0 | bdl0).properties(
-        title="Counts of Categorical Features"
-    )
-    
     # Create scatter plots for house value assessment per categorical feature
     grg = alt.Chart(housing_df).mark_point().encode(
         x=alt.X('garage', title='Garage'),
@@ -63,6 +48,8 @@ def main(processed_data, plot_to):
     scatter_chart_combined = (grg | frp | bst | bdl).properties(
         title="House Value Assessment per Categorical Feature"
     )
+    scatter_chart_file = os.path.join(plot_to, "categorical_features_scatter.png")
+    scatter_chart_combined.save(scatter_chart_file, scale_factor=2.0)
 
     # Create a scatter plot for property size vs. assessment values
     scatter = alt.Chart(housing_df).mark_point().encode(
@@ -94,15 +81,9 @@ def main(processed_data, plot_to):
 
     # Combine the histogram, KDE plot, and scatter plot
     combined_chart = histogram | kde | scatter
-
-    # Save the plots
-    bar_chart_file = os.path.join(plot_to, "categorical_features_counts.png")
-    scatter_chart_file = os.path.join(plot_to, "categorical_features_scatter.png")
     distribution_chart_file = os.path.join(plot_to, "distribution_charts.png")
-
-    bar_chart_combined.save(bar_chart_file, scale_factor=2.0)
-    scatter_chart_combined.save(scatter_chart_file, scale_factor=2.0)
     combined_chart.save(distribution_chart_file, scale_factor=2.0)
 
 if __name__ == '__main__':
     main()
+
