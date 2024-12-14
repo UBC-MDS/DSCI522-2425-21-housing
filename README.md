@@ -69,6 +69,7 @@ To run the analysis in its entirety, enter the following command in the terminal
 ```
 make all
 ```
+Incase you run into any error while running make all, pip install module-name. Run make clean and then make all again.
 
 5. When you are finished, stop and clean up the container by typing Ctrl + C in the terminal where you launched the container, and then type
 ```bash
