@@ -82,7 +82,11 @@ div.csl-indent {
   <li><a href="#predict-housing-prices-with-new-data" id="toc-predict-housing-prices-with-new-data" class="nav-link" data-scroll-target="#predict-housing-prices-with-new-data">6. Predict housing prices with new data</a></li>
   <li><a href="#visualization-for-predictions" id="toc-visualization-for-predictions" class="nav-link" data-scroll-target="#visualization-for-predictions">7. Visualization for predictions</a></li>
   </ul></li>
-  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a>
+  <ul class="collapse">
+  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">Limitations</a></li>
+  <li><a href="#future-work" id="toc-future-work" class="nav-link" data-scroll-target="#future-work">Future Work</a></li>
+  </ul></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="../strathcona_house_value_predictor.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
@@ -126,7 +130,8 @@ div.csl-indent {
 </section>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>The team will be using <code>Ridge</code> which is a linear model to predict the value of houses. <code>Ridge</code> is a regularization model that is used for predictive modeling and mitigates over fitting, improves model stability especially when features are highly correlated<cite><span class="citation" data-cites="ridge1992">Hoerl and Kennard (<a href="#ref-ridge1992" role="doc-biblioref">1970</a>)</span></cite>. Ridge helps create robust model that generalize well to new data. The question we aim to answer: Can we predict house prices using publicly available housing data , and which features most influence the predictions? Data description: For this project we are going to use the <code>2023 Property Tax Assessment</code> from Strathcona County Open Data portal<cite><span class="citation" data-cites="strathcona2023">County (<a href="#ref-strathcona2023" role="doc-biblioref">2023</a>)</span></cite>. The data set contains the following attributes related to the different houses. The variables we selected for the model are: <br> <code>meters</code> - numeric variable that show the size of the house <br> <code>garage</code> - categorical variable where Y means there is a garage and N means no garage. <br> <code>firepl</code> - categorical variable where Y means there is a fireplace and N means no fireplace<br> <code>bdevl</code> - categorical variable where Y meas the building was evaluated and N means it was not evaluated<br> The data set was chosen for its rich feature set, adequate sample size, and public availability making it suitable for building a predictive model.</p>
+<p>The team will be using <code>Ridge</code> which is a linear model to predict the value of houses. <code>Ridge</code> is a regularization model that is used for predictive modeling and mitigates over fitting, improves model stability especially when features are highly correlated<cite><span class="citation" data-cites="ridge1992">Hoerl and Kennard (<a href="#ref-ridge1992" role="doc-biblioref">1970</a>)</span></cite>. Ridge helps create robust model that generalize well to new data. The question we aim to answer: Can we predict house prices using publicly available housing data , and which features most influence the predictions? This research is significant as understanding housing prices plays a critical role in assessing broader economic trends, identifying market patterns, and addressing housing affordability issues. Accurate price predictions can help promote transparency and stability in the housing market, which benefits individuals and the economy as a whole.</p>
+<p>Data description: For this project we are going to use the <code>2023 Property Tax Assessment</code> from Strathcona County Open Data portal<cite><span class="citation" data-cites="strathcona2023">County (<a href="#ref-strathcona2023" role="doc-biblioref">2023</a>)</span></cite>. The data set contains the following attributes related to the different houses. The variables we selected for the model are: <br> <code>meters</code> - numeric variable that show the size of the house <br> <code>garage</code> - categorical variable where Y means there is a garage and N means no garage. <br> <code>firepl</code> - categorical variable where Y means there is a fireplace and N means no fireplace<br> <code>bdevl</code> - categorical variable where Y meas the building was evaluated and N means it was not evaluated<br> The data set was chosen for its rich feature set, adequate sample size, and public availability making it suitable for building a predictive model.</p>
 </section>
 <section id="methods-results" class="level2">
 <h2 class="anchored" data-anchor-id="methods-results">Methods &amp; Results</h2>
@@ -149,7 +154,7 @@ div.csl-indent {
 Table&nbsp;1: Preview of the 2023 Property Tax Assessment dataset after selecting relevant columns.
 </figcaption>
 <div aria-describedby="tbl-housing-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display" data-execution_count="2">
+<div class="cell-output cell-output-display" data-execution_count="62">
 <div>
 
 
@@ -274,7 +279,7 @@ Table&nbsp;1: Preview of the 2023 Property Tax Assessment dataset after selectin
 - No duplicate observations
 - No outlier or anomalous values</code></pre>
 <p>Listed below is the results for our validation check.</p>
-<div id="066b1ecb" class="cell" data-execution_count="3">
+<div id="2570f8db" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-stdout">
 <pre><code>✅ File format validation passed: File is a CSV.
 ✅ Column name validation passed: All expected columns are present.
@@ -331,9 +336,9 @@ Figure&nbsp;3: Distribution and relationships of house assessment values (2022),
 <p>According to the scatter plot, the vast majority of our data points are concentrated within the <code>0 &lt; meters &lt; 2000 range</code>, with some more within the <code>2000 &lt; meters &lt; 5000</code> range, and there are a few outliers in the <code>meters &gt; 5000</code> range that make it difficult to get a closer look on the majority of our data. We can see a similar story on the <code>assess_2022</code> feature as it has the vast majority of points in the low-mid range and some outlying extreme values.</p>
 <p>We have splited the housing_df DataFrame into training and test datasets using an <code>70-30 split</code>, categorized features into categorical features (e.g., <code>garage</code>, <code>firepl</code>, <code>bsmt</code>, <code>bdevl</code>) and numeric features (e.g., <code>meters</code>), applied one-hot encoding transforamtion for categorical features and standardScalar transformation for numeric features by using Scikit-learn<cite><span class="citation" data-cites="scikit2024">Learn (<a href="#ref-scikit2024" role="doc-biblioref">2024</a>)</span></cite>. We then created a column transformer <code>preprocessor</code> through combining these transforamtions to apply to the dataset and visualizes the <code>preprocessor</code>.</p>
 <p>We performed analysis to identify any potential issues with the relationships between features and the target, as well as between the features themselves. By detecting anomalous correlations, we can uncover redundant or highly correlated features that might lead to multicollinearity, which can negatively affect the performance of machine learning models. In particular, removing or adjusting features that are too strongly correlated ensures that the model can learn meaningful, independent relationships, improving its generalization ability and interpretability. Additionally, examining correlations helps us assess if certain features are disproportionately influencing the target variable, which could indicate bias or overfitting.</p>
-<div id="491eed8d" class="cell" data-execution_count="5">
-<div class="cell-output cell-output-display" data-execution_count="5">
-<style>#sk-container-id-1 {
+<div id="77b5a460" class="cell" data-execution_count="5">
+<div class="cell-output cell-output-display" data-execution_count="65">
+<style>#sk-container-id-5 {
   /* Definition of color scheme common for light and dark mode */
   --sklearn-color-text: black;
   --sklearn-color-line: gray;
@@ -363,15 +368,15 @@ Figure&nbsp;3: Distribution and relationships of house assessment values (2022),
   }
 }
 
-#sk-container-id-1 {
+#sk-container-id-5 {
   color: var(--sklearn-color-text);
 }
 
-#sk-container-id-1 pre {
+#sk-container-id-5 pre {
   padding: 0;
 }
 
-#sk-container-id-1 input.sk-hidden--visually {
+#sk-container-id-5 input.sk-hidden--visually {
   border: 0;
   clip: rect(1px 1px 1px 1px);
   clip: rect(1px, 1px, 1px, 1px);
@@ -383,7 +388,7 @@ Figure&nbsp;3: Distribution and relationships of house assessment values (2022),
   width: 1px;
 }
 
-#sk-container-id-1 div.sk-dashed-wrapped {
+#sk-container-id-5 div.sk-dashed-wrapped {
   border: 1px dashed var(--sklearn-color-line);
   margin: 0 0.4em 0.5em 0.4em;
   box-sizing: border-box;
@@ -391,7 +396,7 @@ Figure&nbsp;3: Distribution and relationships of house assessment values (2022),
   background-color: var(--sklearn-color-background);
 }
 
-#sk-container-id-1 div.sk-container {
+#sk-container-id-5 div.sk-container {
   /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
      but bootstrap.min.css set `[hidden] { display: none !important; }`
      so we also need the `!important` here to be able to override the
@@ -401,7 +406,7 @@ Figure&nbsp;3: Distribution and relationships of house assessment values (2022),
   position: relative;
 }
 
-#sk-container-id-1 div.sk-text-repr-fallback {
+#sk-container-id-5 div.sk-text-repr-fallback {
   display: none;
 }
 
@@ -417,14 +422,14 @@ div.sk-item {
 
 /* Parallel-specific style estimator block */
 
-#sk-container-id-1 div.sk-parallel-item::after {
+#sk-container-id-5 div.sk-parallel-item::after {
   content: "";
   width: 100%;
   border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
   flex-grow: 1;
 }
 
-#sk-container-id-1 div.sk-parallel {
+#sk-container-id-5 div.sk-parallel {
   display: flex;
   align-items: stretch;
   justify-content: center;
@@ -432,28 +437,28 @@ div.sk-item {
   position: relative;
 }
 
-#sk-container-id-1 div.sk-parallel-item {
+#sk-container-id-5 div.sk-parallel-item {
   display: flex;
   flex-direction: column;
 }
 
-#sk-container-id-1 div.sk-parallel-item:first-child::after {
+#sk-container-id-5 div.sk-parallel-item:first-child::after {
   align-self: flex-end;
   width: 50%;
 }
 
-#sk-container-id-1 div.sk-parallel-item:last-child::after {
+#sk-container-id-5 div.sk-parallel-item:last-child::after {
   align-self: flex-start;
   width: 50%;
 }
 
-#sk-container-id-1 div.sk-parallel-item:only-child::after {
+#sk-container-id-5 div.sk-parallel-item:only-child::after {
   width: 0;
 }
 
 /* Serial-specific style estimator block */
 
-#sk-container-id-1 div.sk-serial {
+#sk-container-id-5 div.sk-serial {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -471,14 +476,14 @@ clickable and can be expanded/collapsed.
 
 /* Pipeline and ColumnTransformer style (default) */
 
-#sk-container-id-1 div.sk-toggleable {
+#sk-container-id-5 div.sk-toggleable {
   /* Default theme specific background. It is overwritten whether we have a
   specific estimator or a Pipeline/ColumnTransformer */
   background-color: var(--sklearn-color-background);
 }
 
 /* Toggleable label */
-#sk-container-id-1 label.sk-toggleable__label {
+#sk-container-id-5 label.sk-toggleable__label {
   cursor: pointer;
   display: block;
   width: 100%;
@@ -488,7 +493,7 @@ clickable and can be expanded/collapsed.
   text-align: center;
 }
 
-#sk-container-id-1 label.sk-toggleable__label-arrow:before {
+#sk-container-id-5 label.sk-toggleable__label-arrow:before {
   /* Arrow on the left of the label */
   content: "▸";
   float: left;
@@ -496,13 +501,13 @@ clickable and can be expanded/collapsed.
   color: var(--sklearn-color-icon);
 }
 
-#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {
+#sk-container-id-5 label.sk-toggleable__label-arrow:hover:before {
   color: var(--sklearn-color-text);
 }
 
 /* Toggleable content - dropdown */
 
-#sk-container-id-1 div.sk-toggleable__content {
+#sk-container-id-5 div.sk-toggleable__content {
   max-height: 0;
   max-width: 0;
   overflow: hidden;
@@ -511,12 +516,12 @@ clickable and can be expanded/collapsed.
   background-color: var(--sklearn-color-unfitted-level-0);
 }
 
-#sk-container-id-1 div.sk-toggleable__content.fitted {
+#sk-container-id-5 div.sk-toggleable__content.fitted {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-0);
 }
 
-#sk-container-id-1 div.sk-toggleable__content pre {
+#sk-container-id-5 div.sk-toggleable__content pre {
   margin: 0.2em;
   border-radius: 0.25em;
   color: var(--sklearn-color-text);
@@ -524,79 +529,79 @@ clickable and can be expanded/collapsed.
   background-color: var(--sklearn-color-unfitted-level-0);
 }
 
-#sk-container-id-1 div.sk-toggleable__content.fitted pre {
+#sk-container-id-5 div.sk-toggleable__content.fitted pre {
   /* unfitted */
   background-color: var(--sklearn-color-fitted-level-0);
 }
 
-#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+#sk-container-id-5 input.sk-toggleable__control:checked~div.sk-toggleable__content {
   /* Expand drop-down */
   max-height: 200px;
   max-width: 100%;
   overflow: auto;
 }
 
-#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+#sk-container-id-5 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
   content: "▾";
 }
 
 /* Pipeline/ColumnTransformer-specific style */
 
-#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-5 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
   color: var(--sklearn-color-text);
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-1 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-5 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
   background-color: var(--sklearn-color-fitted-level-2);
 }
 
 /* Estimator-specific style */
 
 /* Colorize estimator box */
-#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-5 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-1 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-5 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-2);
 }
 
-#sk-container-id-1 div.sk-label label.sk-toggleable__label,
-#sk-container-id-1 div.sk-label label {
+#sk-container-id-5 div.sk-label label.sk-toggleable__label,
+#sk-container-id-5 div.sk-label label {
   /* The background is the default theme color */
   color: var(--sklearn-color-text-on-default-background);
 }
 
 /* On hover, darken the color of the background */
-#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {
+#sk-container-id-5 div.sk-label:hover label.sk-toggleable__label {
   color: var(--sklearn-color-text);
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
 /* Label box, darken color on hover, fitted */
-#sk-container-id-1 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+#sk-container-id-5 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
   color: var(--sklearn-color-text);
   background-color: var(--sklearn-color-fitted-level-2);
 }
 
 /* Estimator label */
 
-#sk-container-id-1 div.sk-label label {
+#sk-container-id-5 div.sk-label label {
   font-family: monospace;
   font-weight: bold;
   display: inline-block;
   line-height: 1.2em;
 }
 
-#sk-container-id-1 div.sk-label-container {
+#sk-container-id-5 div.sk-label-container {
   text-align: center;
 }
 
 /* Estimator-specific */
-#sk-container-id-1 div.sk-estimator {
+#sk-container-id-5 div.sk-estimator {
   font-family: monospace;
   border: 1px dotted var(--sklearn-color-border-box);
   border-radius: 0.25em;
@@ -606,18 +611,18 @@ clickable and can be expanded/collapsed.
   background-color: var(--sklearn-color-unfitted-level-0);
 }
 
-#sk-container-id-1 div.sk-estimator.fitted {
+#sk-container-id-5 div.sk-estimator.fitted {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-0);
 }
 
 /* on hover */
-#sk-container-id-1 div.sk-estimator:hover {
+#sk-container-id-5 div.sk-estimator:hover {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-1 div.sk-estimator.fitted:hover {
+#sk-container-id-5 div.sk-estimator.fitted:hover {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-2);
 }
@@ -704,7 +709,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 
 /* "?"-specific style due to the `<a>` HTML tag */
 
-#sk-container-id-1 a.estimator_doc_link {
+#sk-container-id-5 a.estimator_doc_link {
   float: right;
   font-size: 1rem;
   line-height: 1em;
@@ -719,31 +724,31 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
   border: var(--sklearn-color-unfitted-level-1) 1pt solid;
 }
 
-#sk-container-id-1 a.estimator_doc_link.fitted {
+#sk-container-id-5 a.estimator_doc_link.fitted {
   /* fitted */
   border: var(--sklearn-color-fitted-level-1) 1pt solid;
   color: var(--sklearn-color-fitted-level-1);
 }
 
 /* On hover */
-#sk-container-id-1 a.estimator_doc_link:hover {
+#sk-container-id-5 a.estimator_doc_link:hover {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-3);
   color: var(--sklearn-color-background);
   text-decoration: none;
 }
 
-#sk-container-id-1 a.estimator_doc_link.fitted:hover {
+#sk-container-id-5 a.estimator_doc_link.fitted:hover {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-3);
 }
-</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>ColumnTransformer(transformers=[('onehotencoder', OneHotEncoder(),
+</style><div id="sk-container-id-5" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>ColumnTransformer(transformers=[('onehotencoder', OneHotEncoder(),
                                  ['garage', 'firepl', 'bsmt', 'bdevl']),
                                 ('standardscaler', StandardScaler(),
-                                 ['meters'])])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox"><label for="sk-estimator-id-1" class="sk-toggleable__label  sk-toggleable__label-arrow ">&nbsp;&nbsp;ColumnTransformer<a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.compose.ColumnTransformer.html">?<span>Documentation for ColumnTransformer</span></a><span class="sk-estimator-doc-link ">i<span>Not fitted</span></span></label><div class="sk-toggleable__content "><pre>ColumnTransformer(transformers=[('onehotencoder', OneHotEncoder(),
+                                 ['meters'])])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-21" type="checkbox"><label for="sk-estimator-id-21" class="sk-toggleable__label  sk-toggleable__label-arrow ">&nbsp;&nbsp;ColumnTransformer<a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.compose.ColumnTransformer.html">?<span>Documentation for ColumnTransformer</span></a><span class="sk-estimator-doc-link ">i<span>Not fitted</span></span></label><div class="sk-toggleable__content "><pre>ColumnTransformer(transformers=[('onehotencoder', OneHotEncoder(),
                                  ['garage', 'firepl', 'bsmt', 'bdevl']),
                                 ('standardscaler', StandardScaler(),
-                                 ['meters'])])</pre></div> </div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox"><label for="sk-estimator-id-2" class="sk-toggleable__label  sk-toggleable__label-arrow ">onehotencoder</label><div class="sk-toggleable__content "><pre>['garage', 'firepl', 'bsmt', 'bdevl']</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox"><label for="sk-estimator-id-3" class="sk-toggleable__label  sk-toggleable__label-arrow ">&nbsp;OneHotEncoder<a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.preprocessing.OneHotEncoder.html">?<span>Documentation for OneHotEncoder</span></a></label><div class="sk-toggleable__content "><pre>OneHotEncoder()</pre></div> </div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox"><label for="sk-estimator-id-4" class="sk-toggleable__label  sk-toggleable__label-arrow ">standardscaler</label><div class="sk-toggleable__content "><pre>['meters']</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-5" type="checkbox"><label for="sk-estimator-id-5" class="sk-toggleable__label  sk-toggleable__label-arrow ">&nbsp;StandardScaler<a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></label><div class="sk-toggleable__content "><pre>StandardScaler()</pre></div> </div></div></div></div></div></div></div></div></div>
+                                 ['meters'])])</pre></div> </div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-22" type="checkbox"><label for="sk-estimator-id-22" class="sk-toggleable__label  sk-toggleable__label-arrow ">onehotencoder</label><div class="sk-toggleable__content "><pre>['garage', 'firepl', 'bsmt', 'bdevl']</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-23" type="checkbox"><label for="sk-estimator-id-23" class="sk-toggleable__label  sk-toggleable__label-arrow ">&nbsp;OneHotEncoder<a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.preprocessing.OneHotEncoder.html">?<span>Documentation for OneHotEncoder</span></a></label><div class="sk-toggleable__content "><pre>OneHotEncoder()</pre></div> </div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-24" type="checkbox"><label for="sk-estimator-id-24" class="sk-toggleable__label  sk-toggleable__label-arrow ">standardscaler</label><div class="sk-toggleable__content "><pre>['meters']</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-25" type="checkbox"><label for="sk-estimator-id-25" class="sk-toggleable__label  sk-toggleable__label-arrow ">&nbsp;StandardScaler<a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></label><div class="sk-toggleable__content "><pre>StandardScaler()</pre></div> </div></div></div></div></div></div></div></div></div>
 </div>
 </div>
 <section id="validation-step" class="level4">
@@ -751,7 +756,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <ul>
 <li>Check for correct category levels (i.e., no string mismatches or single values)</li>
 </ul>
-<div id="685c77b4" class="cell" data-execution_count="6">
+<div id="b1e6836a" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-stdout">
 <pre><code>✅ Category levels validation passed for column 'garage' in train_df.
 ✅ Category levels validation passed for column 'firepl' in train_df.
@@ -763,7 +768,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </section>
 <section id="check-for-anomalous-correlations-between-target-and-features" class="level4">
 <h4 class="anchored" data-anchor-id="check-for-anomalous-correlations-between-target-and-features">Check for anomalous correlations between target and features</h4>
-<div id="f8106e75" class="cell" data-execution_count="7">
+<div id="2b47b5eb" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-stdout">
 <pre><code>✅ No anomalous correlations found between target and features.</code></pre>
 </div>
@@ -771,7 +776,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </section>
 <section id="check-for-anomalous-correlations-between-features" class="level4">
 <h4 class="anchored" data-anchor-id="check-for-anomalous-correlations-between-features">Check for anomalous correlations between features</h4>
-<div id="5db88392" class="cell" data-execution_count="8">
+<div id="b1a0443f" class="cell" data-execution_count="8">
 <div class="cell-output cell-output-stdout">
 <pre><code>✅ No anomalous correlations found between target and features.</code></pre>
 </div>
@@ -790,7 +795,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 Table&nbsp;2: Cross-validation results showing the mean and standard deviation for train and validation scores across 5 folds.
 </figcaption>
 <div aria-describedby="tbl-cross-validation-results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display" data-execution_count="10">
+<div class="cell-output cell-output-display" data-execution_count="70">
 <div>
 
 
@@ -810,7 +815,7 @@ Table&nbsp;2: Cross-validation results showing the mean and standard deviation f
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">score_time</td>
-<td>0.003</td>
+<td>0.002</td>
 <td>0.000</td>
 </tr>
 <tr class="odd">
@@ -833,8 +838,8 @@ Table&nbsp;2: Cross-validation results showing the mean and standard deviation f
 </div>
 </div>
 <p>We fit the pipeline on the training dataset (<code>X_train</code> and <code>y_train</code>) to train the Ridge Regression model<cite><span class="citation" data-cites="ridge1992">Hoerl and Kennard (<a href="#ref-ridge1992" role="doc-biblioref">1970</a>)</span></cite>. Then evaluates the trained pipeline on the test dataset (<code>X_test</code> and <code>y_test</code>) which calculates the R² (coefficient of determination) to measure how well the model explains the variance in the test data.</p>
-<div id="56ae38b2" class="cell" data-execution_count="11">
-<div class="cell-output cell-output-display" data-execution_count="11">
+<div id="11678cac" class="cell" data-execution_count="11">
+<div class="cell-output cell-output-display" data-execution_count="71">
 <pre><code>0.536298068928245</code></pre>
 </div>
 </div>
@@ -849,7 +854,7 @@ Table&nbsp;2: Cross-validation results showing the mean and standard deviation f
 Table&nbsp;3: Attributes of ten houses used for prediction.
 </figcaption>
 <div aria-describedby="tbl-ten-houses-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display" data-execution_count="12">
+<div class="cell-output cell-output-display" data-execution_count="72">
 <div>
 
 
@@ -963,7 +968,7 @@ Table&nbsp;3: Attributes of ten houses used for prediction.
 Table&nbsp;4: Predicted house values for the ten houses based on their attributes.
 </figcaption>
 <div aria-describedby="tbl-predicted-values-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display" data-execution_count="14">
+<div class="cell-output cell-output-display" data-execution_count="74">
 <div>
 
 
@@ -1098,8 +1103,8 @@ Figure&nbsp;4: Line charts showing correlations between property size and house 
 <section id="discussion" class="level2">
 <h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
 <p>Our findings suggest that the aforementioned 10 houses are expected to be valued at:</p>
-<div id="7efadd18" class="cell" data-execution_count="15">
-<div class="cell-output cell-output-display" data-execution_count="15">
+<div id="6e8b6774" class="cell" data-execution_count="15">
+<div class="cell-output cell-output-display" data-execution_count="75">
 <div>
 
 
@@ -1158,6 +1163,20 @@ Figure&nbsp;4: Line charts showing correlations between property size and house 
 </div>
 </div>
 <p>We have also noticed that there is a correlation between a house’s price and its property’s size, whether or not it has a garage, fireplace, basement, and whether or not the building has been evaluated. This is consistent with our expectations as the larger a property is, and the more features it has (basement, garage, etc.) the higher its value becomes<cite><span class="citation" data-cites="garage2024">FastExpert (<a href="#ref-garage2024" role="doc-biblioref">2024</a>)</span></cite>. This also raises further questions such as what other features of a house or property affect its value? characteristics for future consideration include: Number of bedrooms, number of bathrooms, indoor space, outdoor space, and number of floors.</p>
+<section id="limitations" class="level3">
+<h3 class="anchored" data-anchor-id="limitations">Limitations</h3>
+<p>While the model performs well, several limitations need to be addressed:</p>
+<ol type="1">
+<li><p>Assumptions of Ridge Regression: Ridge regression assumes linear relationships between features and the target variable. While effective in addressing multicollinearity, it may fail to capture complex, non-linear interactions in the data. The regularization term could over-penalize certain features, potentially underestimating their influence.</p></li>
+<li><p>Dataset Assumptions: The analysis assumes independence between observations, which might not hold if regional trends or external factors influence house prices. While preprocessing addressed issues like missing values, duplicates, and outliers, any inaccuracies or biases in the original data could impact the model’s predictions.</p></li>
+<li><p>Feature Selection: The model is limited to the selected features (meters, garage, firepl, bsmt, bdevl), which do not comprehensively represent all factors affecting house prices. Features like the number of bedrooms, bathrooms, or outdoor space could improve the model’s performance.</p></li>
+</ol>
+</section>
+<section id="future-work" class="level3">
+<h3 class="anchored" data-anchor-id="future-work">Future Work</h3>
+<p>To address these limitations, future iterations could incorporate non-linear models such as decision trees or ensemble methods to capture more complex relationships. Including additional features like the number of bedrooms, bathrooms, or proximity to amenities could further refine the predictions. Spatial modeling or time-series analysis might also better account for dependencies in the data.</p>
+<p>By acknowledging these limitations and proposing improvements, this project lays the groundwork for future enhancements in house price prediction.</p>
+</section>
 </section>
 <section id="references" class="level2 unnumbered">
 
