@@ -106,7 +106,17 @@ quarto render notebook/strathcona_house_value_predictor.qmd --to pdf
   - nb_conda_kernels
   - click
   - quarto
-  - [Docker](https://www.docker.com/) 
+  - [Docker](https://www.docker.com/)
+
+## Support
+If you encounter any issues while using this project, or if you have questions about the implementation, you can follow the steps below:
+1. Reporting Issues:
+ - Use the [Issues](https://github.com/UBC-MDS/DSCI522-2425-21-housing/issues) tab in this repository to report bugs, request new features, or raise any concerns.
+ - Provide as much detail as possible, including steps to reproduce the issue, the environment you're running on, and relevant logs or screenshots.
+2. Seeking Help:
+ - Contact the contributors via email (tjqu2024@student.ubc.ca, yajing03@student.ubc.ca, thamerd@student.ubc.ca and gakuja@student.ubc.ca) if you have specific questions not covered in the documentation or issue tracker.
+3. Contributing:
+ - If you'd like to contribute to this project, please review the [CONTRIBUTING.md](https://github.com/UBC-MDS/DSCI522-2425-21-housing/blob/main/CONTRIBUTING.md) file for guidelines on how to get started. Contributions are welcome in the form of bug fixes, feature additions, or documentation improvements.
 
 
 ## License
