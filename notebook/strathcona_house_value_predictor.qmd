@@ -25,8 +25,12 @@ Our team will be working on predicting house prices using the `2023 Property Tax
 ## Introduction
 
 The team will be using `Ridge` which is a linear model to predict the value of houses. `Ridge` is a regularization model that is used for predictive modeling and mitigates over fitting, improves model stability especially when features are highly correlated<cite>@ridge1992</cite>. Ridge helps create robust model that generalize well to new data.
-The question we aim to answer: Can we predict house prices using publicly available housing data , and which features most influence the predictions?
-Data description: For this project we are going to use the  `2023 Property Tax Assessment` from Strathcona County Open Data portal<cite>@strathcona2023</cite>. The data set contains the following attributes related to the different houses. The variables we selected for the model are: <br>
+The question we aim to answer: 
+    Can we predict house prices using publicly available housing data , and which features most influence the predictions?
+This research is significant as understanding housing prices plays a critical role in assessing broader economic trends, identifying market patterns, and addressing housing affordability issues. Accurate price predictions can help promote transparency and stability in the housing market, which benefits individuals and the economy as a whole.
+
+Data description: 
+For this project we are going to use the  `2023 Property Tax Assessment` from Strathcona County Open Data portal<cite>@strathcona2023</cite>. The data set contains the following attributes related to the different houses. The variables we selected for the model are: <br>
                 `meters` - numeric variable that show the size of the house <br>
                 `garage` - categorical variable where Y means there is a garage and N means no garage. <br>
                 `firepl` - categorical variable where Y means there is a fireplace and N means no fireplace<br>
@@ -434,5 +438,25 @@ y_predict
 We have also noticed that there is a correlation between a house's price and its property's size, whether or not it has a garage, fireplace, basement, and whether or not the building has been evaluated.
 This is consistent with our expectations as the larger a property is, and the more features it has (basement, garage, etc.) the higher its value becomes<cite>@garage2024</cite>.
 This also raises further questions such as what other features of a house or property affect its value? characteristics for future consideration include: Number of bedrooms, number of bathrooms, indoor space, outdoor space, and number of floors.
+
+### Limitations
+While the model performs well, several limitations need to be addressed:
+
+1. Assumptions of Ridge Regression:
+Ridge regression assumes linear relationships between features and the target variable. While effective in addressing multicollinearity, it may fail to capture complex, non-linear interactions in the data.
+The regularization term could over-penalize certain features, potentially underestimating their influence.
+
+2. Dataset Assumptions:
+The analysis assumes independence between observations, which might not hold if regional trends or external factors influence house prices.
+While preprocessing addressed issues like missing values, duplicates, and outliers, any inaccuracies or biases in the original data could impact the model's predictions.
+
+3. Feature Selection:
+The model is limited to the selected features (meters, garage, firepl, bsmt, bdevl), which do not comprehensively represent all factors affecting house prices. Features like the number of bedrooms, bathrooms, or outdoor space could improve the model’s performance.
+
+### Future Work
+To address these limitations, future iterations could incorporate non-linear models such as decision trees or ensemble methods to capture more complex relationships. Including additional features like the number of bedrooms, bathrooms, or proximity to amenities could further refine the predictions. Spatial modeling or time-series analysis might also better account for dependencies in the data.
+
+By acknowledging these limitations and proposing improvements, this project lays the groundwork for future enhancements in house price prediction.
+
 
 ## References
