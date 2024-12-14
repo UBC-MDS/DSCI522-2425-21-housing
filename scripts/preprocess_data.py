@@ -9,6 +9,8 @@ import os
 import pickle
 import pandas as pd
 from src.preprocess_utils import create_preprocessor, validate_categorical_levels
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 @click.command()
 @click.option('--train-data', type=str, help="Path to train data")
