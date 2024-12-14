@@ -19,6 +19,17 @@ execute:
   warning: false
 bibliography: references.bib
 ---
+```{python}
+import pandas as pd
+from IPython.display import Markdown
+from tabulate import tabulate
+import pickle
+import numpy as np
+import os
+from sklearn.model_selection import train_test_split
+
+```
+
 ## Summary
 Our team will be working on predicting house prices using the `2023 Property Tax Assessment` dataset from Strathcona County Open Data portal<cite>@strathcona2023</cite>. The dataset provides a wealth of information about houses, including attributes like size, location, and other features. By leveraging this data, we aim to build a robust predictive model that accurately estimates house values.
 
@@ -49,15 +60,6 @@ We used `Ridge` Regression to predict house values based on features such as bui
     - altair
     - os
 
-```{python}
-import pandas as pd
-import numpy as np
-from sklearn.model_selection import train_test_split
-#import altair_ally as aly
-import altair as alt
-import os
-```
-
 ### 2. Read in dataset
 We read the CSV file named `2023 Property Tax Assessment` into a pandas DataFrame and filters it to include only the features we are going to evaluate<cite>@strathcona2023</cite>. The resulting DataFrame contains the specific features for further analysis.
 @tbl-housing-data displays the first few rows of the dataset after filtering for the relevant columns.
@@ -66,16 +68,8 @@ We read the CSV file named `2023 Property Tax Assessment` into a pandas DataFram
 ```{python}
 #| label: tbl-housing-data
 #| tbl-cap: "Preview of the 2023 Property Tax Assessment dataset after selecting relevant columns."
-url = "https://hub.arcgis.com/api/v3/datasets/e3c5b04fccdc4ddd88059a8c0b6d8160_0/downloads/data?format=csv&spatialRefId=3776&where=1%3D1"
-housing_df = pd.read_csv(url)
-
-# Saves the dataframe to .csv in the data/ directory
-housing_df.to_csv("../data/2023_Property_Tax_Assessment.csv")
-
-# Takes only the columns we need
-housing_df = housing_df[['meters','garage','firepl','bsmt','bdevl','assess_2022']]
-
-housing_df.head(10)
+housing_data = pd.read_csv("../data/processed/Clean_2023_Property_Tax_Assessment.csv").head(10)
+Markdown(housing_data.to_markdown())
 ```
 
 For the beginning exploratory data analysis, we performed data validation checks to ensure the following:
@@ -88,106 +82,8 @@ For the beginning exploratory data analysis, we performed data validation checks
     - No duplicate observations
     - No outlier or anomalous values
 
-Listed below is the results for our validation check.
+The results for our validation check are passed.
 
-```{python}
-# Validation for correct data file format
-file_path = "data/2023_Property_Tax_Assessment.csv"
-
-if not file_path.endswith(".csv"):
-    raise ValueError("File format not supported.")
-else: 
-    print("✅ File format validation passed: File is a CSV.")
-
-# Validation for correct column names
-expected_cols = {"meters", "garage", "firepl", "bsmt", "bdevl", "assess_2022"}
-actual_cols = set(housing_df.columns)
-
-if actual_cols == expected_cols:
-    print("✅ Column name validation passed: All expected columns are present.")
-else:
-    missing = expected_cols - actual_cols
-    extra = actual_cols - expected_cols
-    print("Column names validation failed:")
-    if missing:
-        print(f" Missing columns: {missing}")
-    if extra:
-        print(f" Extra columns: {extra}")
-
-# Validation for No Empty Observations
-empty = housing_df.isna().all(axis = 1).sum()
-
-if empty == 0:
-    print("✅ Empty observations validation passed: No empty rows.")
-else:
-    print(f" Empty observations validation failed: Found {empty} empty rows.")
-
-#Validation for missingness not beyond expected threshold
-expected_threshold = 0
-missing = housing_df.isna().mean()
-
-all_cols_passed = True
-
-for col, percentage in missing.items():
-    if percentage > expected_threshold:
-        all_cols_passed = False
-        print(f"Column '{col}' exceeds the missingness expected threshold ({percentage:.2%} missing).")
-if all_cols_passed:
-    print(f"✅ Missingness validation passed for all columns.")
-
-#Validation for correct data types in each column 
-
-expected_dtypes = { "meters": "float64","garage": "object","firepl": "object","bsmt": "object", "bdevl": "object","assess_2022": "int64"}
-
-dtype_passed = True
-
-for col, dtype in expected_dtypes.items():
-    if housing_df[col].dtypes != dtype:
-        dtype_passed = False
-        print(f"Data type validation failed: Column '{col}' is of type {housing_df[col].dtypes}, expected {dtype}.")
-if dtype_passed:
-    print("✅ Data type validation passed for all columns.")
-
-# Validation for no duplicate observations
-duplicates = housing_df.duplicated().sum()
-
-if duplicates == 0:
-    print("✅ Duplicate observation validation passed: No duplicate rows found.")
-else:
-    print(f"Duplicate observation validation failed: Found {duplicates} duplicate rows.")
-    # Dropping duplicates
-    housing_df = housing_df.drop_duplicates()
-    print("✅ Duplicates have been removed from the DataFrame.")
-
-# Validation for no outliers or anomalous values
-outliers_detected = False
-outlier_threshold = 5000
-
-# Identify and drop outliers if the threshold is exceeded
-for col in housing_df.select_dtypes(include=["float64", "int64"]).columns:
-    q1 = housing_df[col].quantile(0.25)
-    q3 = housing_df[col].quantile(0.75)
-    iqr = q3 - q1
-    lower_bound = q1 - 1.5 * iqr
-    upper_bound = q3 + 1.5 * iqr
-
-    outliers = housing_df[(housing_df[col] < lower_bound) | (housing_df[col] > upper_bound)]
-    num_outliers = len(outliers)
-    
-    if num_outliers > outlier_threshold:
-        outliers_detected = True
-        print(f"Outlier validation failed: Column '{col}' has {num_outliers} outliers (threshold: {outlier_threshold}).")
-        # Dropping the outliers
-        housing_df = housing_df[~((housing_df[col] < lower_bound) | (housing_df[col] > upper_bound))]
-        print(f"✅ Outliers in column '{col}' have been removed from the DataFrame.")
-    elif num_outliers > 0:
-        print(f"Warning: Column '{col}' has {num_outliers} outliers, within acceptable threshold ({outlier_threshold}).")
-
-if not outliers_detected:
-    print("✅ Outlier validation passed: No columns exceed the outlier threshold.")
-else:
-    print("✅ Outliers exceeding the threshold have been removed.")
-```
 
 ### 3. Visualization for categorical features
 
@@ -219,162 +115,22 @@ We have split the housing_df DataFrame into training and test datasets using an 
 
 We performed analysis to identify any potential issues with the relationships between features and the target, as well as between the features themselves. By detecting anomalous correlations, we can uncover redundant or highly correlated features that might lead to multicollinearity, which can negatively affect the performance of machine learning models. In particular, removing or adjusting features that are too strongly correlated ensures that the model can learn meaningful, independent relationships, improving its generalization ability and interpretability. Additionally, examining correlations helps us assess if certain features are disproportionately influencing the target variable, which could indicate bias or overfitting.
 
-```{python}
-train_df, test_df = train_test_split(housing_df, test_size=0.3, random_state=123)
-```
-
-```{python}
-from sklearn.compose import make_column_transformer
-from sklearn.preprocessing import OneHotEncoder, StandardScaler
-
-# Lists of feature names
-categorical_features = ['garage', 'firepl', 'bsmt', 'bdevl']
-numeric_features = ['meters']
-# Create the column transformer
-preprocessor = make_column_transformer(
-    (OneHotEncoder(), categorical_features),  # One-hot encode categorical columns
-    (StandardScaler(), numeric_features),  # Standardize numeric columns
-)
-
-# Show the preprocessor
-preprocessor
-```
-
-#### Validation step
-
-- Check for correct category levels (i.e., no string mismatches or single values)
-
-```{python}
-# Define the categorical features and their expected values
-categorical_features = ['garage', 'firepl', 'bsmt', 'bdevl']
-expected_values = {'Y', 'N'}
-
-# Initialize a flag to track validation status
-all_categories_valid = True
-
-# Validate each categorical feature in the train_df
-for feature in categorical_features:
-    unique_values = set(train_df[feature].dropna().unique())  # Get unique values excluding NaNs
-    unexpected_values = unique_values - expected_values  # Find unexpected values
-
-    if unexpected_values:
-        print(f"❌ Unexpected values in column '{feature}' in train_df: {unexpected_values}")
-        all_categories_valid = False
-    else:
-        print(f"✅ Category levels validation passed for column '{feature}' in train_df.")
-
-# Final message
-if all_categories_valid:
-    print("✅ All categorical columns in train_df have the expected levels ('Y' and 'N').")
-else:
-    print("❌ Some categorical columns in train_df have unexpected values. Please review.")
-```
-
-#### Check for anomalous correlations between target and features
-
-```{python}
-# Apply preprocessing to train_df
-transformed_train = preprocessor.fit_transform(train_df)
-
-# Add the target variable back to the DataFrame
-transformed_train_df = pd.DataFrame(transformed_train)
-transformed_train_df.columns = ['Garage_Y', 'Garage_N', 'Fireplace_Y', 'Fireplace_N','Basement_Y', 'Basement_N',
-                                'BuildingEva_Y', 'BuildingEva_N','meters']
-# Add the target column back (assess_2022) to the transformed DataFrame
-transformed_train_df['assess_2022'] = train_df['assess_2022']
-
-# Compute correlation with the target variable
-correlation_with_target = transformed_train_df.corr()["assess_2022"].drop("assess_2022")
-
-# Identify features with anomalous correlations (correlation > 0.9 or < -0.9)
-threshold = 0.9
-anomalous_features = correlation_with_target[
-    (correlation_with_target.abs() > threshold)
-]
-
-if anomalous_features.empty:
-    print("✅ No anomalous correlations found between target and features.")
-else:
-    print("❌ Anomalous correlations detected:")
-    print(anomalous_features)
-```
-
-#### Check for anomalous correlations between features
-
-```{python}
-correlation_matrix = transformed_train_df.corr()
-threshold = 0.9
-
-# Define pairs of features that are binary inverses of each other (which are expected to be highly correlated)
-exclude_pairs = [
-    ('Garage_Y', 'Garage_N'),
-    ('Fireplace_Y', 'Fireplace_N'),
-    ('Basement_Y', 'Basement_N'),
-    ('BuildingEva_Y', 'BuildingEva_N')
-]
-
-# Flag to check if any anomalous correlations were found
-anomalous_correlations_found = False
-
-# Iterate over the correlation matrix to check for high correlations
-for col1 in correlation_matrix.columns:
-    for col2 in correlation_matrix.columns:
-        if col1 != col2:
-            # Skip pairs that are binary inverses
-            if (col1, col2) in exclude_pairs or (col2, col1) in exclude_pairs:
-                continue
-            # Check if correlation is above threshold
-            if abs(correlation_matrix[col1][col2]) > threshold:
-                print(f"Warning: High correlation detected between {col1} and {col2}.")
-                anomalous_correlations_found = True
-
-# If no anomalous correlations are found, print the confirmation message
-if not anomalous_correlations_found:
-    print("✅ No anomalous correlations found between target and features.")
-```
-
-**Note:** When performing correlation analysis on the dataset, it is important to exclude pairs of binary features that are inherently correlated due to their inverse relationship. For example, in the case of features like `Garage_Y` and `Garage_N`, one feature will always be 1 when the other is 0, and vice versa. These binary features are designed to represent the same information in different forms, and their high correlation is expected. Thus, it is not an anomaly and should not be flagged as such. To address this, we exclude these pairs from the correlation analysis, ensuring that only truly anomalous correlations—those that do not follow expected patterns—are identified. By doing so, we can avoid mistakenly flagging normal relationships between inverse binary features while still identifying potential issues in the remaining feature correlations.
+During the validation step, we ensured the correctness of categorical feature levels by checking for string mismatches or unexpected single values. All categorical columns in the training dataset (`garage`, `firepl`, `bsmt`, and `bdevl`) passed validation with the expected levels of 'Y' and 'N'. Additionally, we analyzed correlations between the target variable and features, as well as correlations between features themselves. No anomalous correlations were detected in either case. For correlation analysis, we excluded pairs of binary features that are inherently correlated due to their inverse relationship, such as `Garage_Y` and `Garage_N`, where one feature is always the inverse of the other. These relationships are expected and not flagged as anomalies. By excluding such pairs, we ensured the analysis focuses only on truly anomalous correlations, avoiding false positives while identifying potential issues in the dataset.
 
 ### 5. Train, cross validate and evaluate a Ridge regression model
 
-We have split the features and target variable (`assess_2022`) into training and testing datasets.
-
-```{python}
-X_train = train_df.drop(columns=["assess_2022"])
-X_test = test_df.drop(columns=["assess_2022"])
-y_train = train_df["assess_2022"]
-y_test = test_df["assess_2022"]
-```
-
-We have created a pipeline combining the column transformer (`preprocessor`) and the Ridge Regression model<cite>@ridge1992</cite>. Using 5-fold cross-validation on the training data, we evaluated the pipeline on multiple metrics and computes train and validation scores. Finally, it outputs the aggregated train and validation scores to assess the model's performance<cite>@scikit2024</cite>.
+We have splited the features and target variable (`assess_2022`) into training and testing datasets.Then, we have created a pipeline combining the column transformer (`preprocessor`) and the Ridge Regression model<cite>@ridge1992</cite>. Using 5-fold cross-validation on the training data, we evaluated the pipeline on multiple metrics and computes train and validation scores. Finally, it outputs the aggregated train and validation scores to assess the model's performance<cite>@scikit2024</cite>.
 @tbl-cross-validation-results summarizes the cross-validation results, including the mean and standard deviation of train and validation scores across 5 folds.
 
 ```{python}
 #| label: tbl-cross-validation-results
 #| tbl-cap: "Cross-validation results showing the mean and standard deviation for train and validation scores across 5 folds."
-from sklearn.linear_model import Ridge
-from sklearn.model_selection import (
-    cross_val_score,
-    cross_validate
-)
-from sklearn.pipeline import make_pipeline
-
-# The Ridge model pipeline
-pipeline = make_pipeline(preprocessor, Ridge())
-
-# The mean and std of the cross validated scores for all metrics as a dataframe
-cross_val_results = pd.DataFrame(cross_validate(pipeline, X_train, y_train, cv=5, return_train_score=True)).agg(['mean', 'std']).round(3).T
-
-# Show the train and validation scores
-cross_val_results
+cross_val_results = pd.read_csv("../results/models/cross_val_results.csv").round(3)
+Markdown(cross_val_results.to_markdown())
 ```
 
 We fit the pipeline on the training dataset (`X_train` and `y_train`) to train the Ridge Regression model<cite>@ridge1992</cite>. Then evaluates the trained pipeline on the test dataset (`X_test` and `y_test`) which calculates the R² (coefficient of determination) to measure how well the model explains the variance in the test data.
 
-```{python}
-pipeline.fit(X_train, y_train)
-pipeline.score(X_test, y_test)
-```
 
 ### 6. Predict housing prices with new data
 
@@ -384,26 +140,11 @@ We created a Pandas DataFrame containing information about 10 houses that we wis
 ```{python}
 #| label: tbl-ten-houses
 #| tbl-cap: "Attributes of ten houses used for prediction."
-ten_houses = {
-    'meters' : [174.23, 132.76, 90.82, 68.54, 221.30, 145.03, 102.96, 164.28, 142.79, 115.94],
-    'garage' : ['Y', 'Y', 'Y', 'N', 'Y', 'N', 'N', 'Y', 'N', 'Y'],
-    'firepl' : ['Y', 'N', 'N', 'N', 'Y', 'N', 'N', 'Y', 'Y', 'N'],
-    'bsmt' : ['Y', 'Y', 'N', 'N', 'Y', 'N', 'Y', 'N', 'Y', 'Y', ],
-    'bdevl' : ['N', 'Y', 'Y', 'N', 'Y', 'Y', 'Y', 'N', 'N', 'Y', ]
-    }
-
-X_predict = pd.DataFrame(ten_houses)
-X_predict
+ten_houses = pd.read_csv("../results/tables/ten_houses_predictions.csv").iloc[:, :-1]
+Markdown(ten_houses.to_markdown())
 ```
 
 We applied the trained pipeline to predict housing prices values based on the features in the dataFrame containing new data <cite>@hastie2009</cite>. The predictions are stored in a new pandas DataFrame.
-
-```{python}
-y_predict = pipeline.predict(X_predict)
-y_predict = pd.DataFrame(y_predict)
-y_predict.columns = ['Predicted_Values']
-y_predict = round(y_predict, 2)
-```
 
 We combined the original features from the new data and the predicted values into a new pandas DataFrame. The new pandas DataFrame provides an overview of the predictions.
 @tbl-predicted-values displays the predicted house values for the ten houses based on their attributes, including property size and categorical features.
@@ -411,12 +152,8 @@ We combined the original features from the new data and the predicted values int
 ```{python}
 #| label: tbl-predicted-values
 #| tbl-cap: "Predicted house values for the ten houses based on their attributes."
-predictions_df = pd.concat([X_predict,y_predict], axis = 1)
-
-# Saves prediction to a csv file
-predictions_df.to_csv("../data/ten_houses_predictions.csv")
-
-predictions_df
+predictions_df = pd.read_csv("../results/tables/ten_houses_predictions.csv")
+Markdown(predictions_df.to_markdown())
 ```
 
 ### 7. Visualization for predictions
@@ -428,10 +165,13 @@ As shown in @fig-property-size-correlation, property size has a significant impa
 
 
 ## Discussion
-Our findings suggest that the aforementioned 10 houses are expected to be valued at: 
+Our findings suggest that the aforementioned 10 houses are expected to be valued at: @tbl-results
 
 ```{python}
-y_predict
+#| label: tbl-results
+#| tbl-cap: "Predicted house values"
+results_df = pd.read_csv("../results/tables/ten_houses_predictions.csv").iloc[ : ,-1: ]
+Markdown(results_df.to_markdown())
 ```
 
 
