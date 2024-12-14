@@ -45,7 +45,7 @@ div.csl-indent {
 }</style>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="strathcona_house_value_predictor_files/libs/clipboard/clipboard.min.js"></script>
+<script src="strathcona_house_value_predictor_files/libs/clipboard/clipboard.min.js"></script>
 <script src="strathcona_house_value_predictor_files/libs/quarto-html/quarto.js"></script>
 <script src="strathcona_house_value_predictor_files/libs/quarto-html/popper.min.js"></script>
 <script src="strathcona_house_value_predictor_files/libs/quarto-html/tippy.umd.min.js"></script>
@@ -55,9 +55,6 @@ div.csl-indent {
 <script src="strathcona_house_value_predictor_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="strathcona_house_value_predictor_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="strathcona_house_value_predictor_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-
-<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -154,117 +151,121 @@ div.csl-indent {
 Table&nbsp;1: Preview of the 2023 Property Tax Assessment dataset after selecting relevant columns.
 </figcaption>
 <div aria-describedby="tbl-housing-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display" data-execution_count="2">
-<div>
-
-
-<table class="dataframe do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="22">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 12%">
+<col style="width: 13%">
+<col style="width: 22%">
+</colgroup>
 <thead>
 <tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">meters</th>
-<th data-quarto-table-cell-role="th">garage</th>
-<th data-quarto-table-cell-role="th">firepl</th>
-<th data-quarto-table-cell-role="th">bsmt</th>
-<th data-quarto-table-cell-role="th">bdevl</th>
-<th data-quarto-table-cell-role="th">assess_2022</th>
+<th style="text-align: right;"></th>
+<th style="text-align: right;">meters</th>
+<th style="text-align: left;">garage</th>
+<th style="text-align: left;">firepl</th>
+<th style="text-align: left;">bsmt</th>
+<th style="text-align: left;">bdevl</th>
+<th style="text-align: right;">assess_2022</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>150.590</td>
-<td>Y</td>
-<td>Y</td>
-<td>Y</td>
-<td>N</td>
-<td>382460</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">150.59</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: right;">382460</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>123.560</td>
-<td>N</td>
-<td>Y</td>
-<td>N</td>
-<td>N</td>
-<td>280370</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">123.56</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: right;">280370</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>104.980</td>
-<td>N</td>
-<td>N</td>
-<td>N</td>
-<td>N</td>
-<td>402000</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">104.98</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: right;">402000</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>66.611</td>
-<td>N</td>
-<td>N</td>
-<td>N</td>
-<td>N</td>
-<td>3690</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">66.611</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: right;">3690</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>123.830</td>
-<td>Y</td>
-<td>Y</td>
-<td>Y</td>
-<td>Y</td>
-<td>295910</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">123.83</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: right;">295910</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">5</td>
-<td>205.400</td>
-<td>N</td>
-<td>Y</td>
-<td>Y</td>
-<td>Y</td>
-<td>419000</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">205.4</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: right;">419000</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">6</td>
-<td>120.680</td>
-<td>N</td>
-<td>Y</td>
-<td>Y</td>
-<td>N</td>
-<td>289380</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">120.68</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: right;">289380</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">7</td>
-<td>83.148</td>
-<td>N</td>
-<td>N</td>
-<td>Y</td>
-<td>Y</td>
-<td>326170</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">83.148</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: right;">326170</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">8</td>
-<td>120.770</td>
-<td>N</td>
-<td>N</td>
-<td>Y</td>
-<td>Y</td>
-<td>419000</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">120.77</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: right;">419000</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">9</td>
-<td>115.940</td>
-<td>Y</td>
-<td>N</td>
-<td>N</td>
-<td>N</td>
-<td>290000</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">115.94</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: right;">290000</td>
 </tr>
 </tbody>
 </table>
-
-</div>
 </div>
 </div>
 </figure>
@@ -278,21 +279,7 @@ Table&nbsp;1: Preview of the 2023 Property Tax Assessment dataset after selectin
 - Correct data types in each column
 - No duplicate observations
 - No outlier or anomalous values</code></pre>
-<p>Listed below is the results for our validation check.</p>
-<div id="35a94633" class="cell" data-execution_count="3">
-<div class="cell-output cell-output-stdout">
-<pre><code>✅ File format validation passed: File is a CSV.
-✅ Column name validation passed: All expected columns are present.
-✅ Empty observations validation passed: No empty rows.
-✅ Missingness validation passed for all columns.
-✅ Data type validation passed for all columns.
-Duplicate observation validation failed: Found 2425 duplicate rows.
-✅ Duplicates have been removed from the DataFrame.
-Warning: Column 'meters' has 885 outliers, within acceptable threshold (5000).
-Warning: Column 'assess_2022' has 2048 outliers, within acceptable threshold (5000).
-✅ Outlier validation passed: No columns exceed the outlier threshold.</code></pre>
-</div>
-</div>
+<p>The results for our validation check are passed.</p>
 </section>
 <section id="visualization-for-categorical-features" class="level3">
 <h3 class="anchored" data-anchor-id="visualization-for-categorical-features">3. Visualization for categorical features</h3>
@@ -336,624 +323,167 @@ Figure&nbsp;3: Distribution and relationships of house assessment values (2022),
 <p>According to the scatter plot, the vast majority of our data points are concentrated within the <code>0 &lt; meters &lt; 2000 range</code>, with some more within the <code>2000 &lt; meters &lt; 5000</code> range, and there are a few outliers in the <code>meters &gt; 5000</code> range that make it difficult to get a closer look on the majority of our data. We can see a similar story on the <code>assess_2022</code> feature as it has the vast majority of points in the low-mid range and some outlying extreme values.</p>
 <p>We have split the housing_df DataFrame into training and test datasets using an <code>70-30 split</code>, categorized features into categorical features (e.g., <code>garage</code>, <code>firepl</code>, <code>bsmt</code>, <code>bdevl</code>) and numeric features (e.g., <code>meters</code>), applied one-hot encoding transforamtion for categorical features and standardScalar transformation for numeric features by using Scikit-learn<cite><span class="citation" data-cites="scikit2024">Learn (<a href="#ref-scikit2024" role="doc-biblioref">2024</a>)</span></cite>. We then created a column transformer <code>preprocessor</code> through combining these transforamtions to apply to the dataset and visualizes the <code>preprocessor</code>.</p>
 <p>We performed analysis to identify any potential issues with the relationships between features and the target, as well as between the features themselves. By detecting anomalous correlations, we can uncover redundant or highly correlated features that might lead to multicollinearity, which can negatively affect the performance of machine learning models. In particular, removing or adjusting features that are too strongly correlated ensures that the model can learn meaningful, independent relationships, improving its generalization ability and interpretability. Additionally, examining correlations helps us assess if certain features are disproportionately influencing the target variable, which could indicate bias or overfitting.</p>
-<div id="2a648ce5" class="cell" data-execution_count="5">
-<div class="cell-output cell-output-display" data-execution_count="5">
-<style>#sk-container-id-1 {
-  /* Definition of color scheme common for light and dark mode */
-  --sklearn-color-text: black;
-  --sklearn-color-line: gray;
-  /* Definition of color scheme for unfitted estimators */
-  --sklearn-color-unfitted-level-0: #fff5e6;
-  --sklearn-color-unfitted-level-1: #f6e4d2;
-  --sklearn-color-unfitted-level-2: #ffe0b3;
-  --sklearn-color-unfitted-level-3: chocolate;
-  /* Definition of color scheme for fitted estimators */
-  --sklearn-color-fitted-level-0: #f0f8ff;
-  --sklearn-color-fitted-level-1: #d4ebff;
-  --sklearn-color-fitted-level-2: #b3dbfd;
-  --sklearn-color-fitted-level-3: cornflowerblue;
-
-  /* Specific color for light theme */
-  --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
-  --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, white)));
-  --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
-  --sklearn-color-icon: #696969;
-
-  @media (prefers-color-scheme: dark) {
-    /* Redefinition of color scheme for dark theme */
-    --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
-    --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, #111)));
-    --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
-    --sklearn-color-icon: #878787;
-  }
-}
-
-#sk-container-id-1 {
-  color: var(--sklearn-color-text);
-}
-
-#sk-container-id-1 pre {
-  padding: 0;
-}
-
-#sk-container-id-1 input.sk-hidden--visually {
-  border: 0;
-  clip: rect(1px 1px 1px 1px);
-  clip: rect(1px, 1px, 1px, 1px);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-}
-
-#sk-container-id-1 div.sk-dashed-wrapped {
-  border: 1px dashed var(--sklearn-color-line);
-  margin: 0 0.4em 0.5em 0.4em;
-  box-sizing: border-box;
-  padding-bottom: 0.4em;
-  background-color: var(--sklearn-color-background);
-}
-
-#sk-container-id-1 div.sk-container {
-  /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
-     but bootstrap.min.css set `[hidden] { display: none !important; }`
-     so we also need the `!important` here to be able to override the
-     default hidden behavior on the sphinx rendered scikit-learn.org.
-     See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
-  display: inline-block !important;
-  position: relative;
-}
-
-#sk-container-id-1 div.sk-text-repr-fallback {
-  display: none;
-}
-
-div.sk-parallel-item,
-div.sk-serial,
-div.sk-item {
-  /* draw centered vertical line to link estimators */
-  background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
-  background-size: 2px 100%;
-  background-repeat: no-repeat;
-  background-position: center center;
-}
-
-/* Parallel-specific style estimator block */
-
-#sk-container-id-1 div.sk-parallel-item::after {
-  content: "";
-  width: 100%;
-  border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
-  flex-grow: 1;
-}
-
-#sk-container-id-1 div.sk-parallel {
-  display: flex;
-  align-items: stretch;
-  justify-content: center;
-  background-color: var(--sklearn-color-background);
-  position: relative;
-}
-
-#sk-container-id-1 div.sk-parallel-item {
-  display: flex;
-  flex-direction: column;
-}
-
-#sk-container-id-1 div.sk-parallel-item:first-child::after {
-  align-self: flex-end;
-  width: 50%;
-}
-
-#sk-container-id-1 div.sk-parallel-item:last-child::after {
-  align-self: flex-start;
-  width: 50%;
-}
-
-#sk-container-id-1 div.sk-parallel-item:only-child::after {
-  width: 0;
-}
-
-/* Serial-specific style estimator block */
-
-#sk-container-id-1 div.sk-serial {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: var(--sklearn-color-background);
-  padding-right: 1em;
-  padding-left: 1em;
-}
-
-
-/* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
-clickable and can be expanded/collapsed.
-- Pipeline and ColumnTransformer use this feature and define the default style
-- Estimators will overwrite some part of the style using the `sk-estimator` class
-*/
-
-/* Pipeline and ColumnTransformer style (default) */
-
-#sk-container-id-1 div.sk-toggleable {
-  /* Default theme specific background. It is overwritten whether we have a
-  specific estimator or a Pipeline/ColumnTransformer */
-  background-color: var(--sklearn-color-background);
-}
-
-/* Toggleable label */
-#sk-container-id-1 label.sk-toggleable__label {
-  cursor: pointer;
-  display: block;
-  width: 100%;
-  margin-bottom: 0;
-  padding: 0.5em;
-  box-sizing: border-box;
-  text-align: center;
-}
-
-#sk-container-id-1 label.sk-toggleable__label-arrow:before {
-  /* Arrow on the left of the label */
-  content: "▸";
-  float: left;
-  margin-right: 0.25em;
-  color: var(--sklearn-color-icon);
-}
-
-#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {
-  color: var(--sklearn-color-text);
-}
-
-/* Toggleable content - dropdown */
-
-#sk-container-id-1 div.sk-toggleable__content {
-  max-height: 0;
-  max-width: 0;
-  overflow: hidden;
-  text-align: left;
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-0);
-}
-
-#sk-container-id-1 div.sk-toggleable__content.fitted {
-  /* fitted */
-  background-color: var(--sklearn-color-fitted-level-0);
-}
-
-#sk-container-id-1 div.sk-toggleable__content pre {
-  margin: 0.2em;
-  border-radius: 0.25em;
-  color: var(--sklearn-color-text);
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-0);
-}
-
-#sk-container-id-1 div.sk-toggleable__content.fitted pre {
-  /* unfitted */
-  background-color: var(--sklearn-color-fitted-level-0);
-}
-
-#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {
-  /* Expand drop-down */
-  max-height: 200px;
-  max-width: 100%;
-  overflow: auto;
-}
-
-#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
-  content: "▾";
-}
-
-/* Pipeline/ColumnTransformer-specific style */
-
-#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
-  color: var(--sklearn-color-text);
-  background-color: var(--sklearn-color-unfitted-level-2);
-}
-
-#sk-container-id-1 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
-  background-color: var(--sklearn-color-fitted-level-2);
-}
-
-/* Estimator-specific style */
-
-/* Colorize estimator box */
-#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-2);
-}
-
-#sk-container-id-1 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
-  /* fitted */
-  background-color: var(--sklearn-color-fitted-level-2);
-}
-
-#sk-container-id-1 div.sk-label label.sk-toggleable__label,
-#sk-container-id-1 div.sk-label label {
-  /* The background is the default theme color */
-  color: var(--sklearn-color-text-on-default-background);
-}
-
-/* On hover, darken the color of the background */
-#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {
-  color: var(--sklearn-color-text);
-  background-color: var(--sklearn-color-unfitted-level-2);
-}
-
-/* Label box, darken color on hover, fitted */
-#sk-container-id-1 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
-  color: var(--sklearn-color-text);
-  background-color: var(--sklearn-color-fitted-level-2);
-}
-
-/* Estimator label */
-
-#sk-container-id-1 div.sk-label label {
-  font-family: monospace;
-  font-weight: bold;
-  display: inline-block;
-  line-height: 1.2em;
-}
-
-#sk-container-id-1 div.sk-label-container {
-  text-align: center;
-}
-
-/* Estimator-specific */
-#sk-container-id-1 div.sk-estimator {
-  font-family: monospace;
-  border: 1px dotted var(--sklearn-color-border-box);
-  border-radius: 0.25em;
-  box-sizing: border-box;
-  margin-bottom: 0.5em;
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-0);
-}
-
-#sk-container-id-1 div.sk-estimator.fitted {
-  /* fitted */
-  background-color: var(--sklearn-color-fitted-level-0);
-}
-
-/* on hover */
-#sk-container-id-1 div.sk-estimator:hover {
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-2);
-}
-
-#sk-container-id-1 div.sk-estimator.fitted:hover {
-  /* fitted */
-  background-color: var(--sklearn-color-fitted-level-2);
-}
-
-/* Specification for estimator info (e.g. "i" and "?") */
-
-/* Common style for "i" and "?" */
-
-.sk-estimator-doc-link,
-a:link.sk-estimator-doc-link,
-a:visited.sk-estimator-doc-link {
-  float: right;
-  font-size: smaller;
-  line-height: 1em;
-  font-family: monospace;
-  background-color: var(--sklearn-color-background);
-  border-radius: 1em;
-  height: 1em;
-  width: 1em;
-  text-decoration: none !important;
-  margin-left: 1ex;
-  /* unfitted */
-  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
-  color: var(--sklearn-color-unfitted-level-1);
-}
-
-.sk-estimator-doc-link.fitted,
-a:link.sk-estimator-doc-link.fitted,
-a:visited.sk-estimator-doc-link.fitted {
-  /* fitted */
-  border: var(--sklearn-color-fitted-level-1) 1pt solid;
-  color: var(--sklearn-color-fitted-level-1);
-}
-
-/* On hover */
-div.sk-estimator:hover .sk-estimator-doc-link:hover,
-.sk-estimator-doc-link:hover,
-div.sk-label-container:hover .sk-estimator-doc-link:hover,
-.sk-estimator-doc-link:hover {
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-3);
-  color: var(--sklearn-color-background);
-  text-decoration: none;
-}
-
-div.sk-estimator.fitted:hover .sk-estimator-doc-link.fitted:hover,
-.sk-estimator-doc-link.fitted:hover,
-div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
-.sk-estimator-doc-link.fitted:hover {
-  /* fitted */
-  background-color: var(--sklearn-color-fitted-level-3);
-  color: var(--sklearn-color-background);
-  text-decoration: none;
-}
-
-/* Span, style for the box shown on hovering the info icon */
-.sk-estimator-doc-link span {
-  display: none;
-  z-index: 9999;
-  position: relative;
-  font-weight: normal;
-  right: .2ex;
-  padding: .5ex;
-  margin: .5ex;
-  width: min-content;
-  min-width: 20ex;
-  max-width: 50ex;
-  color: var(--sklearn-color-text);
-  box-shadow: 2pt 2pt 4pt #999;
-  /* unfitted */
-  background: var(--sklearn-color-unfitted-level-0);
-  border: .5pt solid var(--sklearn-color-unfitted-level-3);
-}
-
-.sk-estimator-doc-link.fitted span {
-  /* fitted */
-  background: var(--sklearn-color-fitted-level-0);
-  border: var(--sklearn-color-fitted-level-3);
-}
-
-.sk-estimator-doc-link:hover span {
-  display: block;
-}
-
-/* "?"-specific style due to the `<a>` HTML tag */
-
-#sk-container-id-1 a.estimator_doc_link {
-  float: right;
-  font-size: 1rem;
-  line-height: 1em;
-  font-family: monospace;
-  background-color: var(--sklearn-color-background);
-  border-radius: 1rem;
-  height: 1rem;
-  width: 1rem;
-  text-decoration: none;
-  /* unfitted */
-  color: var(--sklearn-color-unfitted-level-1);
-  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
-}
-
-#sk-container-id-1 a.estimator_doc_link.fitted {
-  /* fitted */
-  border: var(--sklearn-color-fitted-level-1) 1pt solid;
-  color: var(--sklearn-color-fitted-level-1);
-}
-
-/* On hover */
-#sk-container-id-1 a.estimator_doc_link:hover {
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-3);
-  color: var(--sklearn-color-background);
-  text-decoration: none;
-}
-
-#sk-container-id-1 a.estimator_doc_link.fitted:hover {
-  /* fitted */
-  background-color: var(--sklearn-color-fitted-level-3);
-}
-</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>ColumnTransformer(transformers=[('onehotencoder', OneHotEncoder(),
-                                 ['garage', 'firepl', 'bsmt', 'bdevl']),
-                                ('standardscaler', StandardScaler(),
-                                 ['meters'])])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox"><label for="sk-estimator-id-1" class="sk-toggleable__label  sk-toggleable__label-arrow ">&nbsp;&nbsp;ColumnTransformer<a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.compose.ColumnTransformer.html">?<span>Documentation for ColumnTransformer</span></a><span class="sk-estimator-doc-link ">i<span>Not fitted</span></span></label><div class="sk-toggleable__content "><pre>ColumnTransformer(transformers=[('onehotencoder', OneHotEncoder(),
-                                 ['garage', 'firepl', 'bsmt', 'bdevl']),
-                                ('standardscaler', StandardScaler(),
-                                 ['meters'])])</pre></div> </div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox"><label for="sk-estimator-id-2" class="sk-toggleable__label  sk-toggleable__label-arrow ">onehotencoder</label><div class="sk-toggleable__content "><pre>['garage', 'firepl', 'bsmt', 'bdevl']</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox"><label for="sk-estimator-id-3" class="sk-toggleable__label  sk-toggleable__label-arrow ">&nbsp;OneHotEncoder<a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.preprocessing.OneHotEncoder.html">?<span>Documentation for OneHotEncoder</span></a></label><div class="sk-toggleable__content "><pre>OneHotEncoder()</pre></div> </div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox"><label for="sk-estimator-id-4" class="sk-toggleable__label  sk-toggleable__label-arrow ">standardscaler</label><div class="sk-toggleable__content "><pre>['meters']</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-5" type="checkbox"><label for="sk-estimator-id-5" class="sk-toggleable__label  sk-toggleable__label-arrow ">&nbsp;StandardScaler<a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></label><div class="sk-toggleable__content "><pre>StandardScaler()</pre></div> </div></div></div></div></div></div></div></div></div>
-</div>
-</div>
-<section id="validation-step" class="level4">
-<h4 class="anchored" data-anchor-id="validation-step">Validation step</h4>
-<ul>
-<li>Check for correct category levels (i.e., no string mismatches or single values)</li>
-</ul>
-<div id="cf013ee3" class="cell" data-execution_count="6">
-<div class="cell-output cell-output-stdout">
-<pre><code>✅ Category levels validation passed for column 'garage' in train_df.
-✅ Category levels validation passed for column 'firepl' in train_df.
-✅ Category levels validation passed for column 'bsmt' in train_df.
-✅ Category levels validation passed for column 'bdevl' in train_df.
-✅ All categorical columns in train_df have the expected levels ('Y' and 'N').</code></pre>
-</div>
-</div>
-</section>
-<section id="check-for-anomalous-correlations-between-target-and-features" class="level4">
-<h4 class="anchored" data-anchor-id="check-for-anomalous-correlations-between-target-and-features">Check for anomalous correlations between target and features</h4>
-<div id="f6a7893a" class="cell" data-execution_count="7">
-<div class="cell-output cell-output-stdout">
-<pre><code>✅ No anomalous correlations found between target and features.</code></pre>
-</div>
-</div>
-</section>
-<section id="check-for-anomalous-correlations-between-features" class="level4">
-<h4 class="anchored" data-anchor-id="check-for-anomalous-correlations-between-features">Check for anomalous correlations between features</h4>
-<div id="103cca8f" class="cell" data-execution_count="8">
-<div class="cell-output cell-output-stdout">
-<pre><code>✅ No anomalous correlations found between target and features.</code></pre>
-</div>
-</div>
-<p><strong>Note:</strong> When performing correlation analysis on the dataset, it is important to exclude pairs of binary features that are inherently correlated due to their inverse relationship. For example, in the case of features like <code>Garage_Y</code> and <code>Garage_N</code>, one feature will always be 1 when the other is 0, and vice versa. These binary features are designed to represent the same information in different forms, and their high correlation is expected. Thus, it is not an anomaly and should not be flagged as such. To address this, we exclude these pairs from the correlation analysis, ensuring that only truly anomalous correlations—those that do not follow expected patterns—are identified. By doing so, we can avoid mistakenly flagging normal relationships between inverse binary features while still identifying potential issues in the remaining feature correlations.</p>
-</section>
+<p>During the validation step, we ensured the correctness of categorical feature levels by checking for string mismatches or unexpected single values. All categorical columns in the training dataset (<code>garage</code>, <code>firepl</code>, <code>bsmt</code>, and <code>bdevl</code>) passed validation with the expected levels of ‘Y’ and ‘N’. Additionally, we analyzed correlations between the target variable and features, as well as correlations between features themselves. No anomalous correlations were detected in either case. For correlation analysis, we excluded pairs of binary features that are inherently correlated due to their inverse relationship, such as <code>Garage_Y</code> and <code>Garage_N</code>, where one feature is always the inverse of the other. These relationships are expected and not flagged as anomalies. By excluding such pairs, we ensured the analysis focuses only on truly anomalous correlations, avoiding false positives while identifying potential issues in the dataset.</p>
 </section>
 <section id="train-cross-validate-and-evaluate-a-ridge-regression-model" class="level3">
 <h3 class="anchored" data-anchor-id="train-cross-validate-and-evaluate-a-ridge-regression-model">5. Train, cross validate and evaluate a Ridge regression model</h3>
-<p>We have split the features and target variable (<code>assess_2022</code>) into training and testing datasets.</p>
-<p>We have created a pipeline combining the column transformer (<code>preprocessor</code>) and the Ridge Regression model<cite><span class="citation" data-cites="ridge1992">Hoerl and Kennard (<a href="#ref-ridge1992" role="doc-biblioref">1970</a>)</span></cite>. Using 5-fold cross-validation on the training data, we evaluated the pipeline on multiple metrics and computes train and validation scores. Finally, it outputs the aggregated train and validation scores to assess the model’s performance<cite><span class="citation" data-cites="scikit2024">Learn (<a href="#ref-scikit2024" role="doc-biblioref">2024</a>)</span></cite>. <a href="#tbl-cross-validation-results" class="quarto-xref">Table&nbsp;2</a> summarizes the cross-validation results, including the mean and standard deviation of train and validation scores across 5 folds.</p>
-<div class="cell" data-execution_count="10">
-<div id="tbl-cross-validation-results" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="10">
+<p>We have splited the features and target variable (<code>assess_2022</code>) into training and testing datasets.Then, we have created a pipeline combining the column transformer (<code>preprocessor</code>) and the Ridge Regression model<cite><span class="citation" data-cites="ridge1992">Hoerl and Kennard (<a href="#ref-ridge1992" role="doc-biblioref">1970</a>)</span></cite>. Using 5-fold cross-validation on the training data, we evaluated the pipeline on multiple metrics and computes train and validation scores. Finally, it outputs the aggregated train and validation scores to assess the model’s performance<cite><span class="citation" data-cites="scikit2024">Learn (<a href="#ref-scikit2024" role="doc-biblioref">2024</a>)</span></cite>. <a href="#tbl-cross-validation-results" class="quarto-xref">Table&nbsp;2</a> summarizes the cross-validation results, including the mean and standard deviation of train and validation scores across 5 folds.</p>
+<div class="cell" data-execution_count="3">
+<div id="tbl-cross-validation-results" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="3">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-cross-validation-results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;2: Cross-validation results showing the mean and standard deviation for train and validation scores across 5 folds.
 </figcaption>
 <div aria-describedby="tbl-cross-validation-results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display" data-execution_count="10">
-<div>
-
-
-<table class="dataframe do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="23">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">mean</th>
-<th data-quarto-table-cell-role="th">std</th>
+<th style="text-align: right;"></th>
+<th style="text-align: left;">Unnamed: 0</th>
+<th style="text-align: right;">mean</th>
+<th style="text-align: right;">std</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">fit_time</td>
-<td>0.009</td>
-<td>0.000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">fit_time</td>
+<td style="text-align: right;">0.009</td>
+<td style="text-align: right;">0</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">score_time</td>
-<td>0.003</td>
-<td>0.000</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">score_time</td>
+<td style="text-align: right;">0.003</td>
+<td style="text-align: right;">0</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">test_score</td>
-<td>0.564</td>
-<td>0.235</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">test_score</td>
+<td style="text-align: right;">0.564</td>
+<td style="text-align: right;">0.235</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">train_score</td>
-<td>0.575</td>
-<td>0.078</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">train_score</td>
+<td style="text-align: right;">0.575</td>
+<td style="text-align: right;">0.078</td>
 </tr>
 </tbody>
 </table>
-
-</div>
 </div>
 </div>
 </figure>
 </div>
 </div>
 <p>We fit the pipeline on the training dataset (<code>X_train</code> and <code>y_train</code>) to train the Ridge Regression model<cite><span class="citation" data-cites="ridge1992">Hoerl and Kennard (<a href="#ref-ridge1992" role="doc-biblioref">1970</a>)</span></cite>. Then evaluates the trained pipeline on the test dataset (<code>X_test</code> and <code>y_test</code>) which calculates the R² (coefficient of determination) to measure how well the model explains the variance in the test data.</p>
-<div id="84cc33fc" class="cell" data-execution_count="11">
-<div class="cell-output cell-output-display" data-execution_count="11">
-<pre><code>0.536298068928245</code></pre>
-</div>
-</div>
 </section>
 <section id="predict-housing-prices-with-new-data" class="level3">
 <h3 class="anchored" data-anchor-id="predict-housing-prices-with-new-data">6. Predict housing prices with new data</h3>
 <p>We created a Pandas DataFrame containing information about 10 houses that we wish to predict the value of. <a href="#tbl-ten-houses" class="quarto-xref">Table&nbsp;3</a> summarizes the attributes of ten houses, including property size and various categorical features, used for predictions.</p>
-<div class="cell" data-execution_count="12">
-<div id="tbl-ten-houses" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="12">
+<div class="cell" data-execution_count="4">
+<div id="tbl-ten-houses" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="4">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ten-houses-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;3: Attributes of ten houses used for prediction.
 </figcaption>
 <div aria-describedby="tbl-ten-houses-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display" data-execution_count="12">
-<div>
-
-
-<table class="dataframe do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="24">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">meters</th>
-<th data-quarto-table-cell-role="th">garage</th>
-<th data-quarto-table-cell-role="th">firepl</th>
-<th data-quarto-table-cell-role="th">bsmt</th>
-<th data-quarto-table-cell-role="th">bdevl</th>
+<th style="text-align: right;"></th>
+<th style="text-align: right;">meters</th>
+<th style="text-align: left;">garage</th>
+<th style="text-align: left;">firepl</th>
+<th style="text-align: left;">bsmt</th>
+<th style="text-align: left;">bdevl</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>174.23</td>
-<td>Y</td>
-<td>Y</td>
-<td>Y</td>
-<td>N</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">174.23</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">N</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>132.76</td>
-<td>Y</td>
-<td>N</td>
-<td>Y</td>
-<td>Y</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">132.76</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>90.82</td>
-<td>Y</td>
-<td>N</td>
-<td>N</td>
-<td>Y</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">90.82</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">Y</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>68.54</td>
-<td>N</td>
-<td>N</td>
-<td>N</td>
-<td>N</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">68.54</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>221.30</td>
-<td>Y</td>
-<td>Y</td>
-<td>Y</td>
-<td>Y</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">221.3</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">5</td>
-<td>145.03</td>
-<td>N</td>
-<td>N</td>
-<td>N</td>
-<td>Y</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">145.03</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">Y</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">6</td>
-<td>102.96</td>
-<td>N</td>
-<td>N</td>
-<td>Y</td>
-<td>Y</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">102.96</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">7</td>
-<td>164.28</td>
-<td>Y</td>
-<td>Y</td>
-<td>N</td>
-<td>N</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">164.28</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">8</td>
-<td>142.79</td>
-<td>N</td>
-<td>Y</td>
-<td>Y</td>
-<td>N</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">142.79</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">N</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">9</td>
-<td>115.94</td>
-<td>Y</td>
-<td>N</td>
-<td>Y</td>
-<td>Y</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">115.94</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
 </tr>
 </tbody>
 </table>
-
-</div>
 </div>
 </div>
 </figure>
@@ -961,124 +491,128 @@ Table&nbsp;3: Attributes of ten houses used for prediction.
 </div>
 <p>We applied the trained pipeline to predict housing prices values based on the features in the dataFrame containing new data <cite><span class="citation" data-cites="hastie2009">Hastie, Tibshirani, and Friedman (<a href="#ref-hastie2009" role="doc-biblioref">2009</a>)</span></cite>. The predictions are stored in a new pandas DataFrame.</p>
 <p>We combined the original features from the new data and the predicted values into a new pandas DataFrame. The new pandas DataFrame provides an overview of the predictions. <a href="#tbl-predicted-values" class="quarto-xref">Table&nbsp;4</a> displays the predicted house values for the ten houses based on their attributes, including property size and categorical features.</p>
-<div class="cell" data-execution_count="14">
-<div id="tbl-predicted-values" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="14">
+<div class="cell" data-execution_count="5">
+<div id="tbl-predicted-values" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="5">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-predicted-values-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;4: Predicted house values for the ten houses based on their attributes.
 </figcaption>
 <div aria-describedby="tbl-predicted-values-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display" data-execution_count="14">
-<div>
-
-
-<table class="dataframe do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="25">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 5%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 11%">
+<col style="width: 12%">
+<col style="width: 28%">
+</colgroup>
 <thead>
 <tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">meters</th>
-<th data-quarto-table-cell-role="th">garage</th>
-<th data-quarto-table-cell-role="th">firepl</th>
-<th data-quarto-table-cell-role="th">bsmt</th>
-<th data-quarto-table-cell-role="th">bdevl</th>
-<th data-quarto-table-cell-role="th">Predicted_Values</th>
+<th style="text-align: right;"></th>
+<th style="text-align: right;">meters</th>
+<th style="text-align: left;">garage</th>
+<th style="text-align: left;">firepl</th>
+<th style="text-align: left;">bsmt</th>
+<th style="text-align: left;">bdevl</th>
+<th style="text-align: right;">Predicted_Values</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>174.23</td>
-<td>Y</td>
-<td>Y</td>
-<td>Y</td>
-<td>N</td>
-<td>536986.06</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">174.23</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: right;">536986</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>132.76</td>
-<td>Y</td>
-<td>N</td>
-<td>Y</td>
-<td>Y</td>
-<td>457896.92</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">132.76</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: right;">457897</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>90.82</td>
-<td>Y</td>
-<td>N</td>
-<td>N</td>
-<td>Y</td>
-<td>361058.34</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">90.82</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: right;">361058</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>68.54</td>
-<td>N</td>
-<td>N</td>
-<td>N</td>
-<td>N</td>
-<td>212406.79</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">68.54</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: right;">212407</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>221.30</td>
-<td>Y</td>
-<td>Y</td>
-<td>Y</td>
-<td>Y</td>
-<td>700449.74</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">221.3</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: right;">700450</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">5</td>
-<td>145.03</td>
-<td>N</td>
-<td>N</td>
-<td>N</td>
-<td>Y</td>
-<td>445227.44</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">145.03</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: right;">445227</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">6</td>
-<td>102.96</td>
-<td>N</td>
-<td>N</td>
-<td>Y</td>
-<td>Y</td>
-<td>344014.38</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">102.96</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: right;">344014</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">7</td>
-<td>164.28</td>
-<td>Y</td>
-<td>Y</td>
-<td>N</td>
-<td>N</td>
-<td>515563.17</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">164.28</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: right;">515563</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">8</td>
-<td>142.79</td>
-<td>N</td>
-<td>Y</td>
-<td>Y</td>
-<td>N</td>
-<td>419237.26</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">142.79</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: right;">419237</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">9</td>
-<td>115.94</td>
-<td>Y</td>
-<td>N</td>
-<td>Y</td>
-<td>Y</td>
-<td>418244.15</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">115.94</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: right;">418244</td>
 </tr>
 </tbody>
 </table>
-
-</div>
 </div>
 </div>
 </figure>
@@ -1102,64 +636,68 @@ Figure&nbsp;4: Line charts showing correlations between property size and house 
 </section>
 <section id="discussion" class="level2">
 <h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
-<p>Our findings suggest that the aforementioned 10 houses are expected to be valued at:</p>
-<div id="0fa34f51" class="cell" data-execution_count="15">
-<div class="cell-output cell-output-display" data-execution_count="15">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<p>Our findings suggest that the aforementioned 10 houses are expected to be valued at: <a href="#tbl-results" class="quarto-xref">Table&nbsp;5</a></p>
+<div class="cell" data-execution_count="6">
+<div id="tbl-results" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="6">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5: Predicted house values
+</figcaption>
+<div aria-describedby="tbl-results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="26">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">Predicted_Values</th>
+<th style="text-align: right;"></th>
+<th style="text-align: right;">Predicted_Values</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>536986.06</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">536986</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>457896.92</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">457897</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>361058.34</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">361058</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>212406.79</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">212407</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>700449.74</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">700450</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">5</td>
-<td>445227.44</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">445227</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">6</td>
-<td>344014.38</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">344014</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">7</td>
-<td>515563.17</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">515563</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">8</td>
-<td>419237.26</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">419237</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">9</td>
-<td>418244.15</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">418244</td>
 </tr>
 </tbody>
 </table>
-
 </div>
+</div>
+</figure>
 </div>
 </div>
 <p>We have also noticed that there is a correlation between a house’s price and its property’s size, whether or not it has a garage, fireplace, basement, and whether or not the building has been evaluated. This is consistent with our expectations as the larger a property is, and the more features it has (basement, garage, etc.) the higher its value becomes<cite><span class="citation" data-cites="garage2024">FastExpert (<a href="#ref-garage2024" role="doc-biblioref">2024</a>)</span></cite>. This also raises further questions such as what other features of a house or property affect its value? characteristics for future consideration include: Number of bedrooms, number of bathrooms, indoor space, outdoor space, and number of floors.</p>
