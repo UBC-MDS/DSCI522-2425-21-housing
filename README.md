@@ -7,8 +7,8 @@ List of contributors : Yajing Liu , Gilbert Akuja, Tianjiao Jiang, Thamer Aldawo
 
 Our team will be working on predicting house prices using the 2023 Property Tax Assessment dataset from Strathcona County Open Data portal. The dataset provides a wealth of information about houses, including attributes like size, location, and other features. By leveraging this data, we aim to build a robust predictive model that accurately estimates house values.
 
-We acquired our dataset from Strathcona County Open Data portal - 2023_Property_Tax_Assessment. The dataset can be found at 
-https://opendata-strathconacounty.hub.arcgis.com/datasets/e3c5b04fccdc4ddd88059a8c0b6d8160_0/explore
+We acquired our dataset from Strathcona County Open Data portal - 2023_Property_Tax_Assessment. The dataset can be found  
+[here](https://opendata-strathconacounty.hub.arcgis.com/datasets/e3c5b04fccdc4ddd88059a8c0b6d8160_0/explore)
 
 ## Introduction:
 
@@ -111,4 +111,6 @@ quarto render notebook/strathcona_house_value_predictor.qmd --to pdf
 
 ## License
 This project is under the Creative Commons Attribution 4.0 International Public License. See the [License file](https://github.com/UBC-MDS/DSCI522-2425-21-housing/blob/main/LICENSE.md) for more details.
- 
+
+## Reference
+County, Strathcona. 2023. “2023 Property Tax Assessment.” https://www.strathcona.ca/services/assessment/.
