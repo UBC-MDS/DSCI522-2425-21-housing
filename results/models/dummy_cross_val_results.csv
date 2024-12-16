@@ -1,0 +1,5 @@
+,mean,std
+fit_time,0.012,0.002
+score_time,0.003,0.0
+test_score,-0.003,0.005
+train_score,0.0,0.0

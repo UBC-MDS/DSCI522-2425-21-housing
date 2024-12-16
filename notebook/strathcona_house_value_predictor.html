@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -51,10 +51,10 @@ div.csl-indent {
 <script src="strathcona_house_value_predictor_files/libs/quarto-html/tippy.umd.min.js"></script>
 <script src="strathcona_house_value_predictor_files/libs/quarto-html/anchor.min.js"></script>
 <link href="strathcona_house_value_predictor_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="strathcona_house_value_predictor_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="strathcona_house_value_predictor_files/libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="strathcona_house_value_predictor_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="strathcona_house_value_predictor_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="strathcona_house_value_predictor_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="strathcona_house_value_predictor_files/libs/bootstrap/bootstrap-8a79a254b8e706d3c925cde0a310d4f0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
 
 </head>
@@ -86,7 +86,7 @@ div.csl-indent {
   </ul></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="../strathcona_house_value_predictor.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="strathcona_house_value_predictor.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
 </div>
 <main class="content" id="quarto-document-content">
 
@@ -151,7 +151,7 @@ div.csl-indent {
 Table&nbsp;1: Preview of the 2023 Property Tax Assessment dataset after selecting relevant columns.
 </figcaption>
 <div aria-describedby="tbl-housing-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="2">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="44">
 <table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 6%">
@@ -287,7 +287,7 @@ Table&nbsp;1: Preview of the 2023 Property Tax Assessment dataset after selectin
 <div id="fig-categorical-features" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-categorical-features-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../results/figures/categorical_features_counts.png" class="img-fluid figure-img" style="width:80.0%">
+<img src="../results/figures/categorical_features_counts.png" class="img-fluid figure-img" style="width:60.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-categorical-features-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: Distribution of categorical features (Garage, Fireplace, Basement, and Building Evaluation).
@@ -305,37 +305,48 @@ Figure&nbsp;2: Scatter plots showing house value assessments for categorical fea
 </figcaption>
 </figure>
 </div>
+<p>The correlation plots show which of our features have positive or negative relationships with each other. By examining <a href="#fig-correlation-plot" class="quarto-xref">Figure&nbsp;3</a>, we can see that our features have no negative relationships, and that there seems to be a strong positive relationship between <code>meters</code> and <code>assess_2022</code> which tells us that the larger the property is, the higher its evaluation. We can also see a significant positive relationship between <code>bsmt</code> and <code>bdevl</code> which shows that most properties that have a basement in our dataset have had a building evaluation.</p>
+<div id="fig-correlation-plot" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-correlation-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../results/figures/correlation_chart.png" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-correlation-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Correlation plot showing relationships between all features
+</figcaption>
+</figure>
+</div>
 </section>
 <section id="prepare-data-for-training-and-create-column-transformer-for-feature-transformation" class="level3">
 <h3 class="anchored" data-anchor-id="prepare-data-for-training-and-create-column-transformer-for-feature-transformation">4. Prepare data for training and create column transformer for feature transformation</h3>
 <p>Visualizing the distribution of the target variable, <code>assess_2022</code>, using a histogram and Kernel Density Estimate (KDE) plot is a crucial step in data exploration. It helps us understand the overall distribution, identify patterns such as skewness, kurtosis, or multiple peaks, and detect outliers. By comparing the histogram and KDE, we can assess if the distribution meets the assumptions of our chosen modeling techniques. This visualization also guides decisions about preprocessing, such as applying transformations to address skewness or choosing the right algorithm for modeling. Additionally, it can uncover data quality issues, like sparse regions or missing values, prompting necessary corrections.</p>
-<p>As depicted in <a href="#fig-property-assessment-distribution" class="quarto-xref">Figure&nbsp;3</a>, the combined visualizations provide valuable insights into the distribution and relationship between property sizes (meters) and house assessment values (<code>assess_2022</code>). The scatter plot showcases how larger properties tend to have higher assessment values, while the histogram and KDE plot reveal the overall distribution and density of assessment values in the dataset.</p>
+<p>As depicted in <a href="#fig-property-assessment-distribution" class="quarto-xref">Figure&nbsp;4</a>, the combined visualizations provide valuable insights into the distribution and relationship between property sizes (meters) and house assessment values (<code>assess_2022</code>). The scatter plot showcases how larger properties tend to have higher assessment values, while the histogram and KDE plot reveal the overall distribution and density of assessment values in the dataset.</p>
 <div id="fig-property-assessment-distribution" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-property-assessment-distribution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../results/figures/distribution_charts.png" class="img-fluid figure-img" style="width:80.0%">
+<img src="../results/figures/distribution_charts.png" class="img-fluid figure-img" style="width:70.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-property-assessment-distribution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Distribution and relationships of house assessment values (2022), showing scatter plot, histogram, and kernel density estimation.
+Figure&nbsp;4: Distribution and relationships of house assessment values (2022), showing scatter plot, histogram, and kernel density estimation.
 </figcaption>
 </figure>
 </div>
 <p>According to the scatter plot, the vast majority of our data points are concentrated within the <code>0 &lt; meters &lt; 2000 range</code>, with some more within the <code>2000 &lt; meters &lt; 5000</code> range, and there are a few outliers in the <code>meters &gt; 5000</code> range that make it difficult to get a closer look on the majority of our data. We can see a similar story on the <code>assess_2022</code> feature as it has the vast majority of points in the low-mid range and some outlying extreme values.</p>
-<p>We have split the housing_df DataFrame into training and test datasets using an <code>70-30 split</code>, categorized features into categorical features (e.g., <code>garage</code>, <code>firepl</code>, <code>bsmt</code>, <code>bdevl</code>) and numeric features (e.g., <code>meters</code>), applied one-hot encoding transforamtion for categorical features and standardScalar transformation for numeric features by using Scikit-learn<cite><span class="citation" data-cites="scikit2024">Learn (<a href="#ref-scikit2024" role="doc-biblioref">2024</a>)</span></cite>. We then created a column transformer <code>preprocessor</code> through combining these transforamtions to apply to the dataset and visualizes the <code>preprocessor</code>.</p>
+<p>We have split the housing_df DataFrame into training and test datasets using an <code>70-30 split</code>, categorized features into categorical features (e.g., <code>garage</code>, <code>firepl</code>, <code>bsmt</code>, <code>bdevl</code>) and numeric features (e.g., <code>meters</code>), applied one-hot encoding transformation for categorical features and standardScalar transformation for numeric features by using Scikit-learn<cite><span class="citation" data-cites="scikit2024">Learn (<a href="#ref-scikit2024" role="doc-biblioref">2024</a>)</span></cite>. We then created a column transformer <code>preprocessor</code> through combining these transformations to apply to the dataset and visualizes the <code>preprocessor</code>.</p>
 <p>We performed analysis to identify any potential issues with the relationships between features and the target, as well as between the features themselves. By detecting anomalous correlations, we can uncover redundant or highly correlated features that might lead to multicollinearity, which can negatively affect the performance of machine learning models. In particular, removing or adjusting features that are too strongly correlated ensures that the model can learn meaningful, independent relationships, improving its generalization ability and interpretability. Additionally, examining correlations helps us assess if certain features are disproportionately influencing the target variable, which could indicate bias or overfitting.</p>
 <p>During the validation step, we ensured the correctness of categorical feature levels by checking for string mismatches or unexpected single values. All categorical columns in the training dataset (<code>garage</code>, <code>firepl</code>, <code>bsmt</code>, and <code>bdevl</code>) passed validation with the expected levels of ‘Y’ and ‘N’. Additionally, we analyzed correlations between the target variable and features, as well as correlations between features themselves. No anomalous correlations were detected in either case. For correlation analysis, we excluded pairs of binary features that are inherently correlated due to their inverse relationship, such as <code>Garage_Y</code> and <code>Garage_N</code>, where one feature is always the inverse of the other. These relationships are expected and not flagged as anomalies. By excluding such pairs, we ensured the analysis focuses only on truly anomalous correlations, avoiding false positives while identifying potential issues in the dataset.</p>
 </section>
 <section id="train-cross-validate-and-evaluate-a-ridge-regression-model" class="level3">
 <h3 class="anchored" data-anchor-id="train-cross-validate-and-evaluate-a-ridge-regression-model">5. Train, cross validate and evaluate a Ridge regression model</h3>
-<p>We have splited the features and target variable (<code>assess_2022</code>) into training and testing datasets.Then, we have created a pipeline combining the column transformer (<code>preprocessor</code>) and the Ridge Regression model<cite><span class="citation" data-cites="ridge1992">Hoerl and Kennard (<a href="#ref-ridge1992" role="doc-biblioref">1970</a>)</span></cite>. Using 5-fold cross-validation on the training data, we evaluated the pipeline on multiple metrics and computes train and validation scores. Finally, it outputs the aggregated train and validation scores to assess the model’s performance<cite><span class="citation" data-cites="scikit2024">Learn (<a href="#ref-scikit2024" role="doc-biblioref">2024</a>)</span></cite>. <a href="#tbl-cross-validation-results" class="quarto-xref">Table&nbsp;2</a> summarizes the cross-validation results, including the mean and standard deviation of train and validation scores across 5 folds.</p>
+<p>We have split the features and target variable (<code>assess_2022</code>) into training and testing datasets. Then, we have created a pipeline combining the column transformer (<code>preprocessor</code>) and the Ridge Regression model<cite><span class="citation" data-cites="ridge1992">Hoerl and Kennard (<a href="#ref-ridge1992" role="doc-biblioref">1970</a>)</span></cite>. Using 5-fold cross-validation on the training data, we evaluated the pipeline on multiple metrics and computes train and validation scores. Finally, it outputs the aggregated train and validation scores to assess the model’s performance<cite><span class="citation" data-cites="scikit2024">Learn (<a href="#ref-scikit2024" role="doc-biblioref">2024</a>)</span></cite>. <a href="#tbl-cross-validation-results" class="quarto-xref">Table&nbsp;3</a> summarizes the cross-validation results, including the mean and standard deviation of train and validation scores across 5 folds. For our baseline, we created simple dummy model that uses mean values for predictions. <a href="#tbl-dummy-cross-validation-results" class="quarto-xref">Table&nbsp;2</a> summarizes the baseline’s cross-validation results</p>
 <div class="cell" data-execution_count="3">
-<div id="tbl-cross-validation-results" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="3">
+<div id="tbl-dummy-cross-validation-results" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="3">
 <figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-cross-validation-results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;2: Cross-validation results showing the mean and standard deviation for train and validation scores across 5 folds.
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-dummy-cross-validation-results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Baseline cross-validation results showing the mean and standard deviation for train and validation scores across 5 folds.
 </figcaption>
-<div aria-describedby="tbl-cross-validation-results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="3">
+<div aria-describedby="tbl-dummy-cross-validation-results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="45">
 <table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
@@ -349,7 +360,7 @@ Table&nbsp;2: Cross-validation results showing the mean and standard deviation f
 <tr class="odd">
 <td style="text-align: right;">0</td>
 <td style="text-align: left;">fit_time</td>
-<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0.012</td>
 <td style="text-align: right;">0.002</td>
 </tr>
 <tr class="even">
@@ -357,6 +368,56 @@ Table&nbsp;2: Cross-validation results showing the mean and standard deviation f
 <td style="text-align: left;">score_time</td>
 <td style="text-align: right;">0.003</td>
 <td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">test_score</td>
+<td style="text-align: right;">-0.003</td>
+<td style="text-align: right;">0.005</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">train_score</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>By comparing our mode’s performance in <a href="#tbl-cross-validation-results" class="quarto-xref">Table&nbsp;3</a> with our baseline’s performance in <a href="#tbl-dummy-cross-validation-results" class="quarto-xref">Table&nbsp;2</a>, we can see a significant improvement in scores which supports our model’s validity.</p>
+<div class="cell" data-execution_count="4">
+<div id="tbl-cross-validation-results" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="4">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-cross-validation-results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3: Cross-validation results showing the mean and standard deviation for train and validation scores across 5 folds.
+</figcaption>
+<div aria-describedby="tbl-cross-validation-results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="46">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: right;"></th>
+<th style="text-align: left;">Unnamed: 0</th>
+<th style="text-align: right;">mean</th>
+<th style="text-align: right;">std</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">fit_time</td>
+<td style="text-align: right;">0.019</td>
+<td style="text-align: right;">0.005</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">score_time</td>
+<td style="text-align: right;">0.004</td>
+<td style="text-align: right;">0.001</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">2</td>
@@ -381,15 +442,15 @@ Table&nbsp;2: Cross-validation results showing the mean and standard deviation f
 </section>
 <section id="predict-housing-prices-with-new-data" class="level3">
 <h3 class="anchored" data-anchor-id="predict-housing-prices-with-new-data">6. Predict housing prices with new data</h3>
-<p>We created a Pandas DataFrame containing information about 10 houses that we wish to predict the value of. <a href="#tbl-ten-houses" class="quarto-xref">Table&nbsp;3</a> summarizes the attributes of ten houses, including property size and various categorical features, used for predictions.</p>
-<div class="cell" data-execution_count="4">
-<div id="tbl-ten-houses" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="4">
+<p>We created a Pandas DataFrame containing information about 10 houses that we wish to predict the value of. <a href="#tbl-ten-houses" class="quarto-xref">Table&nbsp;4</a> summarizes the attributes of ten houses, including property size and various categorical features, used for predictions.</p>
+<div class="cell" data-execution_count="5">
+<div id="tbl-ten-houses" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="5">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ten-houses-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3: Attributes of ten houses used for prediction.
+Table&nbsp;4: Attributes of ten houses used for prediction.
 </figcaption>
 <div aria-describedby="tbl-ten-houses-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="4">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="47">
 <table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
@@ -490,15 +551,15 @@ Table&nbsp;3: Attributes of ten houses used for prediction.
 </div>
 </div>
 <p>We applied the trained pipeline to predict housing prices values based on the features in the dataFrame containing new data <cite><span class="citation" data-cites="hastie2009">Hastie, Tibshirani, and Friedman (<a href="#ref-hastie2009" role="doc-biblioref">2009</a>)</span></cite>. The predictions are stored in a new pandas DataFrame.</p>
-<p>We combined the original features from the new data and the predicted values into a new pandas DataFrame. The new pandas DataFrame provides an overview of the predictions. <a href="#tbl-predicted-values" class="quarto-xref">Table&nbsp;4</a> displays the predicted house values for the ten houses based on their attributes, including property size and categorical features.</p>
-<div class="cell" data-execution_count="5">
-<div id="tbl-predicted-values" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="5">
+<p>We combined the original features from the new data and the predicted values into a new pandas DataFrame. The new pandas DataFrame provides an overview of the predictions. <a href="#tbl-predicted-values" class="quarto-xref">Table&nbsp;5</a> displays the predicted house values for the ten houses based on their attributes, including property size and categorical features.</p>
+<div class="cell" data-execution_count="6">
+<div id="tbl-predicted-values" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="6">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-predicted-values-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;4: Predicted house values for the ten houses based on their attributes.
+Table&nbsp;5: Predicted house values for the ten houses based on their attributes.
 </figcaption>
 <div aria-describedby="tbl-predicted-values-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="5">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="48">
 <table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 5%">
@@ -528,7 +589,7 @@ Table&nbsp;4: Predicted house values for the ten houses based on their attribute
 <td style="text-align: left;">Y</td>
 <td style="text-align: left;">Y</td>
 <td style="text-align: left;">N</td>
-<td style="text-align: right;">536986</td>
+<td style="text-align: right;">537035</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">1</td>
@@ -537,7 +598,7 @@ Table&nbsp;4: Predicted house values for the ten houses based on their attribute
 <td style="text-align: left;">N</td>
 <td style="text-align: left;">Y</td>
 <td style="text-align: left;">Y</td>
-<td style="text-align: right;">457897</td>
+<td style="text-align: right;">457895</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">2</td>
@@ -546,7 +607,7 @@ Table&nbsp;4: Predicted house values for the ten houses based on their attribute
 <td style="text-align: left;">N</td>
 <td style="text-align: left;">N</td>
 <td style="text-align: left;">Y</td>
-<td style="text-align: right;">361058</td>
+<td style="text-align: right;">360993</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">3</td>
@@ -555,7 +616,7 @@ Table&nbsp;4: Predicted house values for the ten houses based on their attribute
 <td style="text-align: left;">N</td>
 <td style="text-align: left;">N</td>
 <td style="text-align: left;">N</td>
-<td style="text-align: right;">212407</td>
+<td style="text-align: right;">212530</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">4</td>
@@ -564,7 +625,7 @@ Table&nbsp;4: Predicted house values for the ten houses based on their attribute
 <td style="text-align: left;">Y</td>
 <td style="text-align: left;">Y</td>
 <td style="text-align: left;">Y</td>
-<td style="text-align: right;">700450</td>
+<td style="text-align: right;">700375</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">5</td>
@@ -573,7 +634,7 @@ Table&nbsp;4: Predicted house values for the ten houses based on their attribute
 <td style="text-align: left;">N</td>
 <td style="text-align: left;">N</td>
 <td style="text-align: left;">Y</td>
-<td style="text-align: right;">445227</td>
+<td style="text-align: right;">445199</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">6</td>
@@ -582,7 +643,7 @@ Table&nbsp;4: Predicted house values for the ten houses based on their attribute
 <td style="text-align: left;">N</td>
 <td style="text-align: left;">Y</td>
 <td style="text-align: left;">Y</td>
-<td style="text-align: right;">344014</td>
+<td style="text-align: right;">344127</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">7</td>
@@ -591,7 +652,7 @@ Table&nbsp;4: Predicted house values for the ten houses based on their attribute
 <td style="text-align: left;">Y</td>
 <td style="text-align: left;">N</td>
 <td style="text-align: left;">N</td>
-<td style="text-align: right;">515563</td>
+<td style="text-align: right;">515519</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">8</td>
@@ -600,7 +661,7 @@ Table&nbsp;4: Predicted house values for the ten houses based on their attribute
 <td style="text-align: left;">Y</td>
 <td style="text-align: left;">Y</td>
 <td style="text-align: left;">N</td>
-<td style="text-align: right;">419237</td>
+<td style="text-align: right;">419402</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">9</td>
@@ -609,7 +670,7 @@ Table&nbsp;4: Predicted house values for the ten houses based on their attribute
 <td style="text-align: left;">N</td>
 <td style="text-align: left;">Y</td>
 <td style="text-align: left;">Y</td>
-<td style="text-align: right;">418244</td>
+<td style="text-align: right;">418258</td>
 </tr>
 </tbody>
 </table>
@@ -621,14 +682,14 @@ Table&nbsp;4: Predicted house values for the ten houses based on their attribute
 </section>
 <section id="visualization-for-predictions" class="level3">
 <h3 class="anchored" data-anchor-id="visualization-for-predictions">7. Visualization for predictions</h3>
-<p>We have created line charts to visualize the relationship between property size (<code>meters</code>) and predicted housing prices (<code>Predicted_Values</code>), colored by different categorical features. This visualization highlights how categorical features interact with property size to influence predicted house values<cite><span class="citation" data-cites="altair2024"><span>“Altair Tutorial, Exploratory Data Visualization with Altair”</span> (<a href="#ref-altair2024" role="doc-biblioref">2024</a>)</span></cite>. As shown in <a href="#fig-property-size-correlation" class="quarto-xref">Figure&nbsp;4</a>, property size has a significant impact on house value predictions, with notable variations across categorical features.</p>
+<p>We have created line charts to visualize the relationship between property size (<code>meters</code>) and predicted housing prices (<code>Predicted_Values</code>), colored by different categorical features. This visualization highlights how categorical features interact with property size to influence predicted house values<cite><span class="citation" data-cites="altair2024"><span>“Altair Tutorial, Exploratory Data Visualization with Altair”</span> (<a href="#ref-altair2024" role="doc-biblioref">2024</a>)</span></cite>. As shown in <a href="#fig-property-size-correlation" class="quarto-xref">Figure&nbsp;5</a>, property size has a significant impact on house value predictions, with notable variations across categorical features.</p>
 <div id="fig-property-size-correlation" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-property-size-correlation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../results/figures/predictions_visualization.png" class="img-fluid figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-property-size-correlation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4: Line charts showing correlations between property size and house value predictions, colored by various categorical features.
+Figure&nbsp;5: Line charts showing correlations between property size and house value predictions, colored by various categorical features.
 </figcaption>
 </figure>
 </div>
@@ -636,15 +697,16 @@ Figure&nbsp;4: Line charts showing correlations between property size and house 
 </section>
 <section id="discussion" class="level2">
 <h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
-<p>Our findings suggest that the aforementioned 10 houses are expected to be valued at: <a href="#tbl-results" class="quarto-xref">Table&nbsp;5</a></p>
-<div class="cell" data-execution_count="6">
-<div id="tbl-results" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="6">
+<p>The Ridge regression model demonstrates reasonable performance, with a training score of 0.575 and a test score of 0.564, suggesting it generalizes well without significant overfitting. However, the large variability in the test score (±0.235) points to potential instability, which could be improved by tuning the model’s hyperparameters. The model is computationally efficient, with very low fit time (0.01s) and score time (0.003s), making it suitable for rapid training and prediction. While the overall performance is acceptable, further improvements could be made through hyperparameter optimization or exploring alternative models.</p>
+<p>Our findings suggest that the aforementioned 10 houses are expected to be valued at: <a href="#tbl-results" class="quarto-xref">Table&nbsp;6</a></p>
+<div class="cell" data-execution_count="7">
+<div id="tbl-results" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="7">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;5: Predicted house values
+Table&nbsp;6: Predicted house values
 </figcaption>
 <div aria-describedby="tbl-results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="6">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="49">
 <table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
@@ -655,43 +717,43 @@ Table&nbsp;5: Predicted house values
 <tbody>
 <tr class="odd">
 <td style="text-align: right;">0</td>
-<td style="text-align: right;">536986</td>
+<td style="text-align: right;">537035</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">1</td>
-<td style="text-align: right;">457897</td>
+<td style="text-align: right;">457895</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">2</td>
-<td style="text-align: right;">361058</td>
+<td style="text-align: right;">360993</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">3</td>
-<td style="text-align: right;">212407</td>
+<td style="text-align: right;">212530</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">4</td>
-<td style="text-align: right;">700450</td>
+<td style="text-align: right;">700375</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">5</td>
-<td style="text-align: right;">445227</td>
+<td style="text-align: right;">445199</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">6</td>
-<td style="text-align: right;">344014</td>
+<td style="text-align: right;">344127</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">7</td>
-<td style="text-align: right;">515563</td>
+<td style="text-align: right;">515519</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">8</td>
-<td style="text-align: right;">419237</td>
+<td style="text-align: right;">419402</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">9</td>
-<td style="text-align: right;">418244</td>
+<td style="text-align: right;">418258</td>
 </tr>
 </tbody>
 </table>
@@ -827,8 +889,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -939,7 +999,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
