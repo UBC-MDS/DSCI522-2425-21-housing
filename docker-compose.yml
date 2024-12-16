@@ -1,6 +1,6 @@
 services:
   DSCI522-2425-21-housing:
-    image:  thamermsd/dsci522-2425-21-housing:c534702
+    image:  thamermsd/dsci522-2425-21-housing:374a034
     ports:
       - "8888:8888"
     volumes:
