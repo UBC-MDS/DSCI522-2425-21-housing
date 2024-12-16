@@ -31,13 +31,13 @@ from sklearn.model_selection import train_test_split
 ```
 
 ## Summary
-Our team worked on predicting house prices using the `2023 Property Tax Assessment` dataset from Strathcona County Open Data portal<cite>@strathcona2023</cite>. The dataset provides a wealth of information about houses, including attributes like size, location, and other features. By leveraging this data, we aim to build a robust predictive model that accurately estimates house values.
+Our team will be working on predicting house prices using the `2023 Property Tax Assessment` dataset from Strathcona County Open Data portal<cite>@strathcona2023</cite>. The dataset provides a wealth of information about houses, including attributes like size, location, and other features. By leveraging this data, we aim to build a robust predictive model that accurately estimates house values.
 
 ## Introduction
 
-The team used `Ridge` which is a linear model to predict the value of houses. `Ridge` is a regularization model that is used for predictive modeling and mitigates over fitting, improves model stability especially when features are highly correlated<cite>@ridge1992</cite>. Ridge helps create robust model that generalize well to new data.
+The team will be using `Ridge` which is a linear model to predict the value of houses. `Ridge` is a regularization model that is used for predictive modeling and mitigates over fitting, improves model stability especially when features are highly correlated<cite>@ridge1992</cite>. Ridge helps create robust model that generalize well to new data.
 The question we aim to answer: 
-    Can we predict house prices using publicly available housing data, and which features most influence the predictions?
+    Can we predict house prices using publicly available housing data , and which features most influence the predictions?
 This research is significant as understanding housing prices plays a critical role in assessing broader economic trends, identifying market patterns, and addressing housing affordability issues. Accurate price predictions can help promote transparency and stability in the housing market, which benefits individuals and the economy as a whole.
 
 Data description: 
