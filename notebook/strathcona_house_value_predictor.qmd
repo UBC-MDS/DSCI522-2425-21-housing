@@ -165,6 +165,9 @@ As shown in @fig-property-size-correlation, property size has a significant impa
 
 
 ## Discussion
+
+The Ridge regression model demonstrates reasonable performance, with a training score of 0.575 and a test score of 0.564, suggesting it generalizes well without significant overfitting. However, the large variability in the test score (±0.235) points to potential instability, which could be improved by tuning the model's hyperparameters. The model is computationally efficient, with very low fit time (0.01s) and score time (0.003s), making it suitable for rapid training and prediction. While the overall performance is acceptable, further improvements could be made through hyperparameter optimization or exploring alternative models.
+
 Our findings suggest that the aforementioned 10 houses are expected to be valued at: @tbl-results
 
 ```{python}
