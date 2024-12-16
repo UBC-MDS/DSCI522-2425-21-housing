@@ -3,6 +3,7 @@ import click
 import os
 import pandas as pd
 import altair as alt
+import altair_ally as aly
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from src.eda_utils import create_combined_bar_chart
@@ -85,6 +86,16 @@ def main(processed_data, plot_to):
     combined_chart = histogram | kde | scatter
     distribution_chart_file = os.path.join(plot_to, "distribution_charts.png")
     combined_chart.save(distribution_chart_file, scale_factor=2.0)
+
+    # Correlation chart
+    df = housing_df.copy()
+    df['garage'] = df['garage'].map({'N': 0, 'Y': 1})
+    df['firepl'] = df['firepl'].map({'N': 0, 'Y': 1})
+    df['bsmt'] = df['bsmt'].map({'N': 0, 'Y': 1})
+    df['bdevl'] = df['bdevl'].map({'N': 0, 'Y': 1})
+    cor_chart = aly.corr(df)
+    cor_chart_file = os.path.join(plot_to, "correlation_chart.png")
+    cor_chart.save(cor_chart_file, scale_factor=2.0)
 
 if __name__ == '__main__':
     main()

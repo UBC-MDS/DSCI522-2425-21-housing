@@ -4,7 +4,9 @@ import click
 import os
 import pandas as pd
 import pickle
-from sklearn.linear_model import Ridge
+from sklearn.linear_model import RidgeCV
+from sklearn.dummy import DummyRegressor
+
 from sklearn.model_selection import cross_validate
 from sklearn.pipeline import make_pipeline
 
@@ -41,7 +43,7 @@ def main(train_data, test_data, preprocessor, results_to, seed):
         preprocessor_obj = pickle.load(f)
 
     # Define Ridge regression pipeline
-    pipeline = make_pipeline(preprocessor_obj, Ridge())
+    pipeline = make_pipeline(preprocessor_obj, RidgeCV())
 
     # Perform cross-validation
     cross_val_results = pd.DataFrame(
@@ -62,6 +64,17 @@ def main(train_data, test_data, preprocessor, results_to, seed):
     model_file = os.path.join(results_to, "ridge_pipeline.pickle")
     with open(model_file, 'wb') as f:
         pickle.dump(pipeline, f)
+
+    # Dummy model for comparison purposes
+    dummy_pipe = make_pipeline(preprocessor_obj, DummyRegressor())
+
+    dummy_cross_val_results = pd.DataFrame(
+        cross_validate(dummy_pipe, X_train, y_train, cv=5, return_train_score=True)
+    ).agg(['mean', 'std']).round(3).T
+
+    dummy_results_file = os.path.join(results_to, "dummy_cross_val_results.csv")
+    dummy_cross_val_results.to_csv(dummy_results_file)
+
         
 if __name__ == '__main__':
     main()

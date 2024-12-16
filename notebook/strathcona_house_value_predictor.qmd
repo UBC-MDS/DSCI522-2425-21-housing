@@ -90,7 +90,7 @@ The results for our validation check are passed.
 We have enabled `VegaFusion` to optimize `Altair` data transformations for visualizations<cite>@altair2024</cite>. We then created a distribution plot of categorical features in the `housing_df` DataFrame.
 As shown in @fig-categorical-features, the distribution of categorical features provides insights into their overall counts.
 
-![Distribution of categorical features (Garage, Fireplace, Basement, and Building Evaluation).](../results/figures/categorical_features_counts.png){#fig-categorical-features width=80%}
+![Distribution of categorical features (Garage, Fireplace, Basement, and Building Evaluation).](../results/figures/categorical_features_counts.png){#fig-categorical-features width=60%}
 
 
 The scatter plots visualize the relationship between house assessment values (`assess_2022`) and four categorical features: `garage`, `firepl`, `bsmt`, and `bdevl`.
@@ -98,6 +98,9 @@ As depicted in @fig-assessment-categorical, the scatter plots illustrate the rel
 
 ![Scatter plots showing house value assessments for categorical features: Garage, Fireplace, Basement, and Building Evaluation.](../results/figures/categorical_features_scatter.png){#fig-assessment-categorical width=80%}
 
+The correlation plots show which of our features have positive or negative relationships with each other. By examining @fig-correlation-plot, we can see that our features have no negative relationships, and that there seems to be a strong positive relationship between `meters` and `assess_2022` which tells us that the larger the property is, the higher its evaluation. We can also see a significant positive relationship between `bsmt` and `bdevl` which shows that most properties that have a basement in our dataset have had a building evaluation.
+
+![Correlation plot showing relationships between all features](../results/figures/correlation_chart.png){#fig-correlation-plot width=80%}
 
 ### 4. Prepare data for training and create column transformer for feature transformation
 
@@ -111,7 +114,7 @@ As depicted in @fig-property-assessment-distribution, the combined visualization
 According to the scatter plot, the vast majority of our data points are concentrated within the `0 < meters < 2000 range`, with some more within the `2000 < meters < 5000` range, and there are a few outliers in the `meters > 5000` range that make it difficult to get a closer look on the majority of our data. We can see a similar story on the `assess_2022` feature as it has the vast majority of points in the low-mid range and some outlying extreme values.
 
 
-We have split the housing_df DataFrame into training and test datasets using an `70-30 split`, categorized features into categorical features (e.g., `garage`, `firepl`, `bsmt`, `bdevl`) and numeric features (e.g., `meters`), applied one-hot encoding transforamtion for categorical features and standardScalar transformation for numeric features by using Scikit-learn<cite>@scikit2024</cite>. We then created a column transformer `preprocessor` through combining these transforamtions to apply to the dataset and visualizes the `preprocessor`.
+We have split the housing_df DataFrame into training and test datasets using an `70-30 split`, categorized features into categorical features (e.g., `garage`, `firepl`, `bsmt`, `bdevl`) and numeric features (e.g., `meters`), applied one-hot encoding transformation for categorical features and standardScalar transformation for numeric features by using Scikit-learn<cite>@scikit2024</cite>. We then created a column transformer `preprocessor` through combining these transformations to apply to the dataset and visualizes the `preprocessor`.
 
 We performed analysis to identify any potential issues with the relationships between features and the target, as well as between the features themselves. By detecting anomalous correlations, we can uncover redundant or highly correlated features that might lead to multicollinearity, which can negatively affect the performance of machine learning models. In particular, removing or adjusting features that are too strongly correlated ensures that the model can learn meaningful, independent relationships, improving its generalization ability and interpretability. Additionally, examining correlations helps us assess if certain features are disproportionately influencing the target variable, which could indicate bias or overfitting.
 
@@ -119,8 +122,17 @@ During the validation step, we ensured the correctness of categorical feature le
 
 ### 5. Train, cross validate and evaluate a Ridge regression model
 
-We have splited the features and target variable (`assess_2022`) into training and testing datasets.Then, we have created a pipeline combining the column transformer (`preprocessor`) and the Ridge Regression model<cite>@ridge1992</cite>. Using 5-fold cross-validation on the training data, we evaluated the pipeline on multiple metrics and computes train and validation scores. Finally, it outputs the aggregated train and validation scores to assess the model's performance<cite>@scikit2024</cite>.
-@tbl-cross-validation-results summarizes the cross-validation results, including the mean and standard deviation of train and validation scores across 5 folds.
+We have split the features and target variable (`assess_2022`) into training and testing datasets. Then, we have created a pipeline combining the column transformer (`preprocessor`) and the Ridge Regression model<cite>@ridge1992</cite>. Using 5-fold cross-validation on the training data, we evaluated the pipeline on multiple metrics and computes train and validation scores. Finally, it outputs the aggregated train and validation scores to assess the model's performance<cite>@scikit2024</cite>.
+@tbl-cross-validation-results summarizes the cross-validation results, including the mean and standard deviation of train and validation scores across 5 folds. For our baseline, we created simple dummy model that uses mean values for predictions. @tbl-dummy-cross-validation-results summarizes the baseline's cross-validation results
+
+```{python}
+#| label: tbl-dummy-cross-validation-results
+#| tbl-cap: "Baseline cross-validation results showing the mean and standard deviation for train and validation scores across 5 folds."
+dummy_cross_val_results = pd.read_csv("../results/models/dummy_cross_val_results.csv").round(3)
+Markdown(dummy_cross_val_results.to_markdown())
+```
+
+By comparing our mode's performance in @tbl-cross-validation-results with our baseline's performance in @tbl-dummy-cross-validation-results, we can see a significant improvement in scores which supports our model's validity.
 
 ```{python}
 #| label: tbl-cross-validation-results
