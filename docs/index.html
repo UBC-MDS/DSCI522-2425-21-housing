@@ -1,0 +1,1540 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en" data-darkreader-mode="dynamic" data-darkreader-scheme="dark"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><style class="anchorjs"></style><style class="darkreader darkreader--sync" media="screen"></style><style class="darkreader darkreader--fallback" media="screen"></style><style class="darkreader darkreader--text" media="screen"></style><style class="darkreader darkreader--invert" media="screen">.jfk-bubble.gtx-bubble, .captcheck_answer_label > input + img, span#closed_text > img[src^="https://www.gstatic.com/images/branding/googlelogo"], span[data-href^="https://www.hcaptcha.com/"] > #icon, img.Wirisformula, a[data-testid="headerMediumLogo"]>svg {
+    filter: invert(100%) hue-rotate(180deg) contrast(90%) !important;
+}</style><style class="darkreader darkreader--inline" media="screen">[data-darkreader-inline-bgcolor] {
+  background-color: var(--darkreader-inline-bgcolor) !important;
+}
+[data-darkreader-inline-bgimage] {
+  background-image: var(--darkreader-inline-bgimage) !important;
+}
+[data-darkreader-inline-border] {
+  border-color: var(--darkreader-inline-border) !important;
+}
+[data-darkreader-inline-border-bottom] {
+  border-bottom-color: var(--darkreader-inline-border-bottom) !important;
+}
+[data-darkreader-inline-border-left] {
+  border-left-color: var(--darkreader-inline-border-left) !important;
+}
+[data-darkreader-inline-border-right] {
+  border-right-color: var(--darkreader-inline-border-right) !important;
+}
+[data-darkreader-inline-border-top] {
+  border-top-color: var(--darkreader-inline-border-top) !important;
+}
+[data-darkreader-inline-boxshadow] {
+  box-shadow: var(--darkreader-inline-boxshadow) !important;
+}
+[data-darkreader-inline-color] {
+  color: var(--darkreader-inline-color) !important;
+}
+[data-darkreader-inline-fill] {
+  fill: var(--darkreader-inline-fill) !important;
+}
+[data-darkreader-inline-stroke] {
+  stroke: var(--darkreader-inline-stroke) !important;
+}
+[data-darkreader-inline-outline] {
+  outline-color: var(--darkreader-inline-outline) !important;
+}
+[data-darkreader-inline-stopcolor] {
+  stop-color: var(--darkreader-inline-stopcolor) !important;
+}
+[data-darkreader-inline-bg] {
+  background: var(--darkreader-inline-bg) !important;
+}
+[data-darkreader-inline-invert] {
+    filter: invert(100%) hue-rotate(180deg);
+}</style><style class="darkreader darkreader--variables" media="screen">:root {
+   --darkreader-neutral-background: var(--darkreader-background-ffffff, #181a1b);
+   --darkreader-neutral-text: var(--darkreader-text-000000, #e8e6e3);
+   --darkreader-selection-background: var(--darkreader-background-0060d4, #004daa);
+   --darkreader-selection-text: var(--darkreader-text-ffffff, #e8e6e3);
+}</style><style class="darkreader darkreader--root-vars" media="screen"></style><style class="darkreader darkreader--user-agent" media="screen">@layer {
+html {
+    background-color: var(--darkreader-background-ffffff, #181a1b) !important;
+}
+html {
+    color-scheme: dark !important;
+}
+iframe {
+    color-scheme: dark !important;
+}
+html, body {
+    background-color: var(--darkreader-background-ffffff, #181a1b);
+}
+html, body {
+    border-color: #736b5e;
+    color: var(--darkreader-text-000000, #e8e6e3);
+}
+a {
+    color: #3391ff;
+}
+table {
+    border-color: #545b5e;
+}
+mark {
+    color: var(--darkreader-text-000000, #e8e6e3);
+}
+::placeholder {
+    color: #b2aba1;
+}
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+    background-color: #404400 !important;
+    color: var(--darkreader-text-000000, #e8e6e3) !important;
+}
+::selection {
+    background-color: #004daa !important;
+    color: #e8e6e3 !important;
+}
+::-moz-selection {
+    background-color: #004daa !important;
+    color: #e8e6e3 !important;
+}
+}</style>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.39">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Gilbert Akuja, Tianjiao Jiang, Thamer Aldawood &amp; Yajing Liu">
+<meta name="dcterms.date" content="2024-12-07">
+
+<title>Title: Strathcona House Value Predictor</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style><style class="darkreader darkreader--sync" media="screen"></style>
+
+
+<script src="index_files/clipboard.min.js"></script><meta name="darkreader" content="00b75cfc5f0645d98deef882e50c3039"><style class="darkreader darkreader--override" media="screen">.vimvixen-hint {
+    background-color: #684b00 !important;
+    border-color: #9e7e00 !important;
+    color: #d7d4cf !important;
+}
+#vimvixen-console-frame {
+    color-scheme: light !important;
+}
+::placeholder {
+    opacity: 0.5 !important;
+}
+#edge-translate-panel-body,
+.MuiTypography-body1,
+.nfe-quote-text {
+    color: var(--darkreader-neutral-text) !important;
+}
+gr-main-header {
+    background-color: #1b4958 !important;
+}
+.tou-z65h9k,
+.tou-mignzq,
+.tou-1b6i2ox,
+.tou-lnqlqk {
+    background-color: var(--darkreader-neutral-background) !important;
+}
+.tou-75mvi {
+    background-color: #0f3a47 !important;
+}
+.tou-ta9e87,
+.tou-1w3fhi0,
+.tou-1b8t2us,
+.tou-py7lfi,
+.tou-1lpmd9d,
+.tou-1frrtv8,
+.tou-17ezmgn {
+    background-color: #1e2021 !important;
+}
+.tou-uknfeu {
+    background-color: #432c09 !important;
+}
+.tou-6i3zyv {
+    background-color: #245d70 !important;
+}
+div.mermaid-viewer-control-panel .btn {
+    background-color: var(--darkreader-neutral-background);
+    fill: var(--darkreader-neutral-text);
+}
+svg g rect.er {
+    fill: var(--darkreader-neutral-background) !important;
+}
+svg g rect.er.entityBox {
+    fill: var(--darkreader-neutral-background) !important;
+}
+svg g rect.er.attributeBoxOdd {
+    fill: var(--darkreader-neutral-background) !important;
+}
+svg g rect.er.attributeBoxEven {
+    fill: var(--darkreader-selection-background);
+    fill-opacity: 0.8 !important;
+}
+svg rect.er.relationshipLabelBox {
+    fill: var(--darkreader-neutral-background) !important;
+}
+svg g g.nodes rect,
+svg g g.nodes polygon {
+    fill: var(--darkreader-neutral-background) !important;
+}
+svg g rect.task {
+    fill: var(--darkreader-selection-background) !important;
+}
+svg line.messageLine0,
+svg line.messageLine1 {
+    stroke: var(--darkreader-neutral-text) !important;
+}
+div.mermaid .actor {
+    fill: var(--darkreader-neutral-background) !important;
+}
+mitid-authenticators-code-app > .code-app-container {
+    background-color: white !important;
+    padding-top: 1rem;
+}
+iframe#unpaywall[src$="unpaywall.html"] {
+    color-scheme: light !important;
+}
+select option {
+    background-color: var(--darkreader-neutral-background) !important;
+}
+embed[type="application/pdf"] { filter: invert(100%) contrast(90%); }</style>
+<script src="index_files/quarto.js"></script>
+<script src="index_files/popper.min.js"></script>
+<script src="index_files/tippy.umd.min.js"></script>
+<script src="index_files/anchor.min.js"></script>
+<link href="index_files/tippy.css" rel="stylesheet">
+<link href="index_files/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="index_files/bootstrap.min.js"></script>
+<link href="index_files/bootstrap-icons.css" rel="stylesheet">
+<link href="index_files/bootstrap-8a79a254b8e706d3c925cde0a310d4f0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#summary" id="toc-summary" class="nav-link active" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#methods-results" id="toc-methods-results" class="nav-link" data-scroll-target="#methods-results">Methods &amp; Results</a>
+  <ul class="collapse">
+  <li><a href="#import-all-the-necessary-libraries-for-data-analysis" id="toc-import-all-the-necessary-libraries-for-data-analysis" class="nav-link" data-scroll-target="#import-all-the-necessary-libraries-for-data-analysis">1. Import all the necessary libraries for data analysis</a></li>
+  <li><a href="#read-in-dataset" id="toc-read-in-dataset" class="nav-link" data-scroll-target="#read-in-dataset">2. Read in dataset</a></li>
+  <li><a href="#visualization-for-categorical-features" id="toc-visualization-for-categorical-features" class="nav-link" data-scroll-target="#visualization-for-categorical-features">3. Visualization for categorical features</a></li>
+  <li><a href="#prepare-data-for-training-and-create-column-transformer-for-feature-transformation" id="toc-prepare-data-for-training-and-create-column-transformer-for-feature-transformation" class="nav-link" data-scroll-target="#prepare-data-for-training-and-create-column-transformer-for-feature-transformation">4. Prepare data for training and create column transformer for feature transformation</a></li>
+  <li><a href="#train-cross-validate-and-evaluate-a-ridge-regression-model" id="toc-train-cross-validate-and-evaluate-a-ridge-regression-model" class="nav-link" data-scroll-target="#train-cross-validate-and-evaluate-a-ridge-regression-model">5. Train, cross validate and evaluate a Ridge regression model</a></li>
+  <li><a href="#predict-housing-prices-with-new-data" id="toc-predict-housing-prices-with-new-data" class="nav-link" data-scroll-target="#predict-housing-prices-with-new-data">6. Predict housing prices with new data</a></li>
+  <li><a href="#visualization-for-predictions" id="toc-visualization-for-predictions" class="nav-link" data-scroll-target="#visualization-for-predictions">7. Visualization for predictions</a></li>
+  </ul></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a>
+  <ul class="collapse">
+  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">Limitations</a></li>
+  <li><a href="#future-work" id="toc-future-work" class="nav-link" data-scroll-target="#future-work">Future Work</a></li>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="file:///C:/Users/Thamer/OneDrive/Desktop/UBC/522%20-%20Data%20Science%20Workflows/DSCI522-2425-21-housing/docs/strathcona_house_value_predictor.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Title: Strathcona House Value Predictor</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Gilbert Akuja, Tianjiao Jiang, Thamer Aldawood &amp; Yajing Liu </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">December 7, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="#summary" style="font: 1em / 1 anchorjs-icons; margin-left: 0.1875em; padding-right: 0.1875em; padding-left: 0.1875em;"></a></h2>
+<p>Our team will be working on predicting house prices using the <code>2023 Property Tax Assessment</code> dataset from Strathcona County Open Data portal<cite><span class="citation" data-cites="strathcona2023">County (<a href="#ref-strathcona2023" role="doc-biblioref" aria-expanded="false">2023</a>)</span></cite>.
+ The dataset provides a wealth of information about houses, including 
+attributes like size, location, and other features. By leveraging this 
+data, we aim to build a robust predictive model that accurately 
+estimates house values.</p>
+</section>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="#introduction" style="font: 1em / 1 anchorjs-icons; margin-left: 0.1875em; padding-right: 0.1875em; padding-left: 0.1875em;"></a></h2>
+<p>The team will be using <code>Ridge</code> which is a linear model to predict the value of houses. <code>Ridge</code>
+ is a regularization model that is used for predictive modeling and 
+mitigates over fitting, improves model stability especially when 
+features are highly correlated<cite><span class="citation" data-cites="ridge1992">Hoerl and Kennard (<a href="#ref-ridge1992" role="doc-biblioref" aria-expanded="false">1970</a>)</span></cite>.
+ Ridge helps create robust model that generalize well to new data. The 
+question we aim to answer: Can we predict house prices using publicly 
+available housing data , and which features most influence the 
+predictions? This research is significant as understanding housing 
+prices plays a critical role in assessing broader economic trends, 
+identifying market patterns, and addressing housing affordability 
+issues. Accurate price predictions can help promote transparency and 
+stability in the housing market, which benefits individuals and the 
+economy as a whole.</p>
+<p>Data description: For this project we are going to use the <code>2023 Property Tax Assessment</code> from Strathcona County Open Data portal<cite><span class="citation" data-cites="strathcona2023">County (<a href="#ref-strathcona2023" role="doc-biblioref" aria-expanded="false">2023</a>)</span></cite>. The data set contains the following attributes related to the different houses. The variables we selected for the model are: <br> <code>meters</code> - numeric variable that show the size of the house <br> <code>garage</code> - categorical variable where Y means there is a garage and N means no garage. <br> <code>firepl</code> - categorical variable where Y means there is a fireplace and N means no fireplace<br> <code>bdevl</code> - categorical variable where Y meas the building was evaluated and N means it was not evaluated<br>
+ The data set was chosen for its rich feature set, adequate sample size,
+ and public availability making it suitable for building a predictive 
+model.</p>
+</section>
+<section id="methods-results" class="level2">
+<h2 class="anchored" data-anchor-id="methods-results">Methods &amp; Results<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="#methods-results" style="font: 1em / 1 anchorjs-icons; margin-left: 0.1875em; padding-right: 0.1875em; padding-left: 0.1875em;"></a></h2>
+<p>We used <code>Ridge</code> Regression to predict house values based 
+on features such as building size, garage presence, and building 
+evaluation. Ridge regression, as outlined by <cite><span class="citation" data-cites="ridge1992">Hoerl and Kennard (<a href="#ref-ridge1992" role="doc-biblioref" aria-expanded="false">1970</a>)</span></cite>,
+ is particularly useful in addressing multicollinearity. Model selection
+ and evaluation were facilitated by Scikit-Learn’s robust tools <cite><span class="citation" data-cites="scikit2024">Learn (<a href="#ref-scikit2024" role="doc-biblioref" aria-expanded="false">2024</a>)</span></cite>. Exploratory visualizations were created using Altair <cite><span class="citation" data-cites="altair2024"><span>“Altair Tutorial, Exploratory Data Visualization with Altair”</span> (<a href="#ref-altair2024" role="doc-biblioref" aria-expanded="false">2024</a>)</span></cite>. The report is generated using tools Quart <cite><span class="citation" data-cites="quarto2024">Team (<a href="#ref-quarto2024" role="doc-biblioref" aria-expanded="false">2024</a>)</span></cite>.</p>
+<section id="import-all-the-necessary-libraries-for-data-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="import-all-the-necessary-libraries-for-data-analysis">1. Import all the necessary libraries for data analysis<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="#import-all-the-necessary-libraries-for-data-analysis" style="font: 1em / 1 anchorjs-icons; margin-left: 0.1875em; padding-right: 0.1875em; padding-left: 0.1875em;"></a></h3>
+<pre><code>- pandas
+- numpy
+- sklearn.model_selection
+- altair
+- os</code></pre>
+</section>
+<section id="read-in-dataset" class="level3">
+<h3 class="anchored" data-anchor-id="read-in-dataset">2. Read in dataset<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="#read-in-dataset" style="font: 1em / 1 anchorjs-icons; margin-left: 0.1875em; padding-right: 0.1875em; padding-left: 0.1875em;"></a></h3>
+<p>We read the CSV file named <code>2023 Property Tax Assessment</code> into a pandas DataFrame and filters it to include only the features we are going to evaluate<cite><span class="citation" data-cites="strathcona2023">County (<a href="#ref-strathcona2023" role="doc-biblioref" aria-expanded="false">2023</a>)</span></cite>. The resulting DataFrame contains the specific features for further analysis. <a href="#tbl-housing-data" class="quarto-xref" aria-expanded="false">Table&nbsp;1</a> displays the first few rows of the dataset after filtering for the relevant columns.</p>
+<div class="cell" data-execution_count="2">
+<div id="tbl-housing-data" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="2">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-housing-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Preview of the 2023 Property Tax Assessment dataset after selecting relevant columns.
+</figcaption>
+<div aria-describedby="tbl-housing-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="44">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 12%">
+<col style="width: 13%">
+<col style="width: 22%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;"></th>
+<th style="text-align: right;">meters</th>
+<th style="text-align: left;">garage</th>
+<th style="text-align: left;">firepl</th>
+<th style="text-align: left;">bsmt</th>
+<th style="text-align: left;">bdevl</th>
+<th style="text-align: right;">assess_2022</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">150.59</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: right;">382460</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">123.56</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: right;">280370</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">104.98</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: right;">402000</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">66.611</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: right;">3690</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">123.83</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: right;">295910</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">205.4</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: right;">419000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">120.68</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: right;">289380</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">83.148</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: right;">326170</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">120.77</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: right;">419000</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">115.94</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: right;">290000</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="#tbl-housing-data" style="font: 1em / 1 anchorjs-icons; margin-left: 0.1875em; padding-right: 0.1875em; padding-left: 0.1875em;"></a></div>
+</div>
+<p>For the beginning exploratory data analysis, we performed data validation checks to ensure the following:</p>
+<pre><code>- Correct data file format
+- Correct column names
+- No empty observations
+- Missingness not beyond expected threshold
+- Correct data types in each column
+- No duplicate observations
+- No outlier or anomalous values</code></pre>
+<p>The results for our validation check are passed.</p>
+</section>
+<section id="visualization-for-categorical-features" class="level3">
+<h3 class="anchored" data-anchor-id="visualization-for-categorical-features">3. Visualization for categorical features<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="#visualization-for-categorical-features" style="font: 1em / 1 anchorjs-icons; margin-left: 0.1875em; padding-right: 0.1875em; padding-left: 0.1875em;"></a></h3>
+<p>We have enabled <code>VegaFusion</code> to optimize <code>Altair</code> data transformations for visualizations<cite><span class="citation" data-cites="altair2024"><span>“Altair Tutorial, Exploratory Data Visualization with Altair”</span> (<a href="#ref-altair2024" role="doc-biblioref" aria-expanded="false">2024</a>)</span></cite>. We then created a distribution plot of categorical features in the <code>housing_df</code> DataFrame. As shown in <a href="#fig-categorical-features" class="quarto-xref" aria-expanded="false">Figure&nbsp;1</a>, the distribution of categorical features provides insights into their overall counts.</p>
+<div id="fig-categorical-features" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-categorical-features-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/categorical_features_counts.png" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-categorical-features-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Distribution of categorical features (Garage, Fireplace, Basement, and Building Evaluation).
+</figcaption>
+</figure>
+<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="#fig-categorical-features" style="font: 1em / 1 anchorjs-icons; margin-left: 0.1875em; padding-right: 0.1875em; padding-left: 0.1875em;"></a></div>
+<p>The scatter plots visualize the relationship between house assessment values (<code>assess_2022</code>) and four categorical features: <code>garage</code>, <code>firepl</code>, <code>bsmt</code>, and <code>bdevl</code>. As depicted in <a href="#fig-assessment-categorical" class="quarto-xref" aria-expanded="false">Figure&nbsp;2</a>, the scatter plots illustrate the relationship between house value assessments and categorical features.</p>
+<div id="fig-assessment-categorical" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-assessment-categorical-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/categorical_features_scatter.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-assessment-categorical-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Scatter plots showing house value assessments for 
+categorical features: Garage, Fireplace, Basement, and Building 
+Evaluation.
+</figcaption>
+</figure>
+<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="#fig-assessment-categorical" style="font: 1em / 1 anchorjs-icons; margin-left: 0.1875em; padding-right: 0.1875em; padding-left: 0.1875em;"></a></div>
+<p>The correlation plots show which of our features have positive or negative relationships with each other. By examining <a href="#fig-correlation-plot" class="quarto-xref" aria-expanded="false">Figure&nbsp;3</a>,
+ we can see that our features have no negative relationships, and that 
+there seems to be a strong positive relationship between <code>meters</code> and <code>assess_2022</code>
+ which tells us that the larger the property is, the higher its 
+evaluation. We can also see a significant positive relationship between <code>bsmt</code> and <code>bdevl</code> which shows that most properties that have a basement in our dataset have had a building evaluation.</p>
+<div id="fig-correlation-plot" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-correlation-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/correlation_chart.png" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-correlation-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Correlation plot showing relationships between all features
+</figcaption>
+</figure>
+<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="#fig-correlation-plot" style="font: 1em / 1 anchorjs-icons; margin-left: 0.1875em; padding-right: 0.1875em; padding-left: 0.1875em;"></a></div>
+</section>
+<section id="prepare-data-for-training-and-create-column-transformer-for-feature-transformation" class="level3">
+<h3 class="anchored" data-anchor-id="prepare-data-for-training-and-create-column-transformer-for-feature-transformation">4. Prepare data for training and create column transformer for feature transformation<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="#prepare-data-for-training-and-create-column-transformer-for-feature-transformation" style="font: 1em / 1 anchorjs-icons; margin-left: 0.1875em; padding-right: 0.1875em; padding-left: 0.1875em;"></a></h3>
+<p>Visualizing the distribution of the target variable, <code>assess_2022</code>,
+ using a histogram and Kernel Density Estimate (KDE) plot is a crucial 
+step in data exploration. It helps us understand the overall 
+distribution, identify patterns such as skewness, kurtosis, or multiple 
+peaks, and detect outliers. By comparing the histogram and KDE, we can 
+assess if the distribution meets the assumptions of our chosen modeling 
+techniques. This visualization also guides decisions about 
+preprocessing, such as applying transformations to address skewness or 
+choosing the right algorithm for modeling. Additionally, it can uncover 
+data quality issues, like sparse regions or missing values, prompting 
+necessary corrections.</p>
+<p>As depicted in <a href="#fig-property-assessment-distribution" class="quarto-xref" aria-expanded="false">Figure&nbsp;4</a>,
+ the combined visualizations provide valuable insights into the 
+distribution and relationship between property sizes (meters) and house 
+assessment values (<code>assess_2022</code>). The scatter plot showcases
+ how larger properties tend to have higher assessment values, while the 
+histogram and KDE plot reveal the overall distribution and density of 
+assessment values in the dataset.</p>
+<div id="fig-property-assessment-distribution" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-property-assessment-distribution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/distribution_charts.png" class="img-fluid figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-property-assessment-distribution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Distribution and relationships of house assessment values
+ (2022), showing scatter plot, histogram, and kernel density estimation.
+</figcaption>
+</figure>
+<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="#fig-property-assessment-distribution" style="font: 1em / 1 anchorjs-icons; margin-left: 0.1875em; padding-right: 0.1875em; padding-left: 0.1875em;"></a></div>
+<p>According to the scatter plot, the vast majority of our data points are concentrated within the <code>0 &lt; meters &lt; 2000 range</code>, with some more within the <code>2000 &lt; meters &lt; 5000</code> range, and there are a few outliers in the <code>meters &gt; 5000</code> range that make it difficult to get a closer look on the majority of our data. We can see a similar story on the <code>assess_2022</code> feature as it has the vast majority of points in the low-mid range and some outlying extreme values.</p>
+<p>We have split the housing_df DataFrame into training and test datasets using an <code>70-30 split</code>, categorized features into categorical features (e.g., <code>garage</code>, <code>firepl</code>, <code>bsmt</code>, <code>bdevl</code>) and numeric features (e.g., <code>meters</code>),
+ applied one-hot encoding transformation for categorical features and 
+standardScalar transformation for numeric features by using Scikit-learn<cite><span class="citation" data-cites="scikit2024">Learn (<a href="#ref-scikit2024" role="doc-biblioref" aria-expanded="false">2024</a>)</span></cite>. We then created a column transformer <code>preprocessor</code> through combining these transformations to apply to the dataset and visualizes the <code>preprocessor</code>.</p>
+<p>We performed analysis to identify any potential issues with the 
+relationships between features and the target, as well as between the 
+features themselves. By detecting anomalous correlations, we can uncover
+ redundant or highly correlated features that might lead to 
+multicollinearity, which can negatively affect the performance of 
+machine learning models. In particular, removing or adjusting features 
+that are too strongly correlated ensures that the model can learn 
+meaningful, independent relationships, improving its generalization 
+ability and interpretability. Additionally, examining correlations helps
+ us assess if certain features are disproportionately influencing the 
+target variable, which could indicate bias or overfitting.</p>
+<p>During the validation step, we ensured the correctness of categorical
+ feature levels by checking for string mismatches or unexpected single 
+values. All categorical columns in the training dataset (<code>garage</code>, <code>firepl</code>, <code>bsmt</code>, and <code>bdevl</code>)
+ passed validation with the expected levels of ‘Y’ and ‘N’. 
+Additionally, we analyzed correlations between the target variable and 
+features, as well as correlations between features themselves. No 
+anomalous correlations were detected in either case. For correlation 
+analysis, we excluded pairs of binary features that are inherently 
+correlated due to their inverse relationship, such as <code>Garage_Y</code> and <code>Garage_N</code>,
+ where one feature is always the inverse of the other. These 
+relationships are expected and not flagged as anomalies. By excluding 
+such pairs, we ensured the analysis focuses only on truly anomalous 
+correlations, avoiding false positives while identifying potential 
+issues in the dataset.</p>
+</section>
+<section id="train-cross-validate-and-evaluate-a-ridge-regression-model" class="level3">
+<h3 class="anchored" data-anchor-id="train-cross-validate-and-evaluate-a-ridge-regression-model">5. Train, cross validate and evaluate a Ridge regression model<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="#train-cross-validate-and-evaluate-a-ridge-regression-model" style="font: 1em / 1 anchorjs-icons; margin-left: 0.1875em; padding-right: 0.1875em; padding-left: 0.1875em;"></a></h3>
+<p>We have split the features and target variable (<code>assess_2022</code>) into training and testing datasets. Then, we have created a pipeline combining the column transformer (<code>preprocessor</code>) and the Ridge Regression model<cite><span class="citation" data-cites="ridge1992">Hoerl and Kennard (<a href="#ref-ridge1992" role="doc-biblioref" aria-expanded="false">1970</a>)</span></cite>.
+ Using 5-fold cross-validation on the training data, we evaluated the 
+pipeline on multiple metrics and computes train and validation scores. 
+Finally, it outputs the aggregated train and validation scores to assess
+ the model’s performance<cite><span class="citation" data-cites="scikit2024">Learn (<a href="#ref-scikit2024" role="doc-biblioref" aria-expanded="false">2024</a>)</span></cite>. <a href="#tbl-cross-validation-results" class="quarto-xref" aria-expanded="false">Table&nbsp;3</a>
+ summarizes the cross-validation results, including the mean and 
+standard deviation of train and validation scores across 5 folds. For 
+our baseline, we created simple dummy model that uses mean values for 
+predictions. <a href="#tbl-dummy-cross-validation-results" class="quarto-xref" aria-expanded="false">Table&nbsp;2</a> summarizes the baseline’s cross-validation results</p>
+<div class="cell" data-execution_count="3">
+<div id="tbl-dummy-cross-validation-results" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="3">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-dummy-cross-validation-results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Baseline cross-validation results showing the mean and 
+standard deviation for train and validation scores across 5 folds.
+</figcaption>
+<div aria-describedby="tbl-dummy-cross-validation-results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="45">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: right;"></th>
+<th style="text-align: left;">Unnamed: 0</th>
+<th style="text-align: right;">mean</th>
+<th style="text-align: right;">std</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">fit_time</td>
+<td style="text-align: right;">0.012</td>
+<td style="text-align: right;">0.002</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">score_time</td>
+<td style="text-align: right;">0.003</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">test_score</td>
+<td style="text-align: right;">-0.003</td>
+<td style="text-align: right;">0.005</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">train_score</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="#tbl-dummy-cross-validation-results" style="font: 1em / 1 anchorjs-icons; margin-left: 0.1875em; padding-right: 0.1875em; padding-left: 0.1875em;"></a></div>
+</div>
+<p>By comparing our mode’s performance in <a href="#tbl-cross-validation-results" class="quarto-xref" aria-expanded="false">Table&nbsp;3</a> with our baseline’s performance in <a href="#tbl-dummy-cross-validation-results" class="quarto-xref" aria-expanded="false">Table&nbsp;2</a>, we can see a significant improvement in scores which supports our model’s validity.</p>
+<div class="cell" data-execution_count="4">
+<div id="tbl-cross-validation-results" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="4">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-cross-validation-results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3: Cross-validation results showing the mean and standard deviation for train and validation scores across 5 folds.
+</figcaption>
+<div aria-describedby="tbl-cross-validation-results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="46">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: right;"></th>
+<th style="text-align: left;">Unnamed: 0</th>
+<th style="text-align: right;">mean</th>
+<th style="text-align: right;">std</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">fit_time</td>
+<td style="text-align: right;">0.019</td>
+<td style="text-align: right;">0.005</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">score_time</td>
+<td style="text-align: right;">0.004</td>
+<td style="text-align: right;">0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">test_score</td>
+<td style="text-align: right;">0.564</td>
+<td style="text-align: right;">0.235</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">train_score</td>
+<td style="text-align: right;">0.575</td>
+<td style="text-align: right;">0.078</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="#tbl-cross-validation-results" style="font: 1em / 1 anchorjs-icons; margin-left: 0.1875em; padding-right: 0.1875em; padding-left: 0.1875em;"></a></div>
+</div>
+<p>We fit the pipeline on the training dataset (<code>X_train</code> and <code>y_train</code>) to train the Ridge Regression model<cite><span class="citation" data-cites="ridge1992">Hoerl and Kennard (<a href="#ref-ridge1992" role="doc-biblioref" aria-expanded="false">1970</a>)</span></cite>. Then evaluates the trained pipeline on the test dataset (<code>X_test</code> and <code>y_test</code>) which calculates the R² (coefficient of determination) to measure how well the model explains the variance in the test data.</p>
+</section>
+<section id="predict-housing-prices-with-new-data" class="level3">
+<h3 class="anchored" data-anchor-id="predict-housing-prices-with-new-data">6. Predict housing prices with new data<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="#predict-housing-prices-with-new-data" style="font: 1em / 1 anchorjs-icons; margin-left: 0.1875em; padding-right: 0.1875em; padding-left: 0.1875em;"></a></h3>
+<p>We created a Pandas DataFrame containing information about 10 houses that we wish to predict the value of. <a href="#tbl-ten-houses" class="quarto-xref" aria-expanded="false">Table&nbsp;4</a> summarizes the attributes of ten houses, including property size and various categorical features, used for predictions.</p>
+<div class="cell" data-execution_count="5">
+<div id="tbl-ten-houses" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="5">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ten-houses-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4: Attributes of ten houses used for prediction.
+</figcaption>
+<div aria-describedby="tbl-ten-houses-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="47">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: right;"></th>
+<th style="text-align: right;">meters</th>
+<th style="text-align: left;">garage</th>
+<th style="text-align: left;">firepl</th>
+<th style="text-align: left;">bsmt</th>
+<th style="text-align: left;">bdevl</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">174.23</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">N</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">132.76</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">90.82</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">Y</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">68.54</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">221.3</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">145.03</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">Y</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">102.96</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">164.28</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">142.79</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">N</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">115.94</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="#tbl-ten-houses" style="font: 1em / 1 anchorjs-icons; margin-left: 0.1875em; padding-right: 0.1875em; padding-left: 0.1875em;"></a></div>
+</div>
+<p>We applied the trained pipeline to predict housing prices values based on the features in the dataFrame containing new data <cite><span class="citation" data-cites="hastie2009">Hastie, Tibshirani, and Friedman (<a href="#ref-hastie2009" role="doc-biblioref" aria-expanded="false">2009</a>)</span></cite>. The predictions are stored in a new pandas DataFrame.</p>
+<p>We combined the original features from the new data and the predicted
+ values into a new pandas DataFrame. The new pandas DataFrame provides 
+an overview of the predictions. <a href="#tbl-predicted-values" class="quarto-xref" aria-expanded="false">Table&nbsp;5</a>
+ displays the predicted house values for the ten houses based on their 
+attributes, including property size and categorical features.</p>
+<div class="cell" data-execution_count="6">
+<div id="tbl-predicted-values" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="6">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-predicted-values-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5: Predicted house values for the ten houses based on their attributes.
+</figcaption>
+<div aria-describedby="tbl-predicted-values-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="48">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 5%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 11%">
+<col style="width: 12%">
+<col style="width: 28%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;"></th>
+<th style="text-align: right;">meters</th>
+<th style="text-align: left;">garage</th>
+<th style="text-align: left;">firepl</th>
+<th style="text-align: left;">bsmt</th>
+<th style="text-align: left;">bdevl</th>
+<th style="text-align: right;">Predicted_Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">174.23</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: right;">537035</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">132.76</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: right;">457895</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">90.82</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: right;">360993</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">68.54</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: right;">212530</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">221.3</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: right;">700375</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">145.03</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: right;">445199</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">102.96</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: right;">344127</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">164.28</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: right;">515519</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">142.79</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: right;">419402</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">115.94</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: right;">418258</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="#tbl-predicted-values" style="font: 1em / 1 anchorjs-icons; margin-left: 0.1875em; padding-right: 0.1875em; padding-left: 0.1875em;"></a></div>
+</div>
+</section>
+<section id="visualization-for-predictions" class="level3">
+<h3 class="anchored" data-anchor-id="visualization-for-predictions">7. Visualization for predictions<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="#visualization-for-predictions" style="font: 1em / 1 anchorjs-icons; margin-left: 0.1875em; padding-right: 0.1875em; padding-left: 0.1875em;"></a></h3>
+<p>We have created line charts to visualize the relationship between property size (<code>meters</code>) and predicted housing prices (<code>Predicted_Values</code>),
+ colored by different categorical features. This visualization 
+highlights how categorical features interact with property size to 
+influence predicted house values<cite><span class="citation" data-cites="altair2024"><span>“Altair Tutorial, Exploratory Data Visualization with Altair”</span> (<a href="#ref-altair2024" role="doc-biblioref" aria-expanded="false">2024</a>)</span></cite>. As shown in <a href="#fig-property-size-correlation" class="quarto-xref" aria-expanded="false">Figure&nbsp;5</a>, property size has a significant impact on house value predictions, with notable variations across categorical features.</p>
+<div id="fig-property-size-correlation" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-property-size-correlation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/predictions_visualization.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-property-size-correlation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Line charts showing correlations between property size 
+and house value predictions, colored by various categorical features.
+</figcaption>
+</figure>
+<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="#fig-property-size-correlation" style="font: 1em / 1 anchorjs-icons; margin-left: 0.1875em; padding-right: 0.1875em; padding-left: 0.1875em;"></a></div>
+</section>
+</section>
+<section id="discussion" class="level2">
+<h2 class="anchored" data-anchor-id="discussion">Discussion<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="#discussion" style="font: 1em / 1 anchorjs-icons; margin-left: 0.1875em; padding-right: 0.1875em; padding-left: 0.1875em;"></a></h2>
+<p>The Ridge regression model demonstrates reasonable performance, with a
+ training score of 0.575 and a test score of 0.564, suggesting it 
+generalizes well without significant overfitting. However, the large 
+variability in the test score (±0.235) points to potential instability, 
+which could be improved by tuning the model’s hyperparameters. The model
+ is computationally efficient, with very low fit time (0.01s) and score 
+time (0.003s), making it suitable for rapid training and prediction. 
+While the overall performance is acceptable, further improvements could 
+be made through hyperparameter optimization or exploring alternative 
+models.</p>
+<p>Our findings suggest that the aforementioned 10 houses are expected to be valued at: <a href="#tbl-results" class="quarto-xref" aria-expanded="false">Table&nbsp;6</a></p>
+<div class="cell" data-execution_count="7">
+<div id="tbl-results" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="7">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;6: Predicted house values
+</figcaption>
+<div aria-describedby="tbl-results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="49">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: right;"></th>
+<th style="text-align: right;">Predicted_Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">537035</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">457895</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">360993</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">212530</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">700375</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">445199</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">344127</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">515519</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">419402</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">418258</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="#tbl-results" style="font: 1em / 1 anchorjs-icons; margin-left: 0.1875em; padding-right: 0.1875em; padding-left: 0.1875em;"></a></div>
+</div>
+<p>We have also noticed that there is a correlation between a house’s 
+price and its property’s size, whether or not it has a garage, 
+fireplace, basement, and whether or not the building has been evaluated.
+ This is consistent with our expectations as the larger a property is, 
+and the more features it has (basement, garage, etc.) the higher its 
+value becomes<cite><span class="citation" data-cites="garage2024">FastExpert (<a href="#ref-garage2024" role="doc-biblioref" aria-expanded="false">2024</a>)</span></cite>.
+ This also raises further questions such as what other features of a 
+house or property affect its value? characteristics for future 
+consideration include: Number of bedrooms, number of bathrooms, indoor 
+space, outdoor space, and number of floors.</p>
+<section id="limitations" class="level3">
+<h3 class="anchored" data-anchor-id="limitations">Limitations<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="#limitations" style="font: 1em / 1 anchorjs-icons; margin-left: 0.1875em; padding-right: 0.1875em; padding-left: 0.1875em;"></a></h3>
+<p>While the model performs well, several limitations need to be addressed:</p>
+<ol type="1">
+<li><p>Assumptions of Ridge Regression: Ridge regression assumes linear 
+relationships between features and the target variable. While effective 
+in addressing multicollinearity, it may fail to capture complex, 
+non-linear interactions in the data. The regularization term could 
+over-penalize certain features, potentially underestimating their 
+influence.</p></li>
+<li><p>Dataset Assumptions: The analysis assumes independence between 
+observations, which might not hold if regional trends or external 
+factors influence house prices. While preprocessing addressed issues 
+like missing values, duplicates, and outliers, any inaccuracies or 
+biases in the original data could impact the model’s predictions.</p></li>
+<li><p>Feature Selection: The model is limited to the selected features 
+(meters, garage, firepl, bsmt, bdevl), which do not comprehensively 
+represent all factors affecting house prices. Features like the number 
+of bedrooms, bathrooms, or outdoor space could improve the model’s 
+performance.</p></li>
+</ol>
+</section>
+<section id="future-work" class="level3">
+<h3 class="anchored" data-anchor-id="future-work">Future Work<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="#future-work" style="font: 1em / 1 anchorjs-icons; margin-left: 0.1875em; padding-right: 0.1875em; padding-left: 0.1875em;"></a></h3>
+<p>To address these limitations, future iterations could incorporate 
+non-linear models such as decision trees or ensemble methods to capture 
+more complex relationships. Including additional features like the 
+number of bedrooms, bathrooms, or proximity to amenities could further 
+refine the predictions. Spatial modeling or time-series analysis might 
+also better account for dependencies in the data.</p>
+<p>By acknowledging these limitations and proposing improvements, this 
+project lays the groundwork for future enhancements in house price 
+prediction.</p>
+</section>
+</section>
+<section id="references" class="level2 unnumbered">
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading" id="references-1">References<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="#references-1" style="font: 1em / 1 anchorjs-icons; margin-left: 0.1875em; padding-right: 0.1875em; padding-left: 0.1875em;"></a></h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-altair2024" class="csl-entry" role="listitem">
+<span>“Altair Tutorial, Exploratory Data Visualization with Altair.”</span> 2024. 2024. <a href="https://altair-viz.github.io/altair-tutorial/README.html">https://altair-viz.github.io/altair-tutorial/README.html</a>.
+</div>
+<div id="ref-strathcona2023" class="csl-entry" role="listitem">
+County, Strathcona. 2023. <span>“2023 Property Tax Assessment.”</span> <a href="https://www.strathcona.ca/services/assessment/">https://www.strathcona.ca/services/assessment/</a>.
+</div>
+<div id="ref-garage2024" class="csl-entry" role="listitem">
+FastExpert. 2024. <span>“How Much Value Does a Garage Add to a House?”</span> 2024. <a href="https://www.fastexpert.com/blog/how-much-value-does-a-garage-add-to-a-house/">https://www.fastexpert.com/blog/how-much-value-does-a-garage-add-to-a-house/</a>.
+</div>
+<div id="ref-hastie2009" class="csl-entry" role="listitem">
+Hastie, Trevor, Robert Tibshirani, and Jerome Friedman. 2009. <em>The Elements of Statistical Learning: Data Mining, Inference, and Prediction</em>. Springer.
+</div>
+<div id="ref-ridge1992" class="csl-entry" role="listitem">
+Hoerl, Arthur E., and Robert W. Kennard. 1970. <span>“Ridge Regression: Biased Estimation for Nonorthogonal Problems.”</span> <em>Technometrics</em> 12 (1): 55–67.
+</div>
+<div id="ref-scikit2024" class="csl-entry" role="listitem">
+Learn, Scikit. 2024. <span>“Model Selection and Evaluation.”</span> 2024. <a href="https://scikit-learn.org/stable/model_selection.html">https://scikit-learn.org/stable/model_selection.html</a>.
+</div>
+<div id="ref-quarto2024" class="csl-entry" role="listitem">
+Team, Quarto Development. 2024. <span>“Quarto: An Open-Source Scientific and Technical Publishing System.”</span> <a href="https://quarto.org/">https://quarto.org/</a>.
+</div>
+</div></section></div></main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
